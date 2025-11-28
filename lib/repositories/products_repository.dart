@@ -7,7 +7,7 @@ class ProductsRepository {
       title: 'Sample Product',
       description: 'This is a sample product.',
       price: 9.99,
-      imageUrl: 'https://example.com/sample.png',
+      imageUrls: ['https://example.com/sample.png'],
     ),
   ];
 }

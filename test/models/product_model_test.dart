@@ -9,14 +9,14 @@ void main() {
         title: 'Test Product',
         description: 'A product for testing',
         price: 9.99,
-        imageUrl: 'http://example.com/image.png',
+        imageUrls: ['http://example.com/image.png'],
       );
 
       expect(product.id, '1');
       expect(product.title, 'Test Product');
       expect(product.description, 'A product for testing');
       expect(product.price, 9.99);
-      expect(product.imageUrl, 'http://example.com/image.png');
+      expect(product.imageUrls, ['http://example.com/image.png']);
       expect(product.originalPrice, isNull);
       expect(product.promoMessage, isNull);
       expect(product.onSale, isFalse);
@@ -28,7 +28,7 @@ void main() {
         title: 'Sale Product',
         description: 'A product on sale',
         price: 5.99,
-        imageUrl: 'http://example.com/sale.png',
+        imageUrls: ['http://example.com/sale.png'],
         originalPrice: 10.99,
         promoMessage: '50% OFF!',
       );
@@ -44,7 +44,7 @@ void main() {
         title: 'Regular Product',
         description: 'No sale',
         price: 7.99,
-        imageUrl: 'http://example.com/regular.png',
+        imageUrls: ['http://example.com/regular.png'],
       );
 
       expect(product.onSale, isFalse);
@@ -56,7 +56,7 @@ void main() {
         title: 'Discounted Product',
         description: 'Discounted',
         price: 4.99,
-        imageUrl: 'http://example.com/discount.png',
+        imageUrls: ['http://example.com/discount.png'],
         originalPrice: 8.99,
       );
 

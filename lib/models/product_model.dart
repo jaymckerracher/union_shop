@@ -3,7 +3,7 @@ class Product {
   final String title;
   final String description;
   final double price;
-  final String imageUrl;
+  final List<String> imageUrls;
   final double? originalPrice;
   final String? promoMessage;
 
@@ -12,10 +12,10 @@ class Product {
     required this.title,
     required this.description,
     required this.price,
-    required this.imageUrl,
+    required this.imageUrls,
     this.originalPrice,
     this.promoMessage,
-  });
+  }) : assert(imageUrls.isNotEmpty, 'Product must have at least one image URL');
 
   bool get onSale => originalPrice != null;
 }
