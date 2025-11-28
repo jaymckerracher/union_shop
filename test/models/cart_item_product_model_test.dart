@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:union_shop/models/cart_item_model.dart';
+import 'package:union_shop/models/cart_item_product_model.dart';
 import 'package:union_shop/models/product_model.dart';
 
 void main() {
@@ -12,18 +12,18 @@ void main() {
   );
 
   test('should create a CartItem with valid data', () {
-    final cartItem = CartItem(product: product, value: 2);
+    final cartItem = CartItemProduct(product: product, value: 2);
     expect(cartItem.product, product);
     expect(cartItem.value, 2);
   });
 
   test('should allow value of 0', () {
-    final cartItem = CartItem(product: product, value: 0);
+    final cartItem = CartItemProduct(product: product, value: 0);
     expect(cartItem.value, 0);
   });
 
   test('should allow negative value', () {
-    final cartItem = CartItem(product: product, value: -5);
+    final cartItem = CartItemProduct(product: product, value: -5);
     expect(cartItem.value, -5);
   });
 }
