@@ -2,10 +2,10 @@ import 'product_model.dart';
 
 class CartItemProduct {
   final Product product;
-  final int value;
+  final int quantity;
 
   CartItemProduct({
     required this.product,
-    required this.value,
+    required this.quantity,
   });
 }

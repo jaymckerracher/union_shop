@@ -4,7 +4,7 @@ enum PrintType {
   threeLines,
 }
 
-class PrintProduct {
+class Print {
   final PrintType type;
   final List<String> lines;
 
@@ -19,7 +19,7 @@ class PrintProduct {
     }
   }
 
-  PrintProduct({
+  Print({
     required this.type,
     required this.lines,
   });
