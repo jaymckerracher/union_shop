@@ -62,5 +62,18 @@ void main() {
 
       expect(product.onSale, isTrue);
     });
+
+    test('should throw AssertionError if imageUrls is empty', () {
+      expect(
+        () => Product(
+          id: '7',
+          title: 'No Image Product',
+          description: 'Should fail',
+          price: 1.99,
+          imageUrls: [],
+        ),
+        throwsA(isA<AssertionError>()),
+      );
+    });
   });
 }
