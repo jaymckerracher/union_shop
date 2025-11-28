@@ -10,6 +10,8 @@ void main() {
         description: 'A product for testing',
         price: 9.99,
         imageUrls: ['http://example.com/image.png'],
+        category: ProductCategory.clothing,
+        collections: [Collections.halloween],
       );
 
       expect(product.id, '1');
@@ -17,6 +19,8 @@ void main() {
       expect(product.description, 'A product for testing');
       expect(product.price, 9.99);
       expect(product.imageUrls, ['http://example.com/image.png']);
+      expect(product.category, ProductCategory.clothing);
+      expect(product.collections, [Collections.halloween]);
       expect(product.originalPrice, isNull);
       expect(product.promoMessage, isNull);
       expect(product.onSale, isFalse);
@@ -29,12 +33,21 @@ void main() {
         description: 'A product on sale',
         price: 5.99,
         imageUrls: ['http://example.com/sale.png'],
+        category: ProductCategory.merchandise,
+        collections: [
+          Collections.signatureAndEssentialRange,
+          Collections.graduation
+        ],
         originalPrice: 10.99,
         promoMessage: '50% OFF!',
       );
 
       expect(product.originalPrice, 10.99);
       expect(product.promoMessage, '50% OFF!');
+      expect(product.category, ProductCategory.merchandise);
+      expect(product.collections,
+          contains(Collections.signatureAndEssentialRange));
+      expect(product.collections, contains(Collections.graduation));
       expect(product.onSale, isTrue);
     });
 
@@ -45,6 +58,8 @@ void main() {
         description: 'No sale',
         price: 7.99,
         imageUrls: ['http://example.com/regular.png'],
+        category: ProductCategory.clothing,
+        collections: [Collections.prideCollection],
       );
 
       expect(product.onSale, isFalse);
@@ -57,6 +72,8 @@ void main() {
         description: 'Discounted',
         price: 4.99,
         imageUrls: ['http://example.com/discount.png'],
+        category: ProductCategory.merchandise,
+        collections: [Collections.portsmouthCityCollection],
         originalPrice: 8.99,
       );
 
@@ -71,9 +88,35 @@ void main() {
           description: 'Should fail',
           price: 1.99,
           imageUrls: [],
+          category: ProductCategory.clothing,
+          collections: [Collections.halloween],
         ),
         throwsA(isA<AssertionError>()),
       );
+    });
+
+    test('should allow multiple collections', () {
+      final product = Product(
+        id: '8',
+        title: 'Multi Collection Product',
+        description: 'Product in multiple collections',
+        price: 12.99,
+        imageUrls: ['http://example.com/multi.png'],
+        category: ProductCategory.merchandise,
+        collections: [
+          Collections.halloween,
+          Collections.graduation,
+          Collections.prideCollection
+        ],
+      );
+      expect(product.collections.length, 3);
+      expect(
+          product.collections,
+          containsAll([
+            Collections.halloween,
+            Collections.graduation,
+            Collections.prideCollection
+          ]));
     });
   });
 }
