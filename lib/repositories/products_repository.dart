@@ -8,6 +8,8 @@ class ProductsRepository {
       description: 'This is a sample product.',
       price: 9.99,
       imageUrls: ['https://example.com/sample.png'],
+      category: ProductCategory.merchandise,
+      collections: [Collections.signatureAndEssentialRange],
     ),
   ];
 }

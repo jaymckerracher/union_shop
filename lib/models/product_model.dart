@@ -1,3 +1,16 @@
+enum ProductCategory {
+  clothing,
+  merchandise,
+}
+
+enum Collections {
+  halloween,
+  signatureAndEssentialRange,
+  portsmouthCityCollection,
+  prideCollection,
+  graduation,
+}
+
 class Product {
   final String id;
   final String title;
@@ -6,6 +19,8 @@ class Product {
   final List<String> imageUrls;
   final double? originalPrice;
   final String? promoMessage;
+  final ProductCategory category;
+  final List<Collections> collections;
 
   Product({
     required this.id,
@@ -13,6 +28,8 @@ class Product {
     required this.description,
     required this.price,
     required this.imageUrls,
+    required this.category,
+    required this.collections,
     this.originalPrice,
     this.promoMessage,
   }) : assert(imageUrls.isNotEmpty, 'Product must have at least one image URL');
