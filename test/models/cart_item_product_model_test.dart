@@ -9,6 +9,8 @@ void main() {
     description: 'A product for testing',
     price: 9.99,
     imageUrls: ['http://example.com/image.png'],
+    category: ProductCategory.clothing,
+    collections: [Collections.halloween],
   );
 
   test('should create a CartItem with valid data', () {
