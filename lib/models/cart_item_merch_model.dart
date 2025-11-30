@@ -1,10 +1,10 @@
 import 'product_model.dart';
 
-class CartItemProduct {
+class CartItemMerch {
   final Product product;
   final int quantity;
 
-  CartItemProduct({
+  CartItemMerch({
     required this.product,
     required this.quantity,
   });
