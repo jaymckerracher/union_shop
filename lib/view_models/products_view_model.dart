@@ -1,4 +1,4 @@
-// import 'package:flutter/foundation.dart';
+import 'package:flutter/foundation.dart';
 import '../repositories/products_repository.dart';
 import '../models/product_model.dart';
 import '../enums/collection.dart';
@@ -12,7 +12,7 @@ class ProductsFilter {
   ProductsFilter({this.category, this.collection, this.onSale});
 }
 
-class ProductsViewModel {
+class ProductsViewModel extends ChangeNotifier {
   final ProductsRepository _repository = ProductsRepository();
   late List<Product> products;
   ProductsFilter filter = ProductsFilter();
@@ -35,6 +35,7 @@ class ProductsViewModel {
 
   void clearFilter() {
     filter = ProductsFilter();
+    notifyListeners();
   }
 
   void updateFilter(
@@ -44,5 +45,6 @@ class ProductsViewModel {
       collection: collection ?? filter.collection,
       onSale: onSale ?? filter.onSale,
     );
+    notifyListeners();
   }
 }
