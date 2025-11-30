@@ -61,7 +61,7 @@ class ProductsRepository {
       originalPrice: 30.00,
       promoMessage: 'Limited time: Save over 50%!',
       category: ProductCategory.clothing,
-      collections: [],
+      collections: [Collections.prideCollection],
     ),
     Product(
       id: '5',
@@ -106,7 +106,7 @@ class ProductsRepository {
       originalPrice: 10.00,
       promoMessage: 'Now only £6.99! Don’t miss out.',
       category: ProductCategory.clothing,
-      collections: [],
+      collections: [Collections.signatureAndEssentialRange],
     ),
     Product(
       id: '8',
@@ -119,7 +119,7 @@ class ProductsRepository {
         '../assets/images/grad_hoodie/purple.webp',
       ],
       category: ProductCategory.clothing,
-      collections: [],
+      collections: [Collections.graduation],
     ),
     Product(
       id: '9',
@@ -132,7 +132,7 @@ class ProductsRepository {
         '../assets/images/signature_hoodie/white.webp',
       ],
       category: ProductCategory.clothing,
-      collections: [],
+      collections: [Collections.signatureAndEssentialRange],
     ),
     Product(
       id: '10',
@@ -145,7 +145,7 @@ class ProductsRepository {
         '../assets/images/signature_tee/white.webp',
       ],
       category: ProductCategory.clothing,
-      collections: [],
+      collections: [Collections.signatureAndEssentialRange],
     ),
     Product(
       id: '11',
@@ -183,7 +183,7 @@ class ProductsRepository {
         '../assets/images/merch/halloween_tote.webp',
       ],
       category: ProductCategory.merchandise,
-      collections: [],
+      collections: [Collections.halloween],
     ),
     Product(
       id: '14',
@@ -219,7 +219,7 @@ class ProductsRepository {
         '../assets/images/merch/magnet.webp',
       ],
       category: ProductCategory.merchandise,
-      collections: [],
+      collections: [Collections.portsmouthCityCollection],
     ),
     Product(
       id: '17',
@@ -243,7 +243,7 @@ class ProductsRepository {
         '../assets/images/merch/postcard.webp',
       ],
       category: ProductCategory.merchandise,
-      collections: [],
+      collections: [Collections.portsmouthCityCollection],
     ),
     Product(
       id: '19',
@@ -255,7 +255,7 @@ class ProductsRepository {
         '../assets/images/merch/rainbow_lanyard.webp',
       ],
       category: ProductCategory.merchandise,
-      collections: [],
+      collections: [Collections.prideCollection],
     ),
     Product(
       id: '20',
