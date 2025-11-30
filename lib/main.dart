@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:union_shop/views/product_page.dart';
 import 'package:union_shop/views/home_page.dart';
+import 'package:union_shop/view_models/cart_view_model.dart'; // Example global view model
 
 void main() {
-  runApp(const UnionShopApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (_) => CartViewModel(),
+      child: const UnionShopApp(),
+    ),
+  );
 }
 
 class UnionShopApp extends StatelessWidget {

@@ -1,6 +1,7 @@
+import 'package:flutter/foundation.dart';
 import '../models/cart_item_merch_model.dart';
 
-class CartViewModel {
+class CartViewModel extends ChangeNotifier {
   final List<CartItemMerch> _items = [];
 
   List<CartItemMerch> get items => List.unmodifiable(_items);
@@ -17,6 +18,7 @@ class CartViewModel {
     } else {
       _items.add(newItem);
     }
+    notifyListeners();
   }
 
   void removeItem(CartItemMerch itemToRemove) {
@@ -32,6 +34,7 @@ class CartViewModel {
       } else {
         _items.removeAt(index);
       }
+      notifyListeners();
     }
   }
 
