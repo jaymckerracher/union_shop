@@ -1,3 +1,4 @@
+// import 'package:flutter/foundation.dart';
 import '../repositories/products_repository.dart';
 import '../models/product_model.dart';
 import '../enums/collection.dart';
@@ -30,5 +31,18 @@ class ProductsViewModel {
           filter.onSale == null || product.onSale == filter.onSale;
       return matchesCategory && matchesCollection && matchesOnSale;
     }).toList();
+  }
+
+  void clearFilter() {
+    filter = ProductsFilter();
+  }
+
+  void updateFilter(
+      {ProductCategory? category, Collections? collection, bool? onSale}) {
+    filter = ProductsFilter(
+      category: category ?? filter.category,
+      collection: collection ?? filter.collection,
+      onSale: onSale ?? filter.onSale,
+    );
   }
 }
