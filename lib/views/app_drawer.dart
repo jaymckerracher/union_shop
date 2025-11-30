@@ -1,0 +1,79 @@
+import 'package:flutter/material.dart';
+
+class AppDrawer extends StatelessWidget {
+  const AppDrawer({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
+      child: ListView(
+        padding: EdgeInsets.zero,
+        children: [
+          const DrawerHeader(
+            decoration: BoxDecoration(color: Color(0xFF4d2963)),
+            child: Text(
+              'The UNION',
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
+            ),
+          ),
+          ListTile(
+            title: const Text('Home'),
+            onTap: () {
+              Navigator.pushNamed(context, '/');
+            },
+          ),
+          ExpansionTile(
+            title: const Text('Shop'),
+            children: [
+              ListTile(
+                title: const Text('Clothing'),
+                onTap: () {
+                  // Navigate to clothing
+                },
+              ),
+              ListTile(
+                title: const Text('Merchandise'),
+                onTap: () {
+                  // Navigate to merchandise
+                },
+              ),
+            ],
+          ),
+          ExpansionTile(
+            title: const Text('The Print Shack'),
+            children: [
+              ListTile(
+                title: const Text('About'),
+                onTap: () {
+                  // Navigate to print shack about
+                },
+              ),
+              ListTile(
+                title: const Text('Personalisation'),
+                onTap: () {
+                  // Navigate to print shack personalisation
+                },
+              ),
+            ],
+          ),
+          ListTile(
+            title: const Text('SALE!'),
+            onTap: () {
+              // Navigate to sale
+            },
+          ),
+          ListTile(
+            title: const Text('About'),
+            onTap: () {
+              // Navigate to about
+            },
+          ),
+        ],
+      ),
+    );
+  }
+}

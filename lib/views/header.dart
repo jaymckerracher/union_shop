@@ -1,17 +1,13 @@
 import 'package:flutter/material.dart';
+import '../utils/navigation.dart';
 
 class Header extends StatelessWidget {
   const Header({
     super.key,
   });
 
-  void navigateToHome(BuildContext context) {
-    Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
-  }
-
-  void _placeholderCallbackForButtons() {
-    // This is the event handler for buttons that don't work yet
-  }
+  // Banner text object
+  static const String bannerText = 'BIG SALES! LIMITED TIME LEFT!';
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +22,7 @@ class Header extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 8),
             color: const Color(0xFF4d2963),
             child: const Text(
-              'PLACEHOLDER HEADER TEXT',
+              bannerText,
               textAlign: TextAlign.center,
               style: TextStyle(color: Colors.white, fontSize: 16),
             ),
@@ -75,7 +71,7 @@ class Header extends StatelessWidget {
                             minWidth: 32,
                             minHeight: 32,
                           ),
-                          onPressed: _placeholderCallbackForButtons,
+                          onPressed: () => print('Hello'),
                         ),
                         IconButton(
                           icon: const Icon(
@@ -88,7 +84,7 @@ class Header extends StatelessWidget {
                             minWidth: 32,
                             minHeight: 32,
                           ),
-                          onPressed: _placeholderCallbackForButtons,
+                          onPressed: () => print('Hello'),
                         ),
                         IconButton(
                           icon: const Icon(
@@ -101,20 +97,24 @@ class Header extends StatelessWidget {
                             minWidth: 32,
                             minHeight: 32,
                           ),
-                          onPressed: _placeholderCallbackForButtons,
+                          onPressed: () => print('Hello'),
                         ),
-                        IconButton(
-                          icon: const Icon(
-                            Icons.menu,
-                            size: 18,
-                            color: Colors.grey,
+                        Builder(
+                          builder: (context) => IconButton(
+                            icon: const Icon(
+                              Icons.menu,
+                              size: 18,
+                              color: Colors.grey,
+                            ),
+                            padding: const EdgeInsets.all(8),
+                            constraints: const BoxConstraints(
+                              minWidth: 32,
+                              minHeight: 32,
+                            ),
+                            onPressed: () {
+                              Scaffold.of(context).openDrawer();
+                            },
                           ),
-                          padding: const EdgeInsets.all(8),
-                          constraints: const BoxConstraints(
-                            minWidth: 32,
-                            minHeight: 32,
-                          ),
-                          onPressed: _placeholderCallbackForButtons,
                         ),
                       ],
                     ),
