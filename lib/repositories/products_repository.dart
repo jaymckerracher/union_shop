@@ -1,4 +1,6 @@
 import '../models/product_model.dart';
+import '../enums/collection.dart';
+import '../enums/product_category.dart';
 
 class ProductsRepository {
   final List<Product> products = [

@@ -1,6 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:union_shop/repositories/products_repository.dart';
-import 'package:union_shop/models/product_model.dart';
+import 'package:union_shop/enums/collection.dart';
+import 'package:union_shop/enums/product_category.dart';
 
 void main() {
   final repo = ProductsRepository();

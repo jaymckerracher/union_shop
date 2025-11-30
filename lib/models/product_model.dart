@@ -1,15 +1,5 @@
-enum ProductCategory {
-  clothing,
-  merchandise,
-}
-
-enum Collections {
-  halloween,
-  signatureAndEssentialRange,
-  portsmouthCityCollection,
-  prideCollection,
-  graduation,
-}
+import '../enums/collection.dart';
+import '../enums/product_category.dart';
 
 class Product {
   final String id;
