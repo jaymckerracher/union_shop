@@ -45,7 +45,8 @@ class HomeRangePreview extends StatelessWidget {
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(8),
                         child: Image.asset(
-                          product.imageUrls.first.replaceAll('../', 'assets/'),
+                          product.imageUrls.first
+                              .replaceAll('../assets/', 'images/'),
                           fit: BoxFit.cover,
                           errorBuilder: (context, error, stackTrace) =>
                               Container(
