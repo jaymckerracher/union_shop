@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'header.dart';
 import 'footer.dart';
+import 'app_drawer.dart';
 
 class AboutPage extends StatelessWidget {
   const AboutPage({super.key});
@@ -8,6 +9,7 @@ class AboutPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const AppDrawer(),
       body: SingleChildScrollView(
         child: Column(
           children: [
