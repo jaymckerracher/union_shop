@@ -6,7 +6,7 @@ Collections? mapRangeToCollection(String range) {
       return Collections.halloween;
     case 'essential':
       return Collections.signatureAndEssentialRange;
-    case 'porstmouth':
+    case 'portsmouth':
       return Collections.portsmouthCityCollection;
     case 'pride':
       return Collections.prideCollection;
