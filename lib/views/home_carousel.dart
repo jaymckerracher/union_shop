@@ -16,23 +16,27 @@ class _HomeCarouselState extends State<HomeCarousel> {
       title: 'Essential Range',
       description:
           'Save over 20% on our Essential Range! Grab yours while stocks last.',
+      buttonText: 'View Range',
     ),
     const _CarouselSlide(
       image: 'images/classic_hoodie/blue.webp',
       title: 'Classic Hoodie',
       description:
           'Discover our timeless Classic Hoodie – comfort and style for every season.',
+      buttonText: 'Go To Product',
     ),
     const _CarouselSlide(
       image: 'images/merch/cotton_tote.webp',
       title: 'Merchandise',
       description:
           'Check out our exclusive merchandise – perfect for every student!',
+      buttonText: 'View All Merch',
     ),
     const _CarouselSlide(
       image: 'images/print_shack/ps_2.webp',
       title: 'Print Shack',
       description: 'Visit our print shack to get personalised clothing!',
+      buttonText: 'Visit Shack',
     ),
   ];
 
@@ -81,6 +85,18 @@ class _HomeCarouselState extends State<HomeCarousel> {
                     style: const TextStyle(fontSize: 14),
                     textAlign: TextAlign.center,
                   ),
+                  const SizedBox(height: 12),
+                  ElevatedButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFF4d2963),
+                      foregroundColor: Colors.white,
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.zero,
+                      ),
+                    ),
+                    child: Text(slide.buttonText),
+                  ),
                 ],
               );
             },
@@ -110,10 +126,12 @@ class _CarouselSlide {
   final String image;
   final String title;
   final String description;
+  final String buttonText;
 
   const _CarouselSlide({
     required this.image,
     required this.title,
     required this.description,
+    required this.buttonText,
   });
 }
