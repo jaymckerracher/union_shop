@@ -61,13 +61,13 @@ class AppDrawer extends StatelessWidget {
                 },
               ),
               ListTile(
-                title: const Text('Pride Collection'),
+                title: const Text('Pride Collection 🏳️‍🌈'),
                 onTap: () {
                   navigateToPride(context);
                 },
               ),
               ListTile(
-                title: const Text('Graduation'),
+                title: const Text('Graduation 🎓'),
                 onTap: () {
                   navigateToGrad(context);
                 },
