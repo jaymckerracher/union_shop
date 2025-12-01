@@ -1,0 +1,15 @@
+import 'package:flutter/material.dart';
+import 'display_collection.dart';
+import 'app_drawer.dart';
+
+class CategoryClothingPage extends StatelessWidget {
+  const CategoryClothingPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Scaffold(
+      body: DisplayCollection(filter: 'clothing'),
+      drawer: AppDrawer(),
+    );
+  }
+}
