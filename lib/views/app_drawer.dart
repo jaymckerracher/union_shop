@@ -45,7 +45,7 @@ class AppDrawer extends StatelessWidget {
               ListTile(
                 title: const Text('Halloween 🎃'),
                 onTap: () {
-                  // Navigate to halloween
+                  navigateToHalloween(context);
                 },
               ),
               ListTile(

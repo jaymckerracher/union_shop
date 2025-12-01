@@ -11,3 +11,7 @@ void navigateToAbout(BuildContext context) {
 void navigateToPrintShackAbout(BuildContext context) {
   Navigator.pushNamed(context, '/personalisation');
 }
+
+void navigateToHalloween(BuildContext context) {
+  Navigator.pushNamed(context, '/collections/halloween');
+}
