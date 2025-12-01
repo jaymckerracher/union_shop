@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../view_models/products_view_model.dart';
 import '../utils/map_range_to_collection.dart';
 import 'header.dart';

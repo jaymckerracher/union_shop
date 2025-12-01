@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'header.dart';
-import 'footer.dart';
 import 'display_collection.dart';
 
 class CollectionHalloweenPage extends StatelessWidget {
