@@ -42,6 +42,36 @@ class AppDrawer extends StatelessWidget {
                   // Navigate to merchandise
                 },
               ),
+              ListTile(
+                title: const Text('Halloween 🎃'),
+                onTap: () {
+                  // Navigate to halloween
+                },
+              ),
+              ListTile(
+                title: const Text('Signature & Essential Range'),
+                onTap: () {
+                  // Navigate to S&E
+                },
+              ),
+              ListTile(
+                title: const Text('Portsmouth City Collection'),
+                onTap: () {
+                  // Navigate to PCC
+                },
+              ),
+              ListTile(
+                title: const Text('Pride Collection'),
+                onTap: () {
+                  // Navigate to Pride
+                },
+              ),
+              ListTile(
+                title: const Text('Graduation'),
+                onTap: () {
+                  // Navigate to Graduation
+                },
+              ),
             ],
           ),
           ExpansionTile(
