@@ -7,3 +7,7 @@ void navigateToHome(BuildContext context) {
 void navigateToAbout(BuildContext context) {
   Navigator.pushNamed(context, '/about');
 }
+
+void navigateToPrintShackAbout(BuildContext context) {
+  Navigator.pushNamed(context, '/personalisation');
+}
