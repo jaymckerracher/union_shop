@@ -5,6 +5,23 @@ import 'header.dart';
 import 'footer.dart';
 
 class DisplayCollection extends StatelessWidget {
+  String _getCollectionTitle(String range) {
+    switch (range.toLowerCase()) {
+      case 'halloween':
+        return 'Halloween Collection';
+      case 'essential':
+        return 'Signature & Essential Collection';
+      case 'pride':
+        return 'Pride Collection';
+      case 'portsmouth':
+        return 'Portsmouth City Collection';
+      case 'graduation':
+        return 'Graduation Collection';
+      default:
+        return 'Collection';
+    }
+  }
+
   final String range;
   const DisplayCollection({super.key, required this.range});
 
@@ -21,7 +38,20 @@ class DisplayCollection extends StatelessWidget {
           child: Header(),
         ),
         const SliverToBoxAdapter(child: SizedBox(height: 16)),
-        // Removed the title heading text
+        SliverToBoxAdapter(
+          child: Padding(
+            padding:
+                const EdgeInsets.symmetric(vertical: 30.0, horizontal: 8.0),
+            child: Text(
+              _getCollectionTitle(range),
+              style: const TextStyle(
+                fontSize: 32,
+                fontWeight: FontWeight.bold,
+                color: Color(0xFF444950),
+              ),
+            ),
+          ),
+        ),
         SliverToBoxAdapter(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
