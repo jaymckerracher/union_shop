@@ -3,6 +3,7 @@ import 'header.dart';
 import 'app_drawer.dart';
 import 'home_carousel.dart';
 import 'home_range_preview.dart';
+import 'footer.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -13,22 +14,22 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      drawer: const AppDrawer(),
+    return const Scaffold(
+      drawer: AppDrawer(),
       body: SingleChildScrollView(
         child: Column(
           children: [
             // Header
-            const Header(),
+            Header(),
 
             // Hero Section (Carousel)
-            const Padding(
+            Padding(
               padding: EdgeInsets.symmetric(vertical: 24.0, horizontal: 16.0),
               child: HomeCarousel(),
             ),
 
             // Range Previews
-            const Padding(
+            Padding(
               padding: EdgeInsets.symmetric(vertical: 32.0, horizontal: 16.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -43,19 +44,7 @@ class HomePage extends StatelessWidget {
             ),
 
             // Footer
-            Container(
-              width: double.infinity,
-              color: Colors.grey[50],
-              padding: const EdgeInsets.all(24),
-              child: const Text(
-                'Placeholder Footer',
-                style: TextStyle(
-                  color: Colors.grey,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            ),
+            Footer(),
           ],
         ),
       ),
