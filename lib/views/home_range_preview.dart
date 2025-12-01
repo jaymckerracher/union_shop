@@ -26,14 +26,27 @@ class HomeRangePreview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final collection = _mapRangeToCollection(range);
-    final viewModel = ProductsViewModel(); // new instance for each preview
+    final viewModel = ProductsViewModel();
     viewModel.updateFilter(collection: collection);
 
     final products = viewModel.filteredProducts.take(2).toList();
 
+    String capitalizedRange =
+        range.isNotEmpty ? range[0].toUpperCase() + range.substring(1) : range;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        Padding(
+          padding: const EdgeInsets.only(bottom: 16.0),
+          child: Text(
+            capitalizedRange,
+            style: const TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+              color: Color(0xFF4d2963),
+            ),
+          ),
+        ),
         if (products.isNotEmpty)
           ...products.map((product) => Padding(
                 padding: const EdgeInsets.only(bottom: 32.0),
@@ -84,11 +97,9 @@ class HomeRangePreview extends StatelessWidget {
                           const SizedBox(width: 8),
                         Text(
                           '£${product.price.toStringAsFixed(2)}',
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 18,
-                            color: product.originalPrice != null
-                                ? const Color(0xFF6B7A8F)
-                                : Colors.black,
+                            color: Colors.black,
                             fontWeight: FontWeight.w600,
                           ),
                         ),
