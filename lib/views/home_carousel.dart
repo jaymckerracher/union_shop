@@ -29,6 +29,11 @@ class _HomeCarouselState extends State<HomeCarousel> {
       description:
           'Check out our exclusive merchandise – perfect for every student!',
     ),
+    const _CarouselSlide(
+      image: 'images/print_shack/ps_2.webp',
+      title: 'Print Shack',
+      description: 'Visit our print shack to get personalised clothing!',
+    ),
   ];
 
   void _onPageChanged(int index) {
