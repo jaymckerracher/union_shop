@@ -7,7 +7,7 @@ class Footer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      color: Colors.grey[50],
+      color: const Color.fromARGB(140, 245, 245, 245),
       padding: const EdgeInsets.all(24),
       child: const Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -117,6 +117,33 @@ class Footer extends StatelessWidget {
               fontWeight: FontWeight.w600,
               fontSize: 15,
               color: Color(0xFF444950),
+            ),
+          ),
+          SizedBox(height: 32),
+          Text(
+            'Help and Information',
+            style: TextStyle(
+              color: Color(0xFF444950),
+              fontSize: 16,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+          SizedBox(height: 16),
+          Text(
+            'Search',
+            style: TextStyle(
+              fontSize: 15,
+              fontWeight: FontWeight.w400,
+              decoration: TextDecoration.underline,
+            ),
+          ),
+          SizedBox(height: 24),
+          Text(
+            'Terms & Conditions of Sale Policy',
+            style: TextStyle(
+              fontSize: 15,
+              fontWeight: FontWeight.w400,
+              decoration: TextDecoration.underline,
             ),
           ),
         ],
