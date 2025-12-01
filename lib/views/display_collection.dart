@@ -21,20 +21,7 @@ class DisplayCollection extends StatelessWidget {
           child: Header(),
         ),
         const SliverToBoxAdapter(child: SizedBox(height: 16)),
-        SliverToBoxAdapter(
-          child: Padding(
-            padding:
-                const EdgeInsets.symmetric(vertical: 30.0, horizontal: 8.0),
-            child: Text(
-              range[0].toUpperCase() + range.substring(1),
-              style: const TextStyle(
-                fontSize: 32,
-                fontWeight: FontWeight.bold,
-                color: Color(0xFF444950),
-              ),
-            ),
-          ),
-        ),
+        // Removed the title heading text
         SliverToBoxAdapter(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
