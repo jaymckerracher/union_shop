@@ -127,4 +127,24 @@ void main() {
     final foundProduct = viewModel.getProductById('nonexistent_id_123');
     expect(foundProduct, isNull);
   });
+
+  test('searchProducts returns products with matching title', () {
+    // Use the title of the first product as a query
+    final firstProduct = viewModel.products.first;
+    final query = firstProduct.title.substring(0, 3); // partial match
+    final results = viewModel.searchProducts(query);
+    expect(results.any((p) => p.id == firstProduct.id), isTrue);
+  });
+
+  test('searchProducts is case-insensitive', () {
+    final firstProduct = viewModel.products.first;
+    final query = firstProduct.title.substring(0, 3).toUpperCase();
+    final results = viewModel.searchProducts(query);
+    expect(results.any((p) => p.id == firstProduct.id), isTrue);
+  });
+
+  test('searchProducts returns empty list for no match', () {
+    final results = viewModel.searchProducts('thisshouldnotmatchanything');
+    expect(results, isEmpty);
+  });
 }
