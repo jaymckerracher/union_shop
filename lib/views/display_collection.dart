@@ -5,8 +5,8 @@ import 'header.dart';
 import 'footer.dart';
 
 class DisplayCollection extends StatelessWidget {
-  String _getCollectionTitle(String range) {
-    switch (range.toLowerCase()) {
+  String _getCollectionTitle(String filter) {
+    switch (filter.toLowerCase()) {
       case 'halloween':
         return 'Halloween Collection';
       case 'essential':
@@ -22,13 +22,13 @@ class DisplayCollection extends StatelessWidget {
     }
   }
 
-  final String range;
-  const DisplayCollection({super.key, required this.range});
+  final String filter;
+  const DisplayCollection({super.key, required this.filter});
 
   @override
   Widget build(BuildContext context) {
-    final collection = mapRangeToCollection(range);
     final viewModel = ProductsViewModel();
+    final collection = mapRangeToCollection(filter);
     viewModel.updateFilter(collection: collection);
     final products = viewModel.filteredProducts;
 
@@ -43,7 +43,7 @@ class DisplayCollection extends StatelessWidget {
             padding:
                 const EdgeInsets.symmetric(vertical: 30.0, horizontal: 8.0),
             child: Text(
-              _getCollectionTitle(range),
+              _getCollectionTitle(filter),
               style: const TextStyle(
                 fontSize: 32,
                 fontWeight: FontWeight.bold,
