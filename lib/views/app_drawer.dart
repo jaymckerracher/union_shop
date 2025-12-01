@@ -51,7 +51,7 @@ class AppDrawer extends StatelessWidget {
               ListTile(
                 title: const Text('Signature & Essential Range'),
                 onTap: () {
-                  // Navigate to S&E
+                  navigateToEssential(context);
                 },
               ),
               ListTile(
