@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../view_models/products_view_model.dart';
 import '../utils/map_range_to_collection.dart';
+import '../utils/map_category.dart';
 import 'header.dart';
 import 'footer.dart';
 
@@ -17,6 +18,12 @@ class DisplayCollection extends StatelessWidget {
         return 'Portsmouth City Collection';
       case 'graduation':
         return 'Graduation Collection';
+      case 'clothing':
+        return 'Clothing';
+      case 'merchandise':
+        return 'Merchandise';
+      case 'sale':
+        return 'Products on Sale';
       default:
         return 'Collection';
     }
@@ -28,8 +35,17 @@ class DisplayCollection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final viewModel = ProductsViewModel();
-    final collection = mapRangeToCollection(filter);
-    viewModel.updateFilter(collection: collection);
+
+    if (filter == "clothing" || filter == "merchandise") {
+      final collection = mapCategory(filter);
+      viewModel.updateFilter(category: collection);
+    } else if (filter == 'sale') {
+      viewModel.updateFilter(onSale: true);
+    } else {
+      final collection = mapRangeToCollection(filter);
+      viewModel.updateFilter(collection: collection);
+    }
+
     final products = viewModel.filteredProducts;
 
     return CustomScrollView(
