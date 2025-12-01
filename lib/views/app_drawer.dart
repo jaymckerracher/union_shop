@@ -33,7 +33,7 @@ class AppDrawer extends StatelessWidget {
               ListTile(
                 title: const Text('Clothing'),
                 onTap: () {
-                  // Navigate to clothing
+                  navigateToClothing(context);
                 },
               ),
               ListTile(

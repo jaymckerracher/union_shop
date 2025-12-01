@@ -7,6 +7,7 @@ import 'package:union_shop/views/collection_essential_page.dart';
 import 'package:union_shop/views/collection_portsmouth_page.dart';
 import 'package:union_shop/views/collection_grad_page.dart';
 import 'package:union_shop/views/collection_pride_page.dart';
+import 'package:union_shop/views/category_clothing_page.dart';
 import 'package:union_shop/views/home_page.dart';
 import 'package:union_shop/views/print_shack_about_page.dart';
 import 'package:union_shop/view_models/cart_view_model.dart';
@@ -43,6 +44,7 @@ class UnionShopApp extends StatelessWidget {
             const CollectionPortsmouthPage(),
         '/collections/pride': (context) => const CollectionPridePage(),
         '/collections/graduation': (context) => const CollectionGradPage(),
+        '/collections/clothing': (context) => const CategoryClothingPage(),
       },
     );
   }
