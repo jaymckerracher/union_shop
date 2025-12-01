@@ -27,3 +27,7 @@ void navigateToPortsmouth(BuildContext context) {
 void navigateToPride(BuildContext context) {
   Navigator.pushNamed(context, '/collections/pride');
 }
+
+void navigateToGrad(BuildContext context) {
+  Navigator.pushNamed(context, '/collections/graduation');
+}
