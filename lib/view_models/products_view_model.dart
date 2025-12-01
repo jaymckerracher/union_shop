@@ -13,7 +13,6 @@ class ProductsFilter {
 }
 
 class ProductsViewModel extends ChangeNotifier {
-  // ...existing code...
   final ProductsRepository _repository = ProductsRepository();
   late List<Product> products;
   ProductsFilter filter = ProductsFilter();
@@ -55,5 +54,12 @@ class ProductsViewModel extends ChangeNotifier {
     } catch (e) {
       return null;
     }
+  }
+
+  List<Product> searchProducts(String query) {
+    final lowerQuery = query.toLowerCase();
+    return products
+        .where((product) => product.title.toLowerCase().contains(lowerQuery))
+        .toList();
   }
 }
