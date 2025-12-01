@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../utils/navigation.dart';
 
 class AppDrawer extends StatelessWidget {
   const AppDrawer({super.key});
@@ -69,7 +70,7 @@ class AppDrawer extends StatelessWidget {
           ListTile(
             title: const Text('About'),
             onTap: () {
-              // Navigate to about
+              navigateToAbout(context);
             },
           ),
         ],
