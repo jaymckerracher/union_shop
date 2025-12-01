@@ -50,7 +50,7 @@ class AppDrawer extends StatelessWidget {
               ListTile(
                 title: const Text('About'),
                 onTap: () {
-                  // Navigate to print shack about
+                  navigateToPrintShackAbout(context);
                 },
               ),
               ListTile(
