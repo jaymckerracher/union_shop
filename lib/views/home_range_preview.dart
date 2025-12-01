@@ -108,6 +108,23 @@ class HomeRangePreview extends StatelessWidget {
                   ],
                 ),
               )),
+        Padding(
+          padding: const EdgeInsets.only(top: 8.0),
+          child: SizedBox(
+            width: double.infinity,
+            child: ElevatedButton(
+              onPressed: () {}, // No functionality yet
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xFF4d2963),
+                foregroundColor: Colors.white,
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.zero,
+                ),
+              ),
+              child: const Text('View All'),
+            ),
+          ),
+        ),
       ],
     );
   }
