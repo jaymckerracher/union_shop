@@ -1,0 +1,15 @@
+import 'package:flutter/material.dart';
+import 'display_collection.dart';
+import 'app_drawer.dart';
+
+class CollectionPridePage extends StatelessWidget {
+  const CollectionPridePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Scaffold(
+      body: DisplayCollection(filter: 'pride'),
+      drawer: AppDrawer(),
+    );
+  }
+}
