@@ -94,7 +94,7 @@ class AppDrawer extends StatelessWidget {
           ListTile(
             title: const Text('SALE!'),
             onTap: () {
-              // Navigate to sale
+              navigateToSale(context);
             },
           ),
           ListTile(
