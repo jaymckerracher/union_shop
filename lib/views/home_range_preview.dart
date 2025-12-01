@@ -1,31 +1,14 @@
 import 'package:flutter/material.dart';
 import '../view_models/products_view_model.dart';
-import '../enums/collection.dart';
+import '../utils/map_range_to_collection.dart';
 
 class HomeRangePreview extends StatelessWidget {
   final String range;
   const HomeRangePreview({super.key, required this.range});
 
-  Collections? _mapRangeToCollection(String range) {
-    switch (range.toLowerCase()) {
-      case 'halloween':
-        return Collections.halloween;
-      case 'essential':
-        return Collections.signatureAndEssentialRange;
-      case 'porstmouth':
-        return Collections.portsmouthCityCollection;
-      case 'pride':
-        return Collections.prideCollection;
-      case 'graduation':
-        return Collections.graduation;
-      default:
-        return null;
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
-    final collection = _mapRangeToCollection(range);
+    final collection = mapRangeToCollection(range);
     final viewModel = ProductsViewModel();
     viewModel.updateFilter(collection: collection);
 
