@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:union_shop/views/product_page.dart';
+import 'package:union_shop/views/about_page.dart';
 import 'package:union_shop/views/home_page.dart';
-import 'package:union_shop/view_models/cart_view_model.dart'; // Example global view model
+import 'package:union_shop/view_models/cart_view_model.dart';
 
 void main() {
   runApp(
@@ -26,7 +27,10 @@ class UnionShopApp extends StatelessWidget {
       ),
       home: const HomePage(),
       initialRoute: '/',
-      routes: {'/product': (context) => const ProductPage()},
+      routes: {
+        '/product': (context) => const ProductPage(),
+        '/about': (context) => const AboutPage(),
+      },
     );
   }
 }
