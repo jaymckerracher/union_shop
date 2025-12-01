@@ -13,6 +13,7 @@ class ProductsFilter {
 }
 
 class ProductsViewModel extends ChangeNotifier {
+  // ...existing code...
   final ProductsRepository _repository = ProductsRepository();
   late List<Product> products;
   ProductsFilter filter = ProductsFilter();
@@ -46,5 +47,13 @@ class ProductsViewModel extends ChangeNotifier {
       onSale: onSale ?? filter.onSale,
     );
     notifyListeners();
+  }
+
+  Product? getProductById(String id) {
+    try {
+      return products.firstWhere((product) => product.id == id);
+    } catch (e) {
+      return null;
+    }
   }
 }
