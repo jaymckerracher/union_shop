@@ -63,7 +63,7 @@ class AppDrawer extends StatelessWidget {
               ListTile(
                 title: const Text('Pride Collection'),
                 onTap: () {
-                  // Navigate to Pride
+                  navigateToPride(context);
                 },
               ),
               ListTile(

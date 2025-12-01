@@ -23,3 +23,7 @@ void navigateToEssential(BuildContext context) {
 void navigateToPortsmouth(BuildContext context) {
   Navigator.pushNamed(context, '/collections/portsmouth');
 }
+
+void navigateToPride(BuildContext context) {
+  Navigator.pushNamed(context, '/collections/pride');
+}
