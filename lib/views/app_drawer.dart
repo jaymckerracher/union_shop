@@ -57,7 +57,7 @@ class AppDrawer extends StatelessWidget {
               ListTile(
                 title: const Text('Portsmouth City Collection'),
                 onTap: () {
-                  // Navigate to PCC
+                  navigateToPortsmouth(context);
                 },
               ),
               ListTile(

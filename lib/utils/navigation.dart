@@ -19,3 +19,7 @@ void navigateToHalloween(BuildContext context) {
 void navigateToEssential(BuildContext context) {
   Navigator.pushNamed(context, '/collections/essential');
 }
+
+void navigateToPortsmouth(BuildContext context) {
+  Navigator.pushNamed(context, '/collections/portsmouth');
+}
