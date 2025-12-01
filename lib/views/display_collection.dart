@@ -23,7 +23,9 @@ class DisplayCollection extends StatelessWidget {
       case 'merchandise':
         return 'Merchandise';
       case 'sale':
-        return 'Products on Sale';
+        return 'Products On Sale';
+      case 'all':
+        return 'All Products';
       default:
         return 'Collection';
     }
@@ -41,7 +43,7 @@ class DisplayCollection extends StatelessWidget {
       viewModel.updateFilter(category: collection);
     } else if (filter == 'sale') {
       viewModel.updateFilter(onSale: true);
-    } else {
+    } else if (filter != 'all') {
       final collection = mapRangeToCollection(filter);
       viewModel.updateFilter(collection: collection);
     }
