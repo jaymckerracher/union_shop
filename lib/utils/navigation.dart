@@ -35,3 +35,7 @@ void navigateToGrad(BuildContext context) {
 void navigateToClothing(BuildContext context) {
   Navigator.pushNamed(context, '/collections/clothing');
 }
+
+void navigateToMerch(BuildContext context) {
+  Navigator.pushNamed(context, '/collections/merchandise');
+}
