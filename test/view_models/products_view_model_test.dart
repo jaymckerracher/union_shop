@@ -109,4 +109,22 @@ void main() {
     viewModel.clearFilter();
     expect(viewModel.filteredProducts.length, viewModel.products.length);
   });
+
+  test('clearFilter resets to all products', () {
+    viewModel.updateFilter(category: ProductCategory.clothing);
+    viewModel.clearFilter();
+    expect(viewModel.filteredProducts.length, viewModel.products.length);
+  });
+
+  test('getProductById returns correct product when id exists', () {
+    final firstProduct = viewModel.products.first;
+    final foundProduct = viewModel.getProductById(firstProduct.id);
+    expect(foundProduct, isNotNull);
+    expect(foundProduct!.id, firstProduct.id);
+  });
+
+  test('getProductById returns null when id does not exist', () {
+    final foundProduct = viewModel.getProductById('nonexistent_id_123');
+    expect(foundProduct, isNull);
+  });
 }
