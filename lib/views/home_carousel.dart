@@ -12,7 +12,7 @@ class _HomeCarouselState extends State<HomeCarousel> {
 
   final List<_CarouselSlide> _slides = [
     const _CarouselSlide(
-      image: 'images/essential_tee/blue.jpg',
+      image: 'images/essential_tee/blue.webp',
       title: 'Essential Range',
       description:
           'Save over 20% on our Essential Range! Grab yours while stocks last.',
