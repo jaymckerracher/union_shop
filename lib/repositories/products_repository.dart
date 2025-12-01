@@ -180,7 +180,7 @@ class ProductsRepository {
           'Get into the spooky spirit with the Halloween Tote Bag. This fun and festive bag is great for trick-or-treating or carrying your daily essentials. Durable and reusable for every Halloween season.',
       price: 2.50,
       imageUrls: [
-        'images/merch/halloween_tote.webp',
+        'images/merch/halloween_tote.jpg',
       ],
       category: ProductCategory.merchandise,
       collections: [Collections.halloween],
