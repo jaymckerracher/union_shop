@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'header.dart';
 import 'footer.dart';
+import './app_drawer.dart';
 
 class SearchPage extends StatelessWidget {
   const SearchPage({super.key});
@@ -9,6 +10,7 @@ class SearchPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final minHeight = MediaQuery.of(context).size.height;
     return Scaffold(
+      drawer: const AppDrawer(),
       body: Container(
         constraints: BoxConstraints(minHeight: minHeight),
         child: Column(
