@@ -28,7 +28,7 @@ class ProductsPage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 8),
-            const FilterSortMenuBar(),
+            FilterSortMenuBar(viewModel: viewModel),
             DisplayCollection(products: viewModel.getProducts),
             const Footer(),
           ],

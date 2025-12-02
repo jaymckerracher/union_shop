@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import '../view_models/products_view_model.dart';
 
 class FilterSortMenuBar extends StatelessWidget {
-  const FilterSortMenuBar({super.key});
+  final ProductsViewModel viewModel;
+  const FilterSortMenuBar({super.key, required this.viewModel});
 
   @override
   Widget build(BuildContext context) {
