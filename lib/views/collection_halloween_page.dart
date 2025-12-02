@@ -36,6 +36,21 @@ class CollectionHalloweenPage extends StatelessWidget {
                   allCollections: false,
                   allCategories: true,
                 ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 16.0, vertical: 8.0),
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      '${viewModel.getProducts.length} products',
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontStyle: FontStyle.italic,
+                        color: Color(0xFF555555),
+                      ),
+                    ),
+                  ),
+                ),
                 DisplayCollection(products: viewModel.getProducts),
                 const Footer(),
               ],
