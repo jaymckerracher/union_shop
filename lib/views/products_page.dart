@@ -15,6 +15,16 @@ class ProductsPage extends StatelessWidget {
       body: Column(
         children: [
           const Header(),
+          const SizedBox(height: 16),
+          const Text(
+            'All Products',
+            style: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+              color: Color(0xFF222222),
+            ),
+          ),
+          const SizedBox(height: 8),
           Expanded(child: DisplayCollection(products: viewModel.getProducts)),
           const Footer(),
         ],
