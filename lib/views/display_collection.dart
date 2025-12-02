@@ -49,7 +49,7 @@ class DisplayCollection extends StatelessWidget {
       viewModel.updateFilter(collection: collection);
     }
 
-    final products = viewModel.filteredProducts;
+    final products = viewModel.getProducts;
 
     return CustomScrollView(
       slivers: [

@@ -12,7 +12,7 @@ class HomeRangePreview extends StatelessWidget {
     final viewModel = ProductsViewModel();
     viewModel.updateFilter(collection: collection);
 
-    final products = viewModel.filteredProducts.take(2).toList();
+    final products = viewModel.getProducts.take(2).toList();
 
     String capitalizedRange =
         range.isNotEmpty ? range[0].toUpperCase() + range.substring(1) : range;
