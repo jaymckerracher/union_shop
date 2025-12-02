@@ -183,4 +183,31 @@ void main() {
     final results = viewModel.searchProducts('thisshouldnotmatchanything');
     expect(results, isEmpty);
   });
+
+  test('currentFilter returns the current filter object', () {
+    // Initially, should be default (all null)
+    expect(viewModel.currentFilter.category, isNull);
+    expect(viewModel.currentFilter.collection, isNull);
+    expect(viewModel.currentFilter.onSale, isNull);
+
+    // After updating filter
+    viewModel.updateFilter(category: ProductCategory.clothing, onSale: true);
+    expect(viewModel.currentFilter.category, ProductCategory.clothing);
+    expect(viewModel.currentFilter.onSale, true);
+    // Collection should remain null if not set
+    expect(viewModel.currentFilter.collection, isNull);
+
+    // After updating collection only
+    viewModel.updateFilter(collection: Collections.halloween);
+    expect(viewModel.currentFilter.collection, Collections.halloween);
+    // Other values should persist
+    expect(viewModel.currentFilter.category, ProductCategory.clothing);
+    expect(viewModel.currentFilter.onSale, true);
+
+    // After clearing filter
+    viewModel.clearFilter();
+    expect(viewModel.currentFilter.category, isNull);
+    expect(viewModel.currentFilter.collection, isNull);
+    expect(viewModel.currentFilter.onSale, isNull);
+  });
 }
