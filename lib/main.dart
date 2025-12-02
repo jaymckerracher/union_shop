@@ -38,12 +38,12 @@ class UnionShopApp extends StatelessWidget {
       initialRoute: '/',
       onGenerateRoute: (settings) {
         // Dynamic product route: /products/:id
-        // if (settings.name != null && settings.name!.startsWith('/products/')) {
-        //   final productId = settings.name!.substring('/products/'.length);
-        //   return MaterialPageRoute(
-        //     builder: (context) => ProductPage(productId: productId),
-        //   );
-        // }
+        if (settings.name != null && settings.name!.startsWith('/products/')) {
+          final productId = settings.name!.substring('/products/'.length);
+          return MaterialPageRoute(
+            builder: (context) => ProductPage(productId: productId),
+          );
+        }
         // Static routes
         switch (settings.name) {
           case '/':

@@ -47,3 +47,7 @@ void navigateToSale(BuildContext context) {
 void navigateToProducts(BuildContext context) {
   Navigator.pushNamed(context, '/products');
 }
+
+void navigateToProduct(BuildContext context, String id) {
+  Navigator.pushNamed(context, '/products/$id');
+}

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../view_models/products_view_model.dart';
 import '../utils/map_range_to_collection.dart';
 import '../utils/map_category.dart';
+import '../utils/navigation.dart';
 import 'header.dart';
 import 'footer.dart';
 
@@ -92,65 +93,70 @@ class DisplayCollection extends StatelessWidget {
                 final product = products[index];
                 return LayoutBuilder(
                   builder: (context, constraints) {
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Expanded(
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(8),
-                            child: Image.asset(
-                              product.imageUrls.first,
-                              fit: BoxFit.cover,
-                              errorBuilder: (context, error, stackTrace) =>
-                                  Container(
-                                color: Colors.grey[300],
-                                child: const Center(
-                                  child: Icon(Icons.image_not_supported,
-                                      color: Colors.grey),
+                    return GestureDetector(
+                      onTap: () {
+                        navigateToProduct(context, product.id);
+                      },
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(8),
+                              child: Image.asset(
+                                product.imageUrls.first,
+                                fit: BoxFit.cover,
+                                errorBuilder: (context, error, stackTrace) =>
+                                    Container(
+                                  color: Colors.grey[300],
+                                  child: const Center(
+                                    child: Icon(Icons.image_not_supported,
+                                        color: Colors.grey),
+                                  ),
                                 ),
                               ),
                             ),
                           ),
-                        ),
-                        const SizedBox(height: 8),
-                        Text(
-                          product.title,
-                          style: const TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
-                            color: Color(0xFF444950),
+                          const SizedBox(height: 8),
+                          Text(
+                            product.title,
+                            style: const TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                              color: Color(0xFF444950),
+                            ),
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
                           ),
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                        const SizedBox(height: 4),
-                        Row(
-                          children: [
-                            if (product.originalPrice != null)
+                          const SizedBox(height: 4),
+                          Row(
+                            children: [
+                              if (product.originalPrice != null)
+                                Text(
+                                  '£${product.originalPrice!.toStringAsFixed(2)}',
+                                  style: const TextStyle(
+                                    fontSize: 15,
+                                    color: Colors.grey,
+                                    decoration: TextDecoration.lineThrough,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              if (product.originalPrice != null)
+                                const SizedBox(width: 6),
                               Text(
-                                '£${product.originalPrice!.toStringAsFixed(2)}',
-                                style: const TextStyle(
+                                '£${product.price.toStringAsFixed(2)}',
+                                style: TextStyle(
                                   fontSize: 15,
-                                  color: Colors.grey,
-                                  decoration: TextDecoration.lineThrough,
+                                  color: product.originalPrice != null
+                                      ? const Color(0xFF4d2963)
+                                      : Colors.black,
                                   fontWeight: FontWeight.w600,
                                 ),
                               ),
-                            if (product.originalPrice != null)
-                              const SizedBox(width: 6),
-                            Text(
-                              '£${product.price.toStringAsFixed(2)}',
-                              style: TextStyle(
-                                fontSize: 15,
-                                color: product.originalPrice != null
-                                    ? const Color(0xFF4d2963)
-                                    : Colors.black,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
+                            ],
+                          ),
+                        ],
+                      ),
                     );
                   },
                 );
