@@ -7,7 +7,7 @@ class Footer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      color: const Color.fromARGB(140, 245, 245, 245),
+      color: const Color.fromARGB(82, 145, 135, 150),
       padding: const EdgeInsets.all(24),
       child: const Column(
         crossAxisAlignment: CrossAxisAlignment.start,
