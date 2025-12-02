@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import '../view_models/products_view_model.dart';
+import 'filter_modal.dart';
+import 'sort_modal.dart';
 
 class FilterSortMenuBar extends StatelessWidget {
   final ProductsViewModel viewModel;
@@ -44,83 +46,8 @@ class FilterSortMenuBar extends StatelessWidget {
                           borderRadius:
                               BorderRadius.vertical(top: Radius.circular(16)),
                         ),
-                        builder: (context) {
-                          return Padding(
-                            padding: const EdgeInsets.all(24.0),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Text('Filter Options',
-                                    style: TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold)),
-                                const SizedBox(height: 16),
-                                Row(
-                                  children: [
-                                    const Text('On Sale'),
-                                    const Spacer(),
-                                    Switch(value: false, onChanged: (v) {}),
-                                  ],
-                                ),
-                                const SizedBox(height: 12),
-                                Row(
-                                  children: [
-                                    const Text('Category'),
-                                    const Spacer(),
-                                    DropdownButton<String>(
-                                      value: 'All',
-                                      items: const [
-                                        DropdownMenuItem(
-                                            value: 'All', child: Text('All')),
-                                        DropdownMenuItem(
-                                            value: 'Clothing',
-                                            child: Text('Clothing')),
-                                        DropdownMenuItem(
-                                            value: 'Merchandise',
-                                            child: Text('Merchandise')),
-                                      ],
-                                      onChanged: (v) {},
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(height: 12),
-                                if (allProducts)
-                                  Row(
-                                    children: [
-                                      const Text('Collection'),
-                                      const Spacer(),
-                                      DropdownButton<String>(
-                                        value: 'All',
-                                        items: const [
-                                          DropdownMenuItem(
-                                              value: 'All', child: Text('All')),
-                                          DropdownMenuItem(
-                                              value: 'Collection 1',
-                                              child: Text('Collection 1')),
-                                          DropdownMenuItem(
-                                              value: 'Collection 2',
-                                              child: Text('Collection 2')),
-                                        ],
-                                        onChanged: (v) {},
-                                      ),
-                                    ],
-                                  ),
-                                const SizedBox(height: 24),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: [
-                                    TextButton(
-                                      onPressed: () =>
-                                          Navigator.of(context).pop(),
-                                      child: const Text('Close'),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          );
-                        },
+                        builder: (context) =>
+                            FilterModal(allProducts: allProducts),
                       );
                     },
                     icon: const Icon(Icons.tune, color: Colors.black54),
@@ -160,62 +87,7 @@ class FilterSortMenuBar extends StatelessWidget {
                           borderRadius:
                               BorderRadius.vertical(top: Radius.circular(16)),
                         ),
-                        builder: (context) {
-                          return Padding(
-                            padding: const EdgeInsets.all(24.0),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Text('Sort Options',
-                                    style: TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold)),
-                                const SizedBox(height: 16),
-                                ListTile(
-                                  title: const Text('Featured'),
-                                  leading: const Icon(Icons.star),
-                                  onTap: () {
-                                    Navigator.of(context).pop();
-                                    // Handle sort selection
-                                  },
-                                ),
-                                ListTile(
-                                  title: const Text('Alphabetical'),
-                                  leading: const Icon(Icons.sort_by_alpha),
-                                  onTap: () {
-                                    Navigator.of(context).pop();
-                                  },
-                                ),
-                                ListTile(
-                                  title: const Text('Price: Low to High'),
-                                  leading: const Icon(Icons.arrow_downward),
-                                  onTap: () {
-                                    Navigator.of(context).pop();
-                                  },
-                                ),
-                                ListTile(
-                                  title: const Text('Price: High to Low'),
-                                  leading: const Icon(Icons.arrow_upward),
-                                  onTap: () {
-                                    Navigator.of(context).pop();
-                                  },
-                                ),
-                                const SizedBox(height: 12),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: [
-                                    TextButton(
-                                      onPressed: () =>
-                                          Navigator.of(context).pop(),
-                                      child: const Text('Close'),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          );
-                        },
+                        builder: (context) => const SortModal(),
                       );
                     },
                     icon: const Icon(Icons.sort, color: Colors.black54),
