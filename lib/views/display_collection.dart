@@ -11,6 +11,8 @@ class DisplayCollection extends StatelessWidget {
       padding:
           const EdgeInsets.only(left: 8.0, right: 8.0, bottom: 32.0, top: 16.0),
       child: GridView.builder(
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
         itemCount: products.length,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
