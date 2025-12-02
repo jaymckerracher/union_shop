@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'display_collection.dart';
 import 'app_drawer.dart';
 import '../view_models/products_view_model.dart';
@@ -11,33 +12,36 @@ class ProductsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = ProductsViewModel();
-
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            const Header(),
-            const SizedBox(height: 16),
-            const Text(
-              'All Products',
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-                color: Color(0xFF222222),
-              ),
+    return ChangeNotifierProvider(
+      create: (_) => ProductsViewModel(),
+      child: Scaffold(
+        body: SingleChildScrollView(
+          child: Consumer<ProductsViewModel>(
+            builder: (context, viewModel, _) => Column(
+              children: [
+                const Header(),
+                const SizedBox(height: 16),
+                const Text(
+                  'All Products',
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xFF222222),
+                  ),
+                ),
+                const SizedBox(height: 8),
+                FilterSortMenuBar(
+                  viewModel: viewModel,
+                  allProducts: true,
+                ),
+                DisplayCollection(products: viewModel.getProducts),
+                const Footer(),
+              ],
             ),
-            const SizedBox(height: 8),
-            FilterSortMenuBar(
-              viewModel: viewModel,
-              allProducts: true,
-            ),
-            DisplayCollection(products: viewModel.getProducts),
-            const Footer(),
-          ],
+          ),
         ),
+        drawer: const AppDrawer(),
       ),
-      drawer: const AppDrawer(),
     );
   }
 }
