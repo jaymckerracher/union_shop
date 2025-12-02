@@ -29,8 +29,8 @@ class ProductsViewModel extends ChangeNotifier {
     products = List<Product>.from(_repository.products);
   }
 
-  List<Product> get filteredProducts {
-    return products.where((product) {
+  List<Product> get getProducts {
+    List<Product> filtered = products.where((product) {
       final matchesCategory =
           filter.category == null || product.category == filter.category;
       final matchesCollection = filter.collection == null ||
@@ -39,6 +39,18 @@ class ProductsViewModel extends ChangeNotifier {
           filter.onSale == null || product.onSale == filter.onSale;
       return matchesCategory && matchesCollection && matchesOnSale;
     }).toList();
+
+    // Sort the filtered list based on the sort object
+    if (sort.sortBy == 'alphabetical') {
+      filtered.sort((a, b) => sort.isAscending
+          ? a.title.toLowerCase().compareTo(b.title.toLowerCase())
+          : b.title.toLowerCase().compareTo(a.title.toLowerCase()));
+    } else if (sort.sortBy == 'price') {
+      filtered.sort((a, b) => sort.isAscending
+          ? a.price.compareTo(b.price)
+          : b.price.compareTo(a.price));
+    }
+    return filtered;
   }
 
   void clearFilter() {
