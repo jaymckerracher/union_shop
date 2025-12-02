@@ -49,22 +49,24 @@ class _FilterModalState extends State<FilterModal> {
                   value: onSale, onChanged: (v) => setState(() => onSale = v)),
             ],
           ),
-          Row(
-            children: [
-              const Text('Category'),
-              const Spacer(),
-              DropdownButton<String>(
-                value: selectedCategory,
-                items: const [
-                  DropdownMenuItem(value: 'All', child: Text('All')),
-                  DropdownMenuItem(value: 'clothing', child: Text('Clothing')),
-                  DropdownMenuItem(
-                      value: 'merchandise', child: Text('Merchandise')),
-                ],
-                onChanged: (v) => setState(() => selectedCategory = v!),
-              ),
-            ],
-          ),
+          if (widget.allCategories)
+            Row(
+              children: [
+                const Text('Category'),
+                const Spacer(),
+                DropdownButton<String>(
+                  value: selectedCategory,
+                  items: const [
+                    DropdownMenuItem(value: 'All', child: Text('All')),
+                    DropdownMenuItem(
+                        value: 'clothing', child: Text('Clothing')),
+                    DropdownMenuItem(
+                        value: 'merchandise', child: Text('Merchandise')),
+                  ],
+                  onChanged: (v) => setState(() => selectedCategory = v!),
+                ),
+              ],
+            ),
           if (widget.allCollections)
             Row(
               children: [
@@ -73,11 +75,17 @@ class _FilterModalState extends State<FilterModal> {
                 DropdownButton<String>(
                   value: selectedCollection,
                   items: const [
-                    DropdownMenuItem(value: 'All', child: Text('All')),
+                    DropdownMenuItem(value: null, child: Text('All')),
                     DropdownMenuItem(
-                        value: 'Collection 1', child: Text('Collection 1')),
+                        value: 'halloween', child: Text('Halloween')),
                     DropdownMenuItem(
-                        value: 'Collection 2', child: Text('Collection 2')),
+                        value: 'essential',
+                        child: Text('Signature & Essential')),
+                    DropdownMenuItem(
+                        value: 'portsmouth', child: Text('Portsmouth City')),
+                    DropdownMenuItem(value: 'pride', child: Text('Pride')),
+                    DropdownMenuItem(
+                        value: 'graduation', child: Text('Graduation')),
                   ],
                   onChanged: (v) => setState(() => selectedCollection = v!),
                 ),
