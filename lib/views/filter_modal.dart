@@ -28,7 +28,8 @@ class _FilterModalState extends State<FilterModal> {
             children: [
               const Text('On Sale'),
               const Spacer(),
-              Switch(value: onSale, onChanged: (v) => setState(() => onSale = v)),
+              Switch(
+                  value: onSale, onChanged: (v) => setState(() => onSale = v)),
             ],
           ),
           const SizedBox(height: 12),
@@ -41,8 +42,10 @@ class _FilterModalState extends State<FilterModal> {
                   value: selectedCategory,
                   items: const [
                     DropdownMenuItem(value: 'All', child: Text('All')),
-                    DropdownMenuItem(value: 'Clothing', child: Text('Clothing')),
-                    DropdownMenuItem(value: 'Merchandise', child: Text('Merchandise')),
+                    DropdownMenuItem(
+                        value: 'Clothing', child: Text('Clothing')),
+                    DropdownMenuItem(
+                        value: 'Merchandise', child: Text('Merchandise')),
                   ],
                   onChanged: (v) => setState(() => selectedCategory = v!),
                 ),
@@ -58,8 +61,10 @@ class _FilterModalState extends State<FilterModal> {
                   value: selectedCollection,
                   items: const [
                     DropdownMenuItem(value: 'All', child: Text('All')),
-                    DropdownMenuItem(value: 'Collection 1', child: Text('Collection 1')),
-                    DropdownMenuItem(value: 'Collection 2', child: Text('Collection 2')),
+                    DropdownMenuItem(
+                        value: 'Collection 1', child: Text('Collection 1')),
+                    DropdownMenuItem(
+                        value: 'Collection 2', child: Text('Collection 2')),
                   ],
                   onChanged: (v) => setState(() => selectedCollection = v!),
                 ),
