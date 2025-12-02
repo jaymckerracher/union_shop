@@ -6,7 +6,6 @@ class FilterSortMenuBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: Colors.white,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
         child: Row(
@@ -33,36 +32,96 @@ class FilterSortMenuBar extends StatelessWidget {
                     border: Border.all(color: Colors.grey.shade300),
                     borderRadius: BorderRadius.circular(6),
                   ),
-                  child: DropdownButtonHideUnderline(
-                    child: DropdownButton<String>(
-                      value: 'All products',
-                      items: const [
-                        DropdownMenuItem(
-                          value: 'All products',
-                          child: Text('All products'),
+                  child: TextButton.icon(
+                    onPressed: () {
+                      showModalBottomSheet(
+                        context: context,
+                        shape: const RoundedRectangleBorder(
+                          borderRadius:
+                              BorderRadius.vertical(top: Radius.circular(16)),
                         ),
-                        DropdownMenuItem(
-                          value: 'Clothing',
-                          child: Text('Clothing'),
-                        ),
-                        DropdownMenuItem(
-                          value: 'Merchandise',
-                          child: Text('Merchandise'),
-                        ),
-                        DropdownMenuItem(
-                          value: 'Sale',
-                          child: Text('Sale'),
-                        ),
-                      ],
-                      onChanged: (_) {}, // No functionality yet
-                      style: const TextStyle(
-                        fontSize: 16,
-                        color: Colors.black,
-                        fontWeight: FontWeight.w500,
-                      ),
-                      icon: const Icon(Icons.keyboard_arrow_down,
-                          size: 24, color: Colors.black54),
-                    ),
+                        builder: (context) {
+                          return Padding(
+                            padding: const EdgeInsets.all(24.0),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const Text('Filter Options',
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold)),
+                                const SizedBox(height: 16),
+                                Row(
+                                  children: [
+                                    const Text('On Sale'),
+                                    const Spacer(),
+                                    Switch(value: false, onChanged: (v) {}),
+                                  ],
+                                ),
+                                const SizedBox(height: 12),
+                                Row(
+                                  children: [
+                                    const Text('Category'),
+                                    const Spacer(),
+                                    DropdownButton<String>(
+                                      value: 'All',
+                                      items: const [
+                                        DropdownMenuItem(
+                                            value: 'All', child: Text('All')),
+                                        DropdownMenuItem(
+                                            value: 'Clothing',
+                                            child: Text('Clothing')),
+                                        DropdownMenuItem(
+                                            value: 'Merchandise',
+                                            child: Text('Merchandise')),
+                                      ],
+                                      onChanged: (v) {},
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(height: 12),
+                                Row(
+                                  children: [
+                                    const Text('Collection'),
+                                    const Spacer(),
+                                    DropdownButton<String>(
+                                      value: 'All',
+                                      items: const [
+                                        DropdownMenuItem(
+                                            value: 'All', child: Text('All')),
+                                        DropdownMenuItem(
+                                            value: 'Collection 1',
+                                            child: Text('Collection 1')),
+                                        DropdownMenuItem(
+                                            value: 'Collection 2',
+                                            child: Text('Collection 2')),
+                                      ],
+                                      onChanged: (v) {},
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(height: 24),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    TextButton(
+                                      onPressed: () =>
+                                          Navigator.of(context).pop(),
+                                      child: const Text('Close'),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                      );
+                    },
+                    icon: const Icon(Icons.tune, color: Colors.black54),
+                    label: const Text('Filter',
+                        style: TextStyle(
+                            color: Colors.black, fontWeight: FontWeight.w500)),
                   ),
                 ),
               ],
