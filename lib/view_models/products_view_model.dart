@@ -90,4 +90,6 @@ class ProductsViewModel extends ChangeNotifier {
         .where((product) => product.title.toLowerCase().contains(lowerQuery))
         .toList();
   }
+
+  ProductsFilter get currentFilter => filter;
 }
