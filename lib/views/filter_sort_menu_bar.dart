@@ -3,7 +3,9 @@ import '../view_models/products_view_model.dart';
 
 class FilterSortMenuBar extends StatelessWidget {
   final ProductsViewModel viewModel;
-  const FilterSortMenuBar({super.key, required this.viewModel});
+  final bool allProducts;
+  const FilterSortMenuBar(
+      {super.key, required this.viewModel, required this.allProducts});
 
   @override
   Widget build(BuildContext context) {
@@ -83,26 +85,27 @@ class FilterSortMenuBar extends StatelessWidget {
                                   ],
                                 ),
                                 const SizedBox(height: 12),
-                                Row(
-                                  children: [
-                                    const Text('Collection'),
-                                    const Spacer(),
-                                    DropdownButton<String>(
-                                      value: 'All',
-                                      items: const [
-                                        DropdownMenuItem(
-                                            value: 'All', child: Text('All')),
-                                        DropdownMenuItem(
-                                            value: 'Collection 1',
-                                            child: Text('Collection 1')),
-                                        DropdownMenuItem(
-                                            value: 'Collection 2',
-                                            child: Text('Collection 2')),
-                                      ],
-                                      onChanged: (v) {},
-                                    ),
-                                  ],
-                                ),
+                                if (allProducts)
+                                  Row(
+                                    children: [
+                                      const Text('Collection'),
+                                      const Spacer(),
+                                      DropdownButton<String>(
+                                        value: 'All',
+                                        items: const [
+                                          DropdownMenuItem(
+                                              value: 'All', child: Text('All')),
+                                          DropdownMenuItem(
+                                              value: 'Collection 1',
+                                              child: Text('Collection 1')),
+                                          DropdownMenuItem(
+                                              value: 'Collection 2',
+                                              child: Text('Collection 2')),
+                                        ],
+                                        onChanged: (v) {},
+                                      ),
+                                    ],
+                                  ),
                                 const SizedBox(height: 24),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.end,
