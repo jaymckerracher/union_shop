@@ -3,9 +3,14 @@ import '../view_models/products_view_model.dart';
 
 class FilterModal extends StatefulWidget {
   final bool allProducts;
+  final bool allCategories;
   final ProductsViewModel viewModel;
-  const FilterModal(
-      {super.key, required this.allProducts, required this.viewModel});
+  const FilterModal({
+    super.key,
+    required this.allProducts,
+    required this.allCategories,
+    required this.viewModel,
+  });
 
   @override
   State<FilterModal> createState() => _FilterModalState();
@@ -44,26 +49,22 @@ class _FilterModalState extends State<FilterModal> {
                   value: onSale, onChanged: (v) => setState(() => onSale = v)),
             ],
           ),
-          const SizedBox(height: 12),
-          if (widget.allProducts)
-            Row(
-              children: [
-                const Text('Category'),
-                const Spacer(),
-                DropdownButton<String>(
-                  value: selectedCategory,
-                  items: const [
-                    DropdownMenuItem(value: 'All', child: Text('All')),
-                    DropdownMenuItem(
-                        value: 'Clothing', child: Text('Clothing')),
-                    DropdownMenuItem(
-                        value: 'Merchandise', child: Text('Merchandise')),
-                  ],
-                  onChanged: (v) => setState(() => selectedCategory = v!),
-                ),
-              ],
-            ),
-          if (widget.allProducts) const SizedBox(height: 12),
+          Row(
+            children: [
+              const Text('Category'),
+              const Spacer(),
+              DropdownButton<String>(
+                value: selectedCategory,
+                items: const [
+                  DropdownMenuItem(value: 'All', child: Text('All')),
+                  DropdownMenuItem(value: 'clothing', child: Text('Clothing')),
+                  DropdownMenuItem(
+                      value: 'merchandise', child: Text('Merchandise')),
+                ],
+                onChanged: (v) => setState(() => selectedCategory = v!),
+              ),
+            ],
+          ),
           if (widget.allProducts)
             Row(
               children: [

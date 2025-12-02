@@ -33,6 +33,7 @@ class ProductsPage extends StatelessWidget {
                 FilterSortMenuBar(
                   viewModel: viewModel,
                   allProducts: true,
+                  allCategories: true,
                 ),
                 DisplayCollection(products: viewModel.getProducts),
                 const Footer(),

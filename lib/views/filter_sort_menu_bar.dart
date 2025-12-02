@@ -6,8 +6,12 @@ import 'sort_modal.dart';
 class FilterSortMenuBar extends StatelessWidget {
   final ProductsViewModel viewModel;
   final bool allProducts;
+  final bool allCategories;
   const FilterSortMenuBar(
-      {super.key, required this.viewModel, required this.allProducts});
+      {super.key,
+      required this.viewModel,
+      required this.allProducts,
+      required this.allCategories});
 
   @override
   Widget build(BuildContext context) {
@@ -48,6 +52,7 @@ class FilterSortMenuBar extends StatelessWidget {
                         ),
                         builder: (context) => FilterModal(
                           allProducts: allProducts,
+                          allCategories: allCategories,
                           viewModel: viewModel,
                         ),
                       );
