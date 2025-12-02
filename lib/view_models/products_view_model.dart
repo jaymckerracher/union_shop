@@ -58,12 +58,15 @@ class ProductsViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void updateFilter(
-      {ProductCategory? category, Collections? collection, bool? onSale}) {
+  void updateFilter({
+    ProductCategory? category,
+    Collections? collection,
+    bool? onSale,
+  }) {
     filter = ProductsFilter(
-      category: category ?? filter.category,
-      collection: collection ?? filter.collection,
-      onSale: onSale ?? filter.onSale,
+      category: category,
+      collection: collection,
+      onSale: onSale,
     );
     notifyListeners();
   }
