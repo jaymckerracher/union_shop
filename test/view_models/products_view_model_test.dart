@@ -11,13 +11,13 @@ void main() {
   });
 
   test('initial filteredProducts returns all products', () {
-    expect(viewModel.filteredProducts.length, viewModel.products.length);
+    expect(viewModel.getProducts.length, viewModel.products.length);
   });
 
   test('filter by category returns only matching products', () {
     viewModel.updateFilter(category: ProductCategory.clothing);
     expect(
-        viewModel.filteredProducts
+        viewModel.getProducts
             .every((p) => p.category == ProductCategory.clothing),
         isTrue);
   });
@@ -30,7 +30,7 @@ void main() {
       final testCollection = allCollections.first;
       viewModel.updateFilter(collection: testCollection);
       expect(
-          viewModel.filteredProducts
+          viewModel.getProducts
               .every((p) => p.collections.contains(testCollection)),
           isTrue);
     }
@@ -40,7 +40,7 @@ void main() {
     const allCollections = Collections.values;
     for (final collection in allCollections) {
       viewModel.updateFilter(collection: collection);
-      final filtered = viewModel.filteredProducts;
+      final filtered = viewModel.getProducts;
       if (filtered.isNotEmpty) {
         expect(
             filtered.every((p) => p.collections.contains(collection)), isTrue,
@@ -51,7 +51,7 @@ void main() {
 
   test('filter by onSale returns only products on sale', () {
     viewModel.updateFilter(onSale: true);
-    expect(viewModel.filteredProducts.every((p) => p.onSale), isTrue);
+    expect(viewModel.getProducts.every((p) => p.onSale), isTrue);
   });
 
   test('filter by category and collection returns intersection', () {
@@ -65,7 +65,7 @@ void main() {
         final category = matchingProducts.first.category;
         viewModel.updateFilter(category: category, collection: collection);
         expect(
-          viewModel.filteredProducts.every((p) =>
+          viewModel.getProducts.every((p) =>
               p.category == category && p.collections.contains(collection)),
           isTrue,
         );
@@ -85,7 +85,7 @@ void main() {
         viewModel.updateFilter(
             category: category, collection: collection, onSale: true);
         expect(
-          viewModel.filteredProducts.every((p) =>
+          viewModel.getProducts.every((p) =>
               p.category == category &&
               p.collections.contains(collection) &&
               p.onSale),
@@ -101,19 +101,19 @@ void main() {
         category: ProductCategory.clothing,
         collection: Collections.halloween,
         onSale: true);
-    expect(viewModel.filteredProducts, isEmpty);
+    expect(viewModel.getProducts, isEmpty);
   });
 
   test('clearFilter resets to all products', () {
     viewModel.updateFilter(category: ProductCategory.clothing);
     viewModel.clearFilter();
-    expect(viewModel.filteredProducts.length, viewModel.products.length);
+    expect(viewModel.getProducts.length, viewModel.products.length);
   });
 
   test('clearFilter resets to all products', () {
     viewModel.updateFilter(category: ProductCategory.clothing);
     viewModel.clearFilter();
-    expect(viewModel.filteredProducts.length, viewModel.products.length);
+    expect(viewModel.getProducts.length, viewModel.products.length);
   });
 
   test('getProductById returns correct product when id exists', () {
