@@ -12,10 +12,18 @@ class ProductsFilter {
   ProductsFilter({this.category, this.collection, this.onSale});
 }
 
+class ProductsSort {
+  String sortBy;
+  bool isAscending;
+
+  ProductsSort({required this.sortBy, required this.isAscending});
+}
+
 class ProductsViewModel extends ChangeNotifier {
   final ProductsRepository _repository = ProductsRepository();
   late List<Product> products;
   ProductsFilter filter = ProductsFilter();
+  ProductsSort sort = ProductsSort(sortBy: 'alphabetical', isAscending: true);
 
   ProductsViewModel() {
     products = List<Product>.from(_repository.products);
@@ -44,6 +52,14 @@ class ProductsViewModel extends ChangeNotifier {
       category: category ?? filter.category,
       collection: collection ?? filter.collection,
       onSale: onSale ?? filter.onSale,
+    );
+    notifyListeners();
+  }
+
+  void updateSort({String? sortBy, bool? isAscending}) {
+    sort = ProductsSort(
+      sortBy: sortBy ?? sort.sortBy,
+      isAscending: isAscending ?? sort.isAscending,
     );
     notifyListeners();
   }
