@@ -1,7 +1,9 @@
 import '../enums/collection.dart';
 
-String mapCollectionToRange(Collections range) {
-  switch (range) {
+String mapCollectionToRange(Collections? collection) {
+  if (collection == null) return 'all';
+
+  switch (collection) {
     case Collections.halloween:
       return 'halloween';
     case Collections.signatureAndEssentialRange:
@@ -12,7 +14,5 @@ String mapCollectionToRange(Collections range) {
       return 'pride';
     case Collections.graduation:
       return 'graduation';
-    default:
-      return '';
   }
 }

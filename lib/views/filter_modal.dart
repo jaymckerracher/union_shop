@@ -3,6 +3,9 @@ import '../view_models/products_view_model.dart';
 import '../enums/product_category.dart';
 import '../enums/collection.dart';
 import '../utils/map_range_to_collection.dart';
+import '../utils/map_collection_to_range.dart';
+import '../utils/map_category.dart';
+import '../utils/map_category_reverse.dart';
 
 class FilterModal extends StatefulWidget {
   final bool allCollections;
@@ -21,16 +24,15 @@ class FilterModal extends StatefulWidget {
 
 class _FilterModalState extends State<FilterModal> {
   late bool onSale;
-  late ProductCategory selectedCategory;
-  late Collections selectedCollection;
+  late ProductCategory? selectedCategory;
+  late Collections? selectedCollection;
 
   @override
   void initState() {
     super.initState();
     onSale = widget.viewModel.currentFilter.onSale ?? false;
-    selectedCategory = widget.viewModel.currentFilter.category!;
-    selectedCollection =
-        widget.viewModel.currentFilter.collection!;
+    selectedCategory = widget.viewModel.currentFilter.category;
+    selectedCollection = widget.viewModel.currentFilter.collection;
   }
 
   @override
@@ -58,15 +60,18 @@ class _FilterModalState extends State<FilterModal> {
                 const Text('Category'),
                 const Spacer(),
                 DropdownButton<String>(
-                  value: selectedCategory,
+                  value: mapCategoryReverse(selectedCategory),
                   items: const [
-                    DropdownMenuItem(value: 'All', child: Text('All')),
+                    DropdownMenuItem(value: 'all', child: Text('All')),
                     DropdownMenuItem(
                         value: 'clothing', child: Text('Clothing')),
                     DropdownMenuItem(
                         value: 'merchandise', child: Text('Merchandise')),
                   ],
-                  onChanged: (v) => setState(() => selectedCategory = v!),
+                  onChanged: (v) => {
+                    setState(() =>
+                        selectedCategory = v == 'all' ? null : mapCategory(v!)!)
+                  },
                 ),
               ],
             ),
@@ -76,9 +81,9 @@ class _FilterModalState extends State<FilterModal> {
                 const Text('Collection'),
                 const Spacer(),
                 DropdownButton<String>(
-                  value: selectedCollection,
+                  value: mapCollectionToRange(selectedCollection),
                   items: const [
-                    DropdownMenuItem(value: 'All', child: Text('All')),
+                    DropdownMenuItem(value: 'all', child: Text('All')),
                     DropdownMenuItem(
                         value: 'halloween', child: Text('Halloween')),
                     DropdownMenuItem(
@@ -90,7 +95,10 @@ class _FilterModalState extends State<FilterModal> {
                     DropdownMenuItem(
                         value: 'graduation', child: Text('Graduation')),
                   ],
-                  onChanged: (v) => setState(() => selectedCollection = v!),
+                  onChanged: (v) => {
+                    setState(() => selectedCollection =
+                        v == 'all' ? null : mapRangeToCollection(v!)!)
+                  },
                 ),
               ],
             ),
@@ -100,7 +108,10 @@ class _FilterModalState extends State<FilterModal> {
             children: [
               TextButton(
                 onPressed: () {
-                  // TODO: Convert selectedCategory and selectedCollection to enums before passing to updateFilter
+                  widget.viewModel.updateFilter(
+                      category: selectedCategory,
+                      collection: selectedCollection,
+                      onSale: onSale);
                 },
                 child: const Text('Update Selection'),
               ),
