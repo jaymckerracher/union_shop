@@ -1,17 +1,29 @@
 import 'package:flutter/material.dart';
+import '../view_models/products_view_model.dart';
 
 class FilterModal extends StatefulWidget {
   final bool allProducts;
-  const FilterModal({super.key, required this.allProducts});
+  final ProductsViewModel viewModel;
+  const FilterModal(
+      {super.key, required this.allProducts, required this.viewModel});
 
   @override
   State<FilterModal> createState() => _FilterModalState();
 }
 
 class _FilterModalState extends State<FilterModal> {
-  bool onSale = false;
-  String selectedCategory = 'All';
-  String selectedCollection = 'All';
+  late bool onSale;
+  late String selectedCategory;
+  late String selectedCollection;
+
+  @override
+  void initState() {
+    super.initState();
+    onSale = widget.viewModel.currentFilter.onSale ?? false;
+    selectedCategory = widget.viewModel.currentFilter.category?.name ?? 'All';
+    selectedCollection =
+        widget.viewModel.currentFilter.collection?.name ?? 'All';
+  }
 
   @override
   Widget build(BuildContext context) {
