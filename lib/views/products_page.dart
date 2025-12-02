@@ -4,6 +4,7 @@ import 'app_drawer.dart';
 import '../view_models/products_view_model.dart';
 import 'header.dart';
 import 'footer.dart';
+import 'filter_sort_menu_bar.dart';
 
 class ProductsPage extends StatelessWidget {
   const ProductsPage({super.key});
@@ -27,6 +28,7 @@ class ProductsPage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 8),
+            const FilterSortMenuBar(),
             DisplayCollection(products: viewModel.getProducts),
             const Footer(),
           ],
