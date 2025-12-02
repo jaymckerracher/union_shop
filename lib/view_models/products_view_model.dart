@@ -8,8 +8,9 @@ class ProductsFilter {
   ProductCategory? category;
   Collections? collection;
   bool? onSale;
+  String? query;
 
-  ProductsFilter({this.category, this.collection, this.onSale});
+  ProductsFilter({this.category, this.collection, this.onSale, this.query});
 }
 
 class ProductsSort {
@@ -45,7 +46,12 @@ class ProductsViewModel extends ChangeNotifier {
           product.collections.contains(filter.collection);
       final matchesOnSale =
           filter.onSale == null || product.onSale == filter.onSale;
-      return matchesCategory && matchesCollection && matchesOnSale;
+      final matchesQuery = filter.query == null ||
+          product.title.toLowerCase().startsWith(filter.query!.toLowerCase());
+      return matchesCategory &&
+          matchesCollection &&
+          matchesOnSale &&
+          matchesQuery;
     }).toList();
 
     // Sort the filtered list based on the sort object
@@ -93,13 +99,6 @@ class ProductsViewModel extends ChangeNotifier {
     } catch (e) {
       return null;
     }
-  }
-
-  List<Product> searchProducts(String query) {
-    final lowerQuery = query.toLowerCase();
-    return products
-        .where((product) => product.title.toLowerCase().contains(lowerQuery))
-        .toList();
   }
 
   ProductsFilter get currentFilter => filter;
