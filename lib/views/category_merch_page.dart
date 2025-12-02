@@ -8,7 +8,7 @@ class CategoryMerchPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: DisplayCollection(filter: 'merchandise'),
+      body: DisplayCollection(products: [],),
       drawer: AppDrawer(),
     );
   }

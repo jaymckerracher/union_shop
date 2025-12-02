@@ -8,7 +8,7 @@ class CollectionEssentialPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: DisplayCollection(filter: 'essential'),
+      body: DisplayCollection(products: [],),
       drawer: AppDrawer(),
     );
   }

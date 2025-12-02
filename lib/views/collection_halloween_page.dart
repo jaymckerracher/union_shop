@@ -8,7 +8,7 @@ class CollectionHalloweenPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: DisplayCollection(filter: 'halloween'),
+      body: DisplayCollection(products: [],),
       drawer: AppDrawer(),
     );
   }

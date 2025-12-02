@@ -8,7 +8,7 @@ class CollectionGradPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: DisplayCollection(filter: 'graduation'),
+      body: DisplayCollection(products: [],),
       drawer: AppDrawer(),
     );
   }

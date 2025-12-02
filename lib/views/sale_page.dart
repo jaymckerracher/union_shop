@@ -8,7 +8,9 @@ class SalePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: DisplayCollection(filter: 'sale'),
+      body: DisplayCollection(
+        products: [],
+      ),
       drawer: AppDrawer(),
     );
   }
