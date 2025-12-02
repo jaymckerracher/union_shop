@@ -138,17 +138,19 @@ class Footer extends StatelessWidget {
                 fontSize: 15,
                 fontWeight: FontWeight.w400,
                 decoration: TextDecoration.underline,
-                color: Color(0xFF444950),
               ),
             ),
           ),
           const SizedBox(height: 24),
-          const Text(
-            'Terms & Conditions of Sale Policy',
-            style: TextStyle(
-              fontSize: 15,
-              fontWeight: FontWeight.w400,
-              decoration: TextDecoration.underline,
+          InkWell(
+            onTap: () {},
+            child: const Text(
+              'Terms & Conditions of Sale Policy',
+              style: TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.w400,
+                decoration: TextDecoration.underline,
+              ),
             ),
           ),
         ],
