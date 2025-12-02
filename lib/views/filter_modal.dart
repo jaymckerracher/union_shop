@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import '../view_models/products_view_model.dart';
+import '../enums/product_category.dart';
+import '../enums/collection.dart';
+import '../utils/map_range_to_collection.dart';
 
 class FilterModal extends StatefulWidget {
   final bool allCollections;
@@ -18,16 +21,16 @@ class FilterModal extends StatefulWidget {
 
 class _FilterModalState extends State<FilterModal> {
   late bool onSale;
-  late String selectedCategory;
-  late String selectedCollection;
+  late ProductCategory selectedCategory;
+  late Collections selectedCollection;
 
   @override
   void initState() {
     super.initState();
     onSale = widget.viewModel.currentFilter.onSale ?? false;
-    selectedCategory = widget.viewModel.currentFilter.category?.name ?? 'All';
+    selectedCategory = widget.viewModel.currentFilter.category!;
     selectedCollection =
-        widget.viewModel.currentFilter.collection?.name ?? 'All';
+        widget.viewModel.currentFilter.collection!;
   }
 
   @override
@@ -75,7 +78,7 @@ class _FilterModalState extends State<FilterModal> {
                 DropdownButton<String>(
                   value: selectedCollection,
                   items: const [
-                    DropdownMenuItem(value: null, child: Text('All')),
+                    DropdownMenuItem(value: 'All', child: Text('All')),
                     DropdownMenuItem(
                         value: 'halloween', child: Text('Halloween')),
                     DropdownMenuItem(
@@ -95,6 +98,12 @@ class _FilterModalState extends State<FilterModal> {
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
+              TextButton(
+                onPressed: () {
+                  // TODO: Convert selectedCategory and selectedCollection to enums before passing to updateFilter
+                },
+                child: const Text('Update Selection'),
+              ),
               TextButton(
                 onPressed: () => Navigator.of(context).pop(),
                 child: const Text('Close'),
