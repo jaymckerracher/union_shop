@@ -76,11 +76,13 @@ class ProductsViewModel extends ChangeNotifier {
     ProductCategory? category,
     Collections? collection,
     bool? onSale,
+    String? query,
   }) {
     filter = ProductsFilter(
-      category: category,
-      collection: collection,
-      onSale: onSale,
+      category: category ?? filter.category,
+      collection: collection ?? filter.collection,
+      onSale: onSale ?? filter.onSale,
+      query: query ?? filter.query,
     );
     notifyListeners();
   }
