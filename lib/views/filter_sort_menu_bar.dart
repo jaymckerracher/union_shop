@@ -5,12 +5,12 @@ import 'sort_modal.dart';
 
 class FilterSortMenuBar extends StatelessWidget {
   final ProductsViewModel viewModel;
-  final bool allProducts;
+  final bool allCollections;
   final bool allCategories;
   const FilterSortMenuBar(
       {super.key,
       required this.viewModel,
-      required this.allProducts,
+      required this.allCollections,
       required this.allCategories});
 
   @override
@@ -51,7 +51,7 @@ class FilterSortMenuBar extends StatelessWidget {
                               BorderRadius.vertical(top: Radius.circular(16)),
                         ),
                         builder: (context) => FilterModal(
-                          allProducts: allProducts,
+                          allCollections: allCollections,
                           allCategories: allCategories,
                           viewModel: viewModel,
                         ),

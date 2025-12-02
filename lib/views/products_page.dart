@@ -32,7 +32,7 @@ class ProductsPage extends StatelessWidget {
                 const SizedBox(height: 8),
                 FilterSortMenuBar(
                   viewModel: viewModel,
-                  allProducts: true,
+                  allCollections: true,
                   allCategories: true,
                 ),
                 DisplayCollection(products: viewModel.getProducts),

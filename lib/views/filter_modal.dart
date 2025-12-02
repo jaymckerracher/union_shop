@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import '../view_models/products_view_model.dart';
 
 class FilterModal extends StatefulWidget {
-  final bool allProducts;
+  final bool allCollections;
   final bool allCategories;
   final ProductsViewModel viewModel;
   const FilterModal({
     super.key,
-    required this.allProducts,
+    required this.allCollections,
     required this.allCategories,
     required this.viewModel,
   });
@@ -65,7 +65,7 @@ class _FilterModalState extends State<FilterModal> {
               ),
             ],
           ),
-          if (widget.allProducts)
+          if (widget.allCollections)
             Row(
               children: [
                 const Text('Collection'),
