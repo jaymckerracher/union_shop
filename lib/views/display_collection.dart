@@ -1,88 +1,18 @@
 import 'package:flutter/material.dart';
-import '../view_models/products_view_model.dart';
-import '../utils/map_range_to_collection.dart';
-import '../utils/map_category.dart';
 import '../utils/navigation.dart';
 import 'header.dart';
 import 'footer.dart';
 
 class DisplayCollection extends StatelessWidget {
-  String _getCollectionTitle(String filter) {
-    switch (filter.toLowerCase()) {
-      case 'halloween':
-        return 'Halloween Collection';
-      case 'essential':
-        return 'Signature & Essential Collection';
-      case 'pride':
-        return 'Pride Collection';
-      case 'portsmouth':
-        return 'Portsmouth City Collection';
-      case 'graduation':
-        return 'Graduation Collection';
-      case 'clothing':
-        return 'Clothing';
-      case 'merchandise':
-        return 'Merchandise';
-      case 'sale':
-        return 'Products On Sale';
-      case 'all':
-        return 'All Products';
-      default:
-        return 'Collection';
-    }
-  }
-
-  final String filter;
-  const DisplayCollection({super.key, required this.filter});
+  final List products;
+  const DisplayCollection({super.key, required this.products});
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = ProductsViewModel();
-
-    if (filter == "clothing" || filter == "merchandise") {
-      final collection = mapCategory(filter);
-      viewModel.updateFilter(category: collection);
-    } else if (filter == 'sale') {
-      viewModel.updateFilter(onSale: true);
-    } else if (filter != 'all') {
-      final collection = mapRangeToCollection(filter);
-      viewModel.updateFilter(collection: collection);
-    }
-
-    final products = viewModel.getProducts;
-
     return CustomScrollView(
       slivers: [
         const SliverToBoxAdapter(
           child: Header(),
-        ),
-        const SliverToBoxAdapter(child: SizedBox(height: 16)),
-        SliverToBoxAdapter(
-          child: Padding(
-            padding:
-                const EdgeInsets.symmetric(vertical: 30.0, horizontal: 8.0),
-            child: Text(
-              _getCollectionTitle(filter),
-              style: const TextStyle(
-                fontSize: 32,
-                fontWeight: FontWeight.bold,
-                color: Color(0xFF444950),
-              ),
-            ),
-          ),
-        ),
-        SliverToBoxAdapter(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
-            child: Text(
-              '${products.length} product(s)',
-              style: const TextStyle(
-                fontStyle: FontStyle.italic,
-                color: Colors.black54,
-                fontSize: 14,
-              ),
-            ),
-          ),
         ),
         const SliverToBoxAdapter(child: SizedBox(height: 16)),
         SliverPadding(
