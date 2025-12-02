@@ -46,8 +46,10 @@ class FilterSortMenuBar extends StatelessWidget {
                           borderRadius:
                               BorderRadius.vertical(top: Radius.circular(16)),
                         ),
-                        builder: (context) =>
-                            FilterModal(allProducts: allProducts),
+                        builder: (context) => FilterModal(
+                          allProducts: allProducts,
+                          viewModel: viewModel,
+                        ),
                       );
                     },
                     icon: const Icon(Icons.tune, color: Colors.black54),
