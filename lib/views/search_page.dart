@@ -7,25 +7,32 @@ class SearchPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final minHeight = MediaQuery.of(context).size.height;
     return Scaffold(
-      body: SingleChildScrollView(
+      body: Container(
+        constraints: BoxConstraints(minHeight: minHeight),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Header(),
-            const SizedBox(height: 32),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24.0),
-              child: TextField(
-                decoration: InputDecoration(
-                  hintText: 'Search products...',
-                  prefixIcon: const Icon(Icons.search),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8.0),
+            Column(
+              children: [
+                const Header(),
+                const SizedBox(height: 32),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                  child: TextField(
+                    decoration: InputDecoration(
+                      hintText: 'Search products...',
+                      prefixIcon: const Icon(Icons.search),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                    ),
                   ),
                 ),
-              ),
+                const SizedBox(height: 32),
+              ],
             ),
-            const SizedBox(height: 32),
             const Footer(),
           ],
         ),
