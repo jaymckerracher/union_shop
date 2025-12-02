@@ -10,8 +10,44 @@ void main() {
     viewModel = ProductsViewModel();
   });
 
-  test('initial filteredProducts returns all products', () {
+  test('initial getProducts returns all products', () {
     expect(viewModel.getProducts.length, viewModel.products.length);
+  });
+
+  group('sorting', () {
+    test('sorts alphabetically ascending', () {
+      viewModel.updateSort(sortBy: 'alphabetical', isAscending: true);
+      final sorted = viewModel.getProducts;
+      final titles = sorted.map((p) => p.title.toLowerCase()).toList();
+      final sortedTitles = List<String>.from(titles)..sort();
+      expect(titles, sortedTitles);
+    });
+
+    test('sorts alphabetically descending', () {
+      viewModel.updateSort(sortBy: 'alphabetical', isAscending: false);
+      final sorted = viewModel.getProducts;
+      final titles = sorted.map((p) => p.title.toLowerCase()).toList();
+      final sortedTitles = List<String>.from(titles)
+        ..sort((a, b) => b.compareTo(a));
+      expect(titles, sortedTitles);
+    });
+
+    test('sorts by price ascending', () {
+      viewModel.updateSort(sortBy: 'price', isAscending: true);
+      final sorted = viewModel.getProducts;
+      final prices = sorted.map((p) => p.price).toList();
+      final sortedPrices = List<double>.from(prices)..sort();
+      expect(prices, sortedPrices);
+    });
+
+    test('sorts by price descending', () {
+      viewModel.updateSort(sortBy: 'price', isAscending: false);
+      final sorted = viewModel.getProducts;
+      final prices = sorted.map((p) => p.price).toList();
+      final sortedPrices = List<double>.from(prices)
+        ..sort((a, b) => b.compareTo(a));
+      expect(prices, sortedPrices);
+    });
   });
 
   test('filter by category returns only matching products', () {
