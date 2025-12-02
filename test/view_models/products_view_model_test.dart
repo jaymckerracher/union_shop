@@ -164,23 +164,26 @@ void main() {
     expect(foundProduct, isNull);
   });
 
-  test('searchProducts returns products with matching title', () {
-    // Use the title of the first product as a query
+  test('search by query returns products with matching title (begins with)',
+      () {
     final firstProduct = viewModel.products.first;
     final query = firstProduct.title.substring(0, 3); // partial match
-    final results = viewModel.searchProducts(query);
+    viewModel.filter = ProductsFilter(query: query);
+    final results = viewModel.getProducts;
     expect(results.any((p) => p.id == firstProduct.id), isTrue);
   });
 
-  test('searchProducts is case-insensitive', () {
+  test('search by query is case-insensitive', () {
     final firstProduct = viewModel.products.first;
     final query = firstProduct.title.substring(0, 3).toUpperCase();
-    final results = viewModel.searchProducts(query);
+    viewModel.filter = ProductsFilter(query: query);
+    final results = viewModel.getProducts;
     expect(results.any((p) => p.id == firstProduct.id), isTrue);
   });
 
-  test('searchProducts returns empty list for no match', () {
-    final results = viewModel.searchProducts('thisshouldnotmatchanything');
+  test('search by query returns empty list for no match', () {
+    viewModel.filter = ProductsFilter(query: 'thisshouldnotmatchanything');
+    final results = viewModel.getProducts;
     expect(results, isEmpty);
   });
 
@@ -189,13 +192,15 @@ void main() {
     expect(viewModel.currentFilter.category, isNull);
     expect(viewModel.currentFilter.collection, isNull);
     expect(viewModel.currentFilter.onSale, isNull);
+    expect(viewModel.currentFilter.query, isNull);
 
     // After updating filter
     viewModel.updateFilter(category: ProductCategory.clothing, onSale: true);
     expect(viewModel.currentFilter.category, ProductCategory.clothing);
     expect(viewModel.currentFilter.onSale, true);
-    // Collection should remain null if not set
+    // Collection and query should remain null if not set
     expect(viewModel.currentFilter.collection, isNull);
+    expect(viewModel.currentFilter.query, isNull);
 
     // After updating collection only
     viewModel.updateFilter(collection: Collections.halloween);
@@ -203,11 +208,21 @@ void main() {
     // Other values should persist
     expect(viewModel.currentFilter.category, ProductCategory.clothing);
     expect(viewModel.currentFilter.onSale, true);
+    expect(viewModel.currentFilter.query, isNull);
+
+    // After setting query only
+    viewModel.filter = ProductsFilter(query: 'testquery');
+    expect(viewModel.currentFilter.query, 'testquery');
+    // Other values should be null
+    expect(viewModel.currentFilter.category, isNull);
+    expect(viewModel.currentFilter.collection, isNull);
+    expect(viewModel.currentFilter.onSale, isNull);
 
     // After clearing filter
     viewModel.clearFilter();
     expect(viewModel.currentFilter.category, isNull);
     expect(viewModel.currentFilter.collection, isNull);
     expect(viewModel.currentFilter.onSale, isNull);
+    expect(viewModel.currentFilter.query, isNull);
   });
 }
