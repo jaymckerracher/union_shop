@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import '../utils/navigation.dart';
-import 'header.dart';
-import 'footer.dart';
 
 class DisplayCollection extends StatelessWidget {
   final List products;
@@ -11,9 +9,6 @@ class DisplayCollection extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: [
-        const SliverToBoxAdapter(
-          child: Header(),
-        ),
         const SliverToBoxAdapter(child: SizedBox(height: 16)),
         SliverPadding(
           padding: const EdgeInsets.only(left: 8.0, right: 8.0, bottom: 32.0),
@@ -101,9 +96,7 @@ class DisplayCollection extends StatelessWidget {
             ),
           ),
         ),
-        const SliverToBoxAdapter(
-          child: Footer(),
-        ),
+        // Footer removed
       ],
     );
   }
