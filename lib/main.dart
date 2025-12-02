@@ -42,45 +42,58 @@ class UnionShopApp extends StatelessWidget {
           final productId = settings.name!.substring('/products/'.length);
           return MaterialPageRoute(
             builder: (context) => ProductPage(productId: productId),
+            settings: settings,
           );
         }
         // Static routes
         switch (settings.name) {
           case '/':
-            return MaterialPageRoute(builder: (context) => const HomePage());
+            return MaterialPageRoute(
+                builder: (context) => const HomePage(), settings: settings);
           case '/about':
-            return MaterialPageRoute(builder: (context) => const AboutPage());
+            return MaterialPageRoute(
+                builder: (context) => const AboutPage(), settings: settings);
           case '/personalisation':
             return MaterialPageRoute(
-                builder: (context) => const PrintShackAboutPage());
+                builder: (context) => const PrintShackAboutPage(),
+                settings: settings);
           case '/collections/halloween':
             return MaterialPageRoute(
-                builder: (context) => const CollectionHalloweenPage());
+                builder: (context) => const CollectionHalloweenPage(),
+                settings: settings);
           case '/collections/essential':
             return MaterialPageRoute(
-                builder: (context) => const CollectionEssentialPage());
+                builder: (context) => const CollectionEssentialPage(),
+                settings: settings);
           case '/collections/portsmouth':
             return MaterialPageRoute(
-                builder: (context) => const CollectionPortsmouthPage());
+                builder: (context) => const CollectionPortsmouthPage(),
+                settings: settings);
           case '/collections/pride':
             return MaterialPageRoute(
-                builder: (context) => const CollectionPridePage());
+                builder: (context) => const CollectionPridePage(),
+                settings: settings);
           case '/collections/graduation':
             return MaterialPageRoute(
-                builder: (context) => const CollectionGradPage());
+                builder: (context) => const CollectionGradPage(),
+                settings: settings);
           case '/collections/clothing':
             return MaterialPageRoute(
-                builder: (context) => const CategoryClothingPage());
+                builder: (context) => const CategoryClothingPage(),
+                settings: settings);
           case '/collections/merchandise':
             return MaterialPageRoute(
-                builder: (context) => const CategoryMerchPage());
+                builder: (context) => const CategoryMerchPage(),
+                settings: settings);
           case '/collections/sale':
-            return MaterialPageRoute(builder: (context) => const SalePage());
+            return MaterialPageRoute(
+                builder: (context) => const SalePage(), settings: settings);
           case '/products':
             return MaterialPageRoute(
-                builder: (context) => const ProductsPage());
+                builder: (context) => const ProductsPage(), settings: settings);
           default:
-            return MaterialPageRoute(builder: (context) => const HomePage());
+            return MaterialPageRoute(
+                builder: (context) => const HomePage(), settings: settings);
         }
       },
     );
