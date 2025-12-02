@@ -22,10 +22,18 @@ class ProductsSort {
 class ProductsViewModel extends ChangeNotifier {
   final ProductsRepository _repository = ProductsRepository();
   late List<Product> products;
-  ProductsFilter filter = ProductsFilter();
+  ProductsFilter filter;
   ProductsSort sort = ProductsSort(sortBy: 'alphabetical', isAscending: true);
 
-  ProductsViewModel() {
+  ProductsViewModel({
+    ProductCategory? category,
+    Collections? collection,
+    bool? onSale,
+  }) : filter = ProductsFilter(
+          category: category,
+          collection: collection,
+          onSale: onSale,
+        ) {
     products = List<Product>.from(_repository.products);
   }
 
