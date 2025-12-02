@@ -35,22 +35,53 @@ class UnionShopApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF4d2963)),
       ),
-      home: const HomePage(),
       initialRoute: '/',
-      routes: {
-        '/product': (context) => const ProductPage(),
-        '/about': (context) => const AboutPage(),
-        '/personalisation': (context) => const PrintShackAboutPage(),
-        '/collections/halloween': (context) => const CollectionHalloweenPage(),
-        '/collections/essential': (context) => const CollectionEssentialPage(),
-        '/collections/portsmouth': (context) =>
-            const CollectionPortsmouthPage(),
-        '/collections/pride': (context) => const CollectionPridePage(),
-        '/collections/graduation': (context) => const CollectionGradPage(),
-        '/collections/clothing': (context) => const CategoryClothingPage(),
-        '/collections/merchandise': (context) => const CategoryMerchPage(),
-        '/collections/sale': (context) => const SalePage(),
-        '/products': (context) => const ProductsPage(),
+      onGenerateRoute: (settings) {
+        // Dynamic product route: /products/:id
+        // if (settings.name != null && settings.name!.startsWith('/products/')) {
+        //   final productId = settings.name!.substring('/products/'.length);
+        //   return MaterialPageRoute(
+        //     builder: (context) => ProductPage(productId: productId),
+        //   );
+        // }
+        // Static routes
+        switch (settings.name) {
+          case '/':
+            return MaterialPageRoute(builder: (context) => const HomePage());
+          case '/about':
+            return MaterialPageRoute(builder: (context) => const AboutPage());
+          case '/personalisation':
+            return MaterialPageRoute(
+                builder: (context) => const PrintShackAboutPage());
+          case '/collections/halloween':
+            return MaterialPageRoute(
+                builder: (context) => const CollectionHalloweenPage());
+          case '/collections/essential':
+            return MaterialPageRoute(
+                builder: (context) => const CollectionEssentialPage());
+          case '/collections/portsmouth':
+            return MaterialPageRoute(
+                builder: (context) => const CollectionPortsmouthPage());
+          case '/collections/pride':
+            return MaterialPageRoute(
+                builder: (context) => const CollectionPridePage());
+          case '/collections/graduation':
+            return MaterialPageRoute(
+                builder: (context) => const CollectionGradPage());
+          case '/collections/clothing':
+            return MaterialPageRoute(
+                builder: (context) => const CategoryClothingPage());
+          case '/collections/merchandise':
+            return MaterialPageRoute(
+                builder: (context) => const CategoryMerchPage());
+          case '/collections/sale':
+            return MaterialPageRoute(builder: (context) => const SalePage());
+          case '/products':
+            return MaterialPageRoute(
+                builder: (context) => const ProductsPage());
+          default:
+            return MaterialPageRoute(builder: (context) => const HomePage());
+        }
       },
     );
   }
