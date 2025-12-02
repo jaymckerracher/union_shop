@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../utils/navigation.dart';
 
 class Footer extends StatelessWidget {
   const Footer({super.key});
@@ -9,10 +10,10 @@ class Footer extends StatelessWidget {
       width: double.infinity,
       color: const Color.fromARGB(82, 145, 135, 150),
       padding: const EdgeInsets.all(24),
-      child: const Column(
+      child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
+          const Text(
             'Opening Hours',
             style: TextStyle(
               color: Color(0xFF444950),
@@ -20,8 +21,8 @@ class Footer extends StatelessWidget {
               fontWeight: FontWeight.w600,
             ),
           ),
-          SizedBox(height: 16),
-          Row(
+          const SizedBox(height: 16),
+          const Row(
             children: [
               Text('❄️ ', style: TextStyle(fontSize: 18)),
               Text(
@@ -35,8 +36,8 @@ class Footer extends StatelessWidget {
               Text('❄️', style: TextStyle(fontSize: 18)),
             ],
           ),
-          SizedBox(height: 12),
-          Text(
+          const SizedBox(height: 12),
+          const Text(
             'Closing 4pm 19/12/2025',
             style: TextStyle(
               fontWeight: FontWeight.w600,
@@ -44,8 +45,8 @@ class Footer extends StatelessWidget {
               color: Color(0xFF444950),
             ),
           ),
-          SizedBox(height: 4),
-          Text(
+          const SizedBox(height: 4),
+          const Text(
             'Reopening 10am 05/01/2026',
             style: TextStyle(
               fontWeight: FontWeight.w600,
@@ -53,8 +54,8 @@ class Footer extends StatelessWidget {
               color: Color(0xFF444950),
             ),
           ),
-          SizedBox(height: 4),
-          Text(
+          const SizedBox(height: 4),
+          const Text(
             'Last post date: 12pm on 18/12/2025',
             style: TextStyle(
               fontStyle: FontStyle.italic,
@@ -63,8 +64,8 @@ class Footer extends StatelessWidget {
               color: Color(0xFF444950),
             ),
           ),
-          SizedBox(height: 12),
-          Text(
+          const SizedBox(height: 12),
+          const Text(
             '--------------------------',
             style: TextStyle(
               color: Colors.grey,
@@ -72,8 +73,8 @@ class Footer extends StatelessWidget {
               fontWeight: FontWeight.w400,
             ),
           ),
-          SizedBox(height: 12),
-          Text(
+          const SizedBox(height: 12),
+          const Text(
             '(Term Time)',
             style: TextStyle(
               fontStyle: FontStyle.italic,
@@ -82,8 +83,8 @@ class Footer extends StatelessWidget {
               color: Color(0xFF444950),
             ),
           ),
-          SizedBox(height: 4),
-          Text(
+          const SizedBox(height: 4),
+          const Text(
             'Monday - Friday 10am - 4pm',
             style: TextStyle(
               fontWeight: FontWeight.w600,
@@ -91,8 +92,8 @@ class Footer extends StatelessWidget {
               color: Color(0xFF444950),
             ),
           ),
-          SizedBox(height: 12),
-          Text(
+          const SizedBox(height: 12),
+          const Text(
             '(Outside of Term Time / Consolidation Weeks)',
             style: TextStyle(
               fontStyle: FontStyle.italic,
@@ -101,8 +102,8 @@ class Footer extends StatelessWidget {
               color: Color(0xFF444950),
             ),
           ),
-          SizedBox(height: 4),
-          Text(
+          const SizedBox(height: 4),
+          const Text(
             'Monday - Friday 10am - 3pm',
             style: TextStyle(
               fontWeight: FontWeight.w600,
@@ -110,8 +111,8 @@ class Footer extends StatelessWidget {
               color: Color(0xFF444950),
             ),
           ),
-          SizedBox(height: 12),
-          Text(
+          const SizedBox(height: 12),
+          const Text(
             'Purchase online 24/7',
             style: TextStyle(
               fontWeight: FontWeight.w600,
@@ -119,8 +120,8 @@ class Footer extends StatelessWidget {
               color: Color(0xFF444950),
             ),
           ),
-          SizedBox(height: 32),
-          Text(
+          const SizedBox(height: 32),
+          const Text(
             'Help and Information',
             style: TextStyle(
               color: Color(0xFF444950),
@@ -128,17 +129,21 @@ class Footer extends StatelessWidget {
               fontWeight: FontWeight.w700,
             ),
           ),
-          SizedBox(height: 16),
-          Text(
-            'Search',
-            style: TextStyle(
-              fontSize: 15,
-              fontWeight: FontWeight.w400,
-              decoration: TextDecoration.underline,
+          const SizedBox(height: 16),
+          InkWell(
+            onTap: () => navigateToSearch(context),
+            child: const Text(
+              'Search',
+              style: TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.w400,
+                decoration: TextDecoration.underline,
+                color: Color(0xFF444950),
+              ),
             ),
           ),
-          SizedBox(height: 24),
-          Text(
+          const SizedBox(height: 24),
+          const Text(
             'Terms & Conditions of Sale Policy',
             style: TextStyle(
               fontSize: 15,
