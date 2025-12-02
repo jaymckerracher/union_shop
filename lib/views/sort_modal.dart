@@ -27,7 +27,7 @@ class SortModal extends StatelessWidget {
           ),
           ListTile(
             title: const Text('Price: Low to High'),
-            leading: const Icon(Icons.arrow_downward),
+            leading: const Icon(Icons.arrow_upward),
             selected:
                 viewModel.sort.sortBy == 'price' && viewModel.sort.isAscending,
             onTap: () {
@@ -37,7 +37,7 @@ class SortModal extends StatelessWidget {
           ),
           ListTile(
             title: const Text('Price: High to Low'),
-            leading: const Icon(Icons.arrow_upward),
+            leading: const Icon(Icons.arrow_downward),
             selected:
                 viewModel.sort.sortBy == 'price' && !viewModel.sort.isAscending,
             onTap: () {
