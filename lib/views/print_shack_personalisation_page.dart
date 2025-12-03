@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'header.dart';
 import 'footer.dart';
+import './app_drawer.dart';
 
 class PrintShackPersonalisationPage extends StatefulWidget {
   const PrintShackPersonalisationPage({super.key});
@@ -43,6 +44,7 @@ class _PrintShackPersonalisationPageState
     double price = priceMap[selectedOption] ?? 0.0;
 
     return Scaffold(
+      drawer: const AppDrawer(),
       body: SingleChildScrollView(
         child: Column(
           children: [
