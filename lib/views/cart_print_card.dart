@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import '../models/cart_item_print_model.dart';
+import 'package:provider/provider.dart';
+import '../view_models/cart_view_model.dart';
 
 class CartPrintCard extends StatelessWidget {
   final CartItemPrint item;
@@ -43,7 +45,11 @@ class CartPrintCard extends StatelessWidget {
                 Row(
                   children: [
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        final cartViewModel =
+                            Provider.of<CartViewModel>(context, listen: false);
+                        cartViewModel.removePrintItem(item);
+                      },
                       style: TextButton.styleFrom(
                           padding: EdgeInsets.zero,
                           minimumSize: const Size(40, 24)),
