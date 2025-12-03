@@ -13,12 +13,12 @@ class PrintShackPersonalisationPage extends StatefulWidget {
 class _PrintShackPersonalisationPageState
     extends State<PrintShackPersonalisationPage> {
   final Map<String, double> priceMap = {
-    'One Line of Text': 5.0,
-    'Two Lines of Text': 7.0,
-    'Three Lines of Text': 9.0,
-    'Four Lines of Text': 11.0,
-    'Small Logo (Chest)': 8.0,
-    'Large Logo (Back)': 12.0,
+    'One Line of Text': 3.0,
+    'Two Lines of Text': 5.0,
+    'Three Lines of Text': 7.5,
+    'Four Lines of Text': 10.0,
+    'Small Logo (Chest)': 3.5,
+    'Large Logo (Back)': 6.0,
   };
 
   final Map<String, int> textFieldCount = {
@@ -26,8 +26,8 @@ class _PrintShackPersonalisationPageState
     'Two Lines of Text': 2,
     'Three Lines of Text': 3,
     'Four Lines of Text': 4,
-    'Small Logo (Chest)': 0,
-    'Large Logo (Back)': 0,
+    'Small Logo (Chest)': 1,
+    'Large Logo (Back)': 1,
   };
 
   String selectedOption = 'One Line of Text';
