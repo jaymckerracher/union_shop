@@ -4,6 +4,7 @@ import 'footer.dart';
 import './app_drawer.dart';
 import '../view_models/products_view_model.dart';
 import '../utils/map_collection_to_label.dart';
+import '../utils/navigation.dart';
 
 class CollectionsPage extends StatelessWidget {
   const CollectionsPage({super.key});
@@ -27,58 +28,84 @@ class CollectionsPage extends StatelessWidget {
           collectionTiles.add(
             AspectRatio(
               aspectRatio: 1,
-              child: Container(
-                margin: const EdgeInsets.all(12),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(16),
-                  color: Colors.grey[200],
-                  boxShadow: [
-                    BoxShadow(
-                      // ignore: deprecated_member_use
-                      color: Colors.black.withOpacity(0.07),
-                      blurRadius: 8,
-                      offset: const Offset(0, 2),
-                    ),
-                  ],
-                ),
-                clipBehavior: Clip.antiAlias,
-                child: Stack(
-                  fit: StackFit.expand,
-                  children: [
-                    // Product image
-                    product.imageUrls.isNotEmpty
-                        ? Image.asset(
-                            product.imageUrls[0],
-                            fit: BoxFit.cover,
-                          )
-                        : Container(color: Colors.grey[300]),
-                    // Overlay with collection name
-                    Container(
-                      // ignore: deprecated_member_use
-                      color: Colors.black.withOpacity(0.35),
-                    ),
-                    Center(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                        child: Text(
-                          mapCollectionToLabel(collection),
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 24,
-                            shadows: [
-                              Shadow(
-                                color: Colors.black54,
-                                blurRadius: 4,
-                                offset: Offset(0, 2),
-                              ),
-                            ],
+              child: GestureDetector(
+                onTap: () {
+                  // Navigation logic for each collection
+                  if (collection.name == 'halloween') {
+                    navigateToHalloween(context);
+                  } else if (collection.name == 'signatureAndEssentialRange') {
+                    navigateToEssential(context);
+                  } else if (collection.name == 'portsmouthCityCollection') {
+                    navigateToPortsmouth(context);
+                  } else if (collection.name == 'prideCollection') {
+                    navigateToPride(context);
+                  } else if (collection.name == 'graduation') {
+                    navigateToGrad(context);
+                  } else if (collection.name == 'clothing') {
+                    navigateToClothing(context);
+                  } else if (collection.name == 'merchandise') {
+                    navigateToMerch(context);
+                  } else if (collection.name == 'sale') {
+                    navigateToSale(context);
+                  }
+                },
+                child: Container(
+                  margin: const EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(16),
+                    color: Colors.grey[200],
+                    boxShadow: [
+                      BoxShadow(
+                        color: Color.alphaBlend(
+                          Colors.black.withAlpha((0.07 * 255).toInt()),
+                          Colors.transparent,
+                        ),
+                        blurRadius: 8,
+                        offset: const Offset(0, 2),
+                      ),
+                    ],
+                  ),
+                  clipBehavior: Clip.antiAlias,
+                  child: Stack(
+                    fit: StackFit.expand,
+                    children: [
+                      // Product image
+                      product.imageUrls.isNotEmpty
+                          ? Image.asset(
+                              product.imageUrls[0],
+                              fit: BoxFit.cover,
+                            )
+                          : Container(color: Colors.grey[300]),
+                      // Overlay with collection name
+                      Container(
+                        color: Color.alphaBlend(
+                          Colors.black.withAlpha((0.35 * 255).toInt()),
+                          Colors.transparent,
+                        ),
+                      ),
+                      Center(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: Text(
+                            mapCollectionToLabel(collection),
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 24,
+                              shadows: [
+                                Shadow(
+                                  color: Colors.black54,
+                                  blurRadius: 4,
+                                  offset: Offset(0, 2),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),
