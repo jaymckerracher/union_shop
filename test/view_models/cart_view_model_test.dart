@@ -8,6 +8,7 @@ import 'package:union_shop/models/print_model.dart';
 import 'package:union_shop/enums/product_category.dart';
 import 'package:union_shop/enums/clothing_size.dart';
 import 'package:union_shop/enums/clothing_colour.dart';
+import 'package:union_shop/enums/print_type.dart';
 
 void main() {
   // Dummy product for testing

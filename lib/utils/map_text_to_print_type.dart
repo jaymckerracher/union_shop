@@ -1,4 +1,4 @@
-import '../models/print_model.dart';
+import '../enums/print_type.dart';
 
 /// Maps a personalisation option string to the corresponding PrintType enum value.
 PrintType mapTextToPrintType(String option) {

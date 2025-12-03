@@ -1,5 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:union_shop/models/print_model.dart';
+import 'package:union_shop/enums/print_type.dart';
 
 void main() {
   group('Print', () {
