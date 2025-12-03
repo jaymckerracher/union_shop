@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import '../models/print_model.dart';
 import '../utils/map_text_to_print_type.dart';
 import '../utils/map_print_label_to_price.dart';
+import '../utils/map_print_label_to_line_num.dart';
 import '../models/cart_item_print_model.dart';
 import '../view_models/cart_view_model.dart';
 import 'package:uuid/uuid.dart';
@@ -20,15 +21,6 @@ class PrintShackPersonalisationPage extends StatefulWidget {
 
 class _PrintShackPersonalisationPageState
     extends State<PrintShackPersonalisationPage> {
-  final Map<String, int> textFieldCount = {
-    'One Line of Text': 1,
-    'Two Lines of Text': 2,
-    'Three Lines of Text': 3,
-    'Four Lines of Text': 4,
-    'Small Logo (Chest)': 1,
-    'Large Logo (Back)': 1,
-  };
-
   String selectedOption = 'One Line of Text';
 
   // Controllers for each personalisation line
@@ -50,7 +42,7 @@ class _PrintShackPersonalisationPageState
   }
 
   void _initControllers() {
-    int numFields = textFieldCount[selectedOption] ?? 0;
+    int numFields = mapPrintLabelToLineNum(selectedOption);
     _controllers = List.generate(numFields, (index) => TextEditingController());
   }
 
@@ -64,7 +56,7 @@ class _PrintShackPersonalisationPageState
 
   @override
   Widget build(BuildContext context) {
-    int numFields = textFieldCount[selectedOption] ?? 0;
+    int numFields = mapPrintLabelToLineNum(selectedOption);
     double price = mapPrintLabelToPrice(selectedOption) ?? 0.0;
 
     // If the number of fields changed, update controllers
@@ -164,7 +156,7 @@ class _PrintShackPersonalisationPageState
                       for (final controller in _controllers) {
                         controller.dispose();
                       }
-                      int numFields = textFieldCount[selectedOption] ?? 0;
+                      int numFields = mapPrintLabelToLineNum(selectedOption);
                       _controllers = List.generate(
                           numFields, (index) => TextEditingController());
                     });
