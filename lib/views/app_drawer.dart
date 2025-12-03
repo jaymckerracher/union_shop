@@ -31,6 +31,12 @@ class AppDrawer extends StatelessWidget {
             title: const Text('Shop'),
             children: [
               ListTile(
+                title: const Text('Categories'),
+                onTap: () {
+                  navigateToProducts(context);
+                },
+              ),
+              ListTile(
                 title: const Text('All Products'),
                 onTap: () {
                   navigateToProducts(context);
