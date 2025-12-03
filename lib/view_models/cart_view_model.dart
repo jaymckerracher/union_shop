@@ -9,7 +9,6 @@ class CartViewModel extends ChangeNotifier {
   final List<CartItemPrint> _printSubCart = [];
 
   List<CartItemMerch> get getMerchItems => List.unmodifiable(_merchSubCart);
-
   List<CartItemClothing> get getClothingItems =>
       List.unmodifiable(_clothingSubCart);
   List<CartItemPrint> get getPrintItems => List.unmodifiable(_printSubCart);
