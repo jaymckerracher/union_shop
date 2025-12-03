@@ -5,6 +5,7 @@ import './app_drawer.dart';
 import 'package:provider/provider.dart';
 import '../models/print_model.dart';
 import '../utils/map_text_to_print_type.dart';
+import '../utils/map_print_label_to_price.dart';
 import '../models/cart_item_print_model.dart';
 import '../view_models/cart_view_model.dart';
 import 'package:uuid/uuid.dart';
@@ -19,15 +20,6 @@ class PrintShackPersonalisationPage extends StatefulWidget {
 
 class _PrintShackPersonalisationPageState
     extends State<PrintShackPersonalisationPage> {
-  final Map<String, double> priceMap = {
-    'One Line of Text': 3.0,
-    'Two Lines of Text': 5.0,
-    'Three Lines of Text': 7.5,
-    'Four Lines of Text': 10.0,
-    'Small Logo (Chest)': 3.5,
-    'Large Logo (Back)': 6.0,
-  };
-
   final Map<String, int> textFieldCount = {
     'One Line of Text': 1,
     'Two Lines of Text': 2,
@@ -73,7 +65,7 @@ class _PrintShackPersonalisationPageState
   @override
   Widget build(BuildContext context) {
     int numFields = textFieldCount[selectedOption] ?? 0;
-    double price = priceMap[selectedOption] ?? 0.0;
+    double price = mapPrintLabelToPrice(selectedOption) ?? 0.0;
 
     // If the number of fields changed, update controllers
     if (_controllers.length != numFields) {
@@ -151,7 +143,14 @@ class _PrintShackPersonalisationPageState
                   labelText: 'Choose one',
                   border: OutlineInputBorder(),
                 ),
-                items: priceMap.keys.map((option) {
+                items: [
+                  'One Line of Text',
+                  'Two Lines of Text',
+                  'Three Lines of Text',
+                  'Four Lines of Text',
+                  'Small Logo (Chest)',
+                  'Large Logo (Back)'
+                ].map((option) {
                   return DropdownMenuItem<String>(
                     value: option,
                     child: Text(option),
