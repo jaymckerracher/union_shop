@@ -157,6 +157,12 @@ class _PrintShackPersonalisationPageState
                   // Quantity counter
                   Row(
                     children: [
+                      const Text(
+                        'Quantity:',
+                        style: TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.w500),
+                      ),
+                      const SizedBox(width: 12),
                       IconButton(
                         icon: const Icon(Icons.remove),
                         onPressed: () {
