@@ -5,6 +5,10 @@ import 'app_drawer.dart';
 import '../view_models/products_view_model.dart';
 import '../enums/clothing_size.dart';
 import '../enums/clothing_colour.dart';
+import 'package:provider/provider.dart';
+import '../view_models/cart_view_model.dart';
+import '../models/cart_item_clothing_model.dart';
+import '../models/cart_item_merch_model.dart';
 
 class ProductPage extends StatelessWidget {
   final String productId;
@@ -247,8 +251,7 @@ class _ProductDetailsState extends State<ProductDetails> {
               items: ClothingSize.values.map((size) {
                 return DropdownMenuItem<ClothingSize>(
                   value: size,
-                  child:
-                      Text(size.name.toUpperCase()),
+                  child: Text(size.name.toUpperCase()),
                 );
               }).toList(),
               onChanged: (value) {
@@ -297,7 +300,38 @@ class _ProductDetailsState extends State<ProductDetails> {
               ),
               // Add to Cart button
               ElevatedButton(
-                onPressed: () {}, // No functionality yet
+                onPressed: () {
+                  final cart =
+                      Provider.of<CartViewModel>(context, listen: false);
+
+                  if (product.category
+                      .toString()
+                      .toLowerCase()
+                      .contains('clothing')) {
+                    // Use selectedColour and selectedSize, defaulting if null
+                    final colour =
+                        selectedColour ?? ClothingColour.values.first;
+                    final size = selectedSize ?? ClothingSize.values[2];
+                    cart.addClothingItem(CartItemClothing(
+                      product: product,
+                      quantity: _quantity,
+                      size: size,
+                      colour: colour,
+                    ));
+                  } else if (product.category
+                      .toString()
+                      .toLowerCase()
+                      .contains('merch')) {
+                    cart.addMerchItem(CartItemMerch(
+                      product: product,
+                      quantity: _quantity,
+                    ));
+                  }
+                  // Optionally show a snackbar or feedback here
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Added to cart!')),
+                  );
+                },
                 style: ElevatedButton.styleFrom(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
