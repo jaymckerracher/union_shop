@@ -59,3 +59,7 @@ void navigateToSearch(BuildContext context) {
 void navigateToPrintShackPersonalisation(BuildContext context) {
   Navigator.pushNamed(context, '/personalisation');
 }
+
+void navigateToCart(BuildContext context) {
+  Navigator.pushNamed(context, '/cart');
+}
