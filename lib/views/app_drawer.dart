@@ -92,7 +92,7 @@ class AppDrawer extends StatelessWidget {
               ListTile(
                 title: const Text('Personalisation'),
                 onTap: () {
-                  // Navigate to print shack personalisation
+                  navigateToPrintShackPersonalisation(context);
                 },
               ),
             ],
