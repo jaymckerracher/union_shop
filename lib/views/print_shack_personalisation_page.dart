@@ -4,6 +4,7 @@ import 'footer.dart';
 import './app_drawer.dart';
 import 'package:provider/provider.dart';
 import '../models/print_model.dart';
+import '../utils/map_text_to_print_type.dart';
 import '../models/cart_item_print_model.dart';
 import '../view_models/cart_view_model.dart';
 import 'package:uuid/uuid.dart';
@@ -237,20 +238,7 @@ class _PrintShackPersonalisationPageState
                       final cart =
                           Provider.of<CartViewModel>(context, listen: false);
                       // Build the Print model from the selected option and text fields
-                      PrintType type;
-                      switch (selectedOption) {
-                        case 'One Line of Text':
-                          type = PrintType.oneLine;
-                          break;
-                        case 'Two Lines of Text':
-                          type = PrintType.twoLines;
-                          break;
-                        case 'Three Lines of Text':
-                          type = PrintType.threeLines;
-                          break;
-                        default:
-                          type = PrintType.oneLine;
-                      }
+                      final type = mapTextToPrintType(selectedOption);
                       // Use the actual text from controllers
                       final lines = _controllers.map((c) => c.text).toList();
                       final print = Print(type: type, lines: lines);
