@@ -3,6 +3,8 @@ import 'header.dart';
 import 'footer.dart';
 import 'app_drawer.dart';
 import '../view_models/products_view_model.dart';
+import '../enums/clothing_size.dart';
+import '../enums/clothing_colour.dart';
 
 class ProductPage extends StatelessWidget {
   final String productId;
@@ -55,22 +57,8 @@ class _ProductDetailsState extends State<ProductDetails> {
   int selectedImageIndex = 0;
   int _quantity = 1;
 
-  String? selectedColour;
-  String? selectedSize;
-
-  final List<String> clothingColours = [
-    'Black',
-    'White',
-    'Grey',
-    'Navy',
-    'Green',
-    'Purple',
-    'Red',
-    'Blue',
-    'Yellow',
-    'Pink'
-  ];
-  final List<String> clothingSizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
+  ClothingColour? selectedColour;
+  ClothingSize? selectedSize;
 
   @override
   Widget build(BuildContext context) {
@@ -227,16 +215,17 @@ class _ProductDetailsState extends State<ProductDetails> {
           const SizedBox(height: 16),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 0.0),
-            child: DropdownButtonFormField<String>(
-              initialValue: selectedColour,
+            child: DropdownButtonFormField<ClothingColour>(
+              initialValue: selectedColour ?? ClothingColour.values.first,
               decoration: const InputDecoration(
                 labelText: 'Colour',
                 border: OutlineInputBorder(),
               ),
-              items: clothingColours.map((colour) {
-                return DropdownMenuItem<String>(
+              items: ClothingColour.values.map((colour) {
+                return DropdownMenuItem<ClothingColour>(
                   value: colour,
-                  child: Text(colour),
+                  child: Text(
+                      colour.name[0].toUpperCase() + colour.name.substring(1)),
                 );
               }).toList(),
               onChanged: (value) {
@@ -249,16 +238,17 @@ class _ProductDetailsState extends State<ProductDetails> {
           const SizedBox(height: 16),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 0.0),
-            child: DropdownButtonFormField<String>(
-              value: selectedSize,
+            child: DropdownButtonFormField<ClothingSize>(
+              initialValue: selectedSize ?? ClothingSize.values[2],
               decoration: const InputDecoration(
                 labelText: 'Size',
                 border: OutlineInputBorder(),
               ),
-              items: clothingSizes.map((size) {
-                return DropdownMenuItem<String>(
+              items: ClothingSize.values.map((size) {
+                return DropdownMenuItem<ClothingSize>(
                   value: size,
-                  child: Text(size),
+                  child:
+                      Text(size.name[0].toUpperCase() + size.name.substring(1)),
                 );
               }).toList(),
               onChanged: (value) {
