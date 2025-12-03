@@ -6,6 +6,7 @@ import '../view_models/cart_view_model.dart';
 import 'cart_clothing_card.dart';
 import 'cart_merch_card.dart';
 import 'cart_print_card.dart';
+import './app_drawer.dart';
 
 class CartPage extends StatelessWidget {
   const CartPage({super.key});
@@ -19,6 +20,7 @@ class CartPage extends StatelessWidget {
     final printItems = cartViewModel.getPrintItems;
 
     return Scaffold(
+      drawer: const AppDrawer(),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
