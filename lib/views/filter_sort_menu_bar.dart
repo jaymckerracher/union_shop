@@ -7,11 +7,15 @@ class FilterSortMenuBar extends StatelessWidget {
   final ProductsViewModel viewModel;
   final bool allCollections;
   final bool allCategories;
-  const FilterSortMenuBar(
-      {super.key,
-      required this.viewModel,
-      required this.allCollections,
-      required this.allCategories});
+  final bool saleOnly;
+
+  const FilterSortMenuBar({
+    super.key,
+    required this.viewModel,
+    required this.allCollections,
+    required this.allCategories,
+    required this.saleOnly
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -53,6 +57,7 @@ class FilterSortMenuBar extends StatelessWidget {
                         builder: (context) => FilterModal(
                           allCollections: allCollections,
                           allCategories: allCategories,
+                          saleOnly: saleOnly,
                           viewModel: viewModel,
                         ),
                       );

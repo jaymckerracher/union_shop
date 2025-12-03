@@ -10,11 +10,14 @@ import '../utils/map_category_reverse.dart';
 class FilterModal extends StatefulWidget {
   final bool allCollections;
   final bool allCategories;
+  final bool saleOnly;
   final ProductsViewModel viewModel;
+
   const FilterModal({
     super.key,
     required this.allCollections,
     required this.allCategories,
+    required this.saleOnly,
     required this.viewModel,
   });
 
@@ -46,14 +49,16 @@ class _FilterModalState extends State<FilterModal> {
           const Text('Filter Options',
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
           const SizedBox(height: 16),
-          Row(
-            children: [
-              const Text('On Sale'),
-              const Spacer(),
-              Switch(
-                  value: onSale, onChanged: (v) => setState(() => onSale = v)),
-            ],
-          ),
+          if (!widget.saleOnly)
+            Row(
+              children: [
+                const Text('On Sale'),
+                const Spacer(),
+                Switch(
+                    value: onSale,
+                    onChanged: (v) => setState(() => onSale = v)),
+              ],
+            ),
           if (widget.allCategories)
             Row(
               children: [
