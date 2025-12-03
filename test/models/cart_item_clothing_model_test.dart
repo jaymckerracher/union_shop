@@ -3,6 +3,8 @@ import 'package:union_shop/models/cart_item_clothing_model.dart';
 import 'package:union_shop/models/product_model.dart';
 import 'package:union_shop/enums/collection.dart';
 import 'package:union_shop/enums/product_category.dart';
+import 'package:union_shop/enums/clothing_size.dart';
+import 'package:union_shop/enums/clothing_colour.dart';
 
 void main() {
   final product = Product(
