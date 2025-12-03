@@ -37,40 +37,126 @@ class CartPage extends StatelessWidget {
                 style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
               ),
             ),
-            // List of clothing items as cards
-            ...clothingItems.map((item) => Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 24.0, vertical: 6.0),
-                  child: Card(
-                    elevation: 2,
-                    child: Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  item.product.title,
-                                  style: const TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w600),
-                                ),
-                                const SizedBox(height: 4),
-                                Text('Size: ${item.size.name}'),
-                                Text('Colour: ${item.colour.name}'),
-                              ],
-                            ),
-                          ),
-                          Text('x${item.quantity}',
-                              style: const TextStyle(fontSize: 16)),
-                        ],
-                      ),
+            // List of clothing items styled like the provided image
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: 16.0),
+              decoration: BoxDecoration(
+                border: Border(
+                  top: BorderSide(color: Colors.grey.shade300, width: 2),
+                  bottom: BorderSide(color: Colors.grey.shade300, width: 2),
+                ),
+              ),
+              child: Column(
+                children: [
+                  // Table header
+                  const Padding(
+                    padding:
+                        EdgeInsets.symmetric(vertical: 12.0, horizontal: 8.0),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          flex: 3,
+                          child: Text('PRODUCT',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  letterSpacing: 1.2)),
+                        ),
+                        Expanded(
+                          flex: 1,
+                          child: Text('QTY',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  letterSpacing: 1.2)),
+                        ),
+                      ],
                     ),
                   ),
-                )),
+                  ...clothingItems.map((item) => Container(
+                        decoration: BoxDecoration(
+                          border: Border(
+                            top: BorderSide(
+                                color: Colors.grey.shade200, width: 1),
+                          ),
+                        ),
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 18.0, horizontal: 8.0),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            // Product info
+                            Expanded(
+                              flex: 3,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    item.product.title.toUpperCase(),
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 16,
+                                        letterSpacing: 1.1),
+                                  ),
+                                  const SizedBox(height: 4),
+                                  Text('ITEM NO: ${item.product.id}',
+                                      style: const TextStyle(
+                                          fontSize: 12, color: Colors.black54)),
+                                  Text('SIZE: ${item.size.name.toUpperCase()}',
+                                      style: const TextStyle(
+                                          fontSize: 12, color: Colors.black54)),
+                                  Text(
+                                      'COLOR: ${item.colour.name.toUpperCase()}',
+                                      style: const TextStyle(
+                                          fontSize: 12, color: Colors.black54)),
+                                  Text('QTY: ${item.quantity}',
+                                      style: const TextStyle(
+                                          fontSize: 12, color: Colors.black54)),
+                                  const SizedBox(height: 6),
+                                  Row(
+                                    children: [
+                                      TextButton(
+                                        onPressed: () {},
+                                        style: TextButton.styleFrom(
+                                            padding: EdgeInsets.zero,
+                                            minimumSize: const Size(40, 24)),
+                                        child: const Text('REMOVE',
+                                            style: TextStyle(fontSize: 12)),
+                                      ),
+                                      const Text('  |  ',
+                                          style: TextStyle(
+                                              fontSize: 12,
+                                              color: Colors.black45)),
+                                      TextButton(
+                                        onPressed: () {},
+                                        style: TextButton.styleFrom(
+                                            padding: EdgeInsets.zero,
+                                            minimumSize: const Size(40, 24)),
+                                        child: const Text('EDIT',
+                                            style: TextStyle(fontSize: 12)),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                            // Quantity (right-aligned)
+                            Expanded(
+                              flex: 1,
+                              child: Align(
+                                alignment: Alignment.topRight,
+                                child: Text(
+                                  item.product.price.toStringAsFixed(2),
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 15),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      )),
+                ],
+              ),
+            ),
             const SizedBox(height: 48),
             const Footer(),
           ],
