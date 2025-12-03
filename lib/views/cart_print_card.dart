@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../models/cart_item_print_model.dart';
 import 'package:provider/provider.dart';
 import '../view_models/cart_view_model.dart';
+import 'cart_card_edit_overlay.dart';
 
 class CartPrintCard extends StatelessWidget {
   final CartItemPrint item;
@@ -59,7 +60,26 @@ class CartPrintCard extends StatelessWidget {
                     const Text('  |  ',
                         style: TextStyle(fontSize: 12, color: Colors.black45)),
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        showDialog(
+                          context: context,
+                          builder: (context) => CartCardEditOverlay(
+                            initialQuantity: item.quantity,
+                            onQuantityChanged: (newQty) {
+                              final cartViewModel = Provider.of<CartViewModel>(
+                                  context,
+                                  listen: false);
+                              cartViewModel.removePrintItem(item);
+                              cartViewModel.addPrintItem(CartItemPrint(
+                                id: item.id,
+                                print: item.print,
+                                quantity: newQty,
+                              ));
+                            },
+                            onClose: () => Navigator.of(context).pop(),
+                          ),
+                        );
+                      },
                       style: TextButton.styleFrom(
                           padding: EdgeInsets.zero,
                           minimumSize: const Size(40, 24)),

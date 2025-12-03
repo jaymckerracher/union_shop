@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../models/cart_item_clothing_model.dart';
 import 'package:provider/provider.dart';
 import '../view_models/cart_view_model.dart';
+import 'cart_card_edit_overlay.dart';
 
 class CartClothingCard extends StatelessWidget {
   final CartItemClothing item;
@@ -61,7 +62,28 @@ class CartClothingCard extends StatelessWidget {
                     const Text('  |  ',
                         style: TextStyle(fontSize: 12, color: Colors.black45)),
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        showDialog(
+                          context: context,
+                          builder: (context) => CartCardEditOverlay(
+                            initialQuantity: item.quantity,
+                            onQuantityChanged: (newQty) {
+                              final cartViewModel = Provider.of<CartViewModel>(
+                                  context,
+                                  listen: false);
+                              // Remove old item and add new with updated quantity
+                              cartViewModel.removeClothingItem(item);
+                              cartViewModel.addClothingItem(CartItemClothing(
+                                product: item.product,
+                                quantity: newQty,
+                                size: item.size,
+                                colour: item.colour,
+                              ));
+                            },
+                            onClose: () => Navigator.of(context).pop(),
+                          ),
+                        );
+                      },
                       style: TextButton.styleFrom(
                           padding: EdgeInsets.zero,
                           minimumSize: const Size(40, 24)),
