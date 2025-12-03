@@ -9,7 +9,7 @@ void navigateToAbout(BuildContext context) {
 }
 
 void navigateToPrintShackAbout(BuildContext context) {
-  Navigator.pushNamed(context, '/personalisation');
+  Navigator.pushNamed(context, '/personalisation/about');
 }
 
 void navigateToHalloween(BuildContext context) {
@@ -54,4 +54,8 @@ void navigateToProduct(BuildContext context, String id) {
 
 void navigateToSearch(BuildContext context) {
   Navigator.pushNamed(context, '/search');
+}
+
+void navigateToPrintShackPersonalisation(BuildContext context) {
+  Navigator.pushNamed(context, '/personalisation');
 }

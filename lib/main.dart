@@ -13,6 +13,7 @@ import 'package:union_shop/views/sale_page.dart';
 import 'package:union_shop/views/products_page.dart';
 import 'package:union_shop/views/search_page.dart';
 import 'package:union_shop/views/home_page.dart';
+import 'package:union_shop/views/print_shack_personalisation_page.dart';
 import 'package:union_shop/views/print_shack_about_page.dart';
 import 'package:union_shop/view_models/cart_view_model.dart';
 
@@ -54,7 +55,7 @@ class UnionShopApp extends StatelessWidget {
           case '/about':
             return MaterialPageRoute(
                 builder: (context) => const AboutPage(), settings: settings);
-          case '/personalisation':
+          case '/personalisation/about':
             return MaterialPageRoute(
                 builder: (context) => const PrintShackAboutPage(),
                 settings: settings);
@@ -95,6 +96,10 @@ class UnionShopApp extends StatelessWidget {
           case '/search':
             return MaterialPageRoute(
                 builder: (context) => const SearchPage(), settings: settings);
+          case '/personalisation':
+            return MaterialPageRoute(
+                builder: (context) => const PrintShackPersonalisationPage(),
+                settings: settings);
           default:
             return MaterialPageRoute(
                 builder: (context) => const HomePage(), settings: settings);
