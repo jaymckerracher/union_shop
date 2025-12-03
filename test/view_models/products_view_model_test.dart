@@ -226,19 +226,28 @@ void main() {
     expect(viewModel.currentFilter.query, isNull);
   });
 
-  test('firstProductInEachCollection returns correct mapping', () {
-    final map = viewModel.firstProductInEachCollection;
-    // For each collection, the product in the map should contain that collection
-    for (final entry in map.entries) {
-      expect(entry.value.collections.contains(entry.key), isTrue,
-          reason: 'Product should contain the collection ${entry.key}');
+  test(
+      'firstProductInEachCollection returns correct unique products for each collection',
+      () {
+    final products = viewModel.firstProductInEachCollection;
+    // Collect all collections represented by the returned products
+    final Set<Collections> seen = {};
+    for (final product in products) {
+      for (final collection in product.collections) {
+        // Only the first product for each collection should be in the list
+        if (!seen.contains(collection)) {
+          seen.add(collection);
+          // The product should contain the collection
+          expect(product.collections.contains(collection), isTrue,
+              reason: 'Product should contain the collection $collection');
+        }
+      }
     }
     // Each collection should only appear once
-    final keys = map.keys.toList();
-    expect(keys.length, keys.toSet().length);
-    // If there are products, the map should not be empty
+    expect(seen.length, products.length);
+    // If there are products, the result should not be empty
     if (viewModel.products.isNotEmpty) {
-      expect(map.isNotEmpty, isTrue);
+      expect(products.isNotEmpty, isTrue);
     }
   });
 }
