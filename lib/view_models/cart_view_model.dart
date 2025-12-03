@@ -137,9 +137,4 @@ class CartViewModel extends ChangeNotifier {
   double get totalCartPrice {
     return merchSubCartPrice + clothingSubCartPrice + printSubCartPrice;
   }
-
-  // double get totalPrice {
-  //   return _items.fold(
-  //       0.0, (sum, item) => sum + item.product.price * item.quantity);
-  // }
 }
