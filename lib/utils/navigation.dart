@@ -63,3 +63,7 @@ void navigateToPrintShackPersonalisation(BuildContext context) {
 void navigateToCart(BuildContext context) {
   Navigator.pushNamed(context, '/cart');
 }
+
+void navigateToCollections(BuildContext context) {
+  Navigator.pushNamed(context, '/collections');
+}
