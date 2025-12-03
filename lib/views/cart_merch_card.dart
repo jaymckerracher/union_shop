@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import '../models/cart_item_merch_model.dart';
+import 'package:provider/provider.dart';
+import '../view_models/cart_view_model.dart';
 
 class CartMerchCard extends StatelessWidget {
   final CartItemMerch item;
@@ -38,7 +40,11 @@ class CartMerchCard extends StatelessWidget {
                 Row(
                   children: [
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        final cartViewModel =
+                            Provider.of<CartViewModel>(context, listen: false);
+                        cartViewModel.removeMerchItem(item);
+                      },
                       style: TextButton.styleFrom(
                           padding: EdgeInsets.zero,
                           minimumSize: const Size(40, 24)),
