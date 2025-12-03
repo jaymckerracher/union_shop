@@ -248,7 +248,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                 return DropdownMenuItem<ClothingSize>(
                   value: size,
                   child:
-                      Text(size.name[0].toUpperCase() + size.name.substring(1)),
+                      Text(size.name.toUpperCase()),
                 );
               }).toList(),
               onChanged: (value) {
