@@ -2,6 +2,11 @@ import 'package:flutter/material.dart';
 import 'header.dart';
 import 'footer.dart';
 import './app_drawer.dart';
+import 'package:provider/provider.dart';
+import '../models/print_model.dart';
+import '../models/cart_item_print_model.dart';
+import '../view_models/cart_view_model.dart';
+import 'package:uuid/uuid.dart';
 
 class PrintShackPersonalisationPage extends StatefulWidget {
   const PrintShackPersonalisationPage({super.key});
@@ -188,7 +193,38 @@ class _PrintShackPersonalisationPageState
                   ),
                   // Add to Cart button
                   ElevatedButton(
-                    onPressed: () {}, // No functionality yet
+                    onPressed: () {
+                      final cart =
+                          Provider.of<CartViewModel>(context, listen: false);
+                      // Build the Print model from the selected option and text fields
+                      PrintType type;
+                      switch (selectedOption) {
+                        case 'One Line of Text':
+                          type = PrintType.oneLine;
+                          break;
+                        case 'Two Lines of Text':
+                          type = PrintType.twoLines;
+                          break;
+                        case 'Three Lines of Text':
+                          type = PrintType.threeLines;
+                          break;
+                        default:
+                          type = PrintType.oneLine;
+                      }
+                      // For now, just use empty lines for the print (you can update to use actual text fields)
+                      final lines = List<String>.filled(
+                          textFieldCount[selectedOption] ?? 1, '');
+                      final print = Print(type: type, lines: lines);
+                      const uuid = Uuid();
+                      cart.addPrintItem(CartItemPrint(
+                        id: uuid.v4(),
+                        print: print,
+                        quantity: _quantity,
+                      ));
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Added to cart!')),
+                      );
+                    },
                     style: ElevatedButton.styleFrom(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 24, vertical: 12),
