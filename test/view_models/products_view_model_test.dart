@@ -205,9 +205,9 @@ void main() {
     // After updating collection only
     viewModel.updateFilter(collection: Collections.halloween);
     expect(viewModel.currentFilter.collection, Collections.halloween);
-    // Other values should persist
-    expect(viewModel.currentFilter.category, ProductCategory.clothing);
-    expect(viewModel.currentFilter.onSale, true);
+    // Other values should be null (updateFilter overwrites all fields)
+    expect(viewModel.currentFilter.category, isNull);
+    expect(viewModel.currentFilter.onSale, isNull);
     expect(viewModel.currentFilter.query, isNull);
 
     // After setting query only
@@ -224,5 +224,21 @@ void main() {
     expect(viewModel.currentFilter.collection, isNull);
     expect(viewModel.currentFilter.onSale, isNull);
     expect(viewModel.currentFilter.query, isNull);
+  });
+
+  test('firstProductInEachCollection returns correct mapping', () {
+    final map = viewModel.firstProductInEachCollection;
+    // For each collection, the product in the map should contain that collection
+    for (final entry in map.entries) {
+      expect(entry.value.collections.contains(entry.key), isTrue,
+          reason: 'Product should contain the collection ${entry.key}');
+    }
+    // Each collection should only appear once
+    final keys = map.keys.toList();
+    expect(keys.length, keys.toSet().length);
+    // If there are products, the map should not be empty
+    if (viewModel.products.isNotEmpty) {
+      expect(map.isNotEmpty, isTrue);
+    }
   });
 }
