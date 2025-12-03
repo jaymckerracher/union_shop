@@ -105,17 +105,22 @@ class CollectionsPage extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: LayoutBuilder(
                 builder: (context, constraints) {
-                  // 2 per row
-                  return Wrap(
-                    spacing: 0,
-                    runSpacing: 0,
-                    children: List.generate(
-                      collectionTiles.length,
-                      (i) => SizedBox(
-                        width: (constraints.maxWidth - 24) / 2,
-                        child: collectionTiles[i],
-                      ),
-                    ),
+                  // 2 per row, centered
+                  double tileWidth = (constraints.maxWidth - 24) / 2;
+                  int rowCount = (collectionTiles.length / 2).ceil();
+                  return Column(
+                    children: List.generate(rowCount, (row) {
+                      final start = row * 2;
+                      final end = (start + 2).clamp(0, collectionTiles.length);
+                      final rowTiles = collectionTiles.sublist(start, end);
+                      return Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: rowTiles
+                            .map((tile) =>
+                                SizedBox(width: tileWidth, child: tile))
+                            .toList(),
+                      );
+                    }),
                   );
                 },
               ),
