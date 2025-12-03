@@ -32,10 +32,12 @@ class _PrintShackPersonalisationPageState
   };
 
   String selectedOption = 'One Line of Text';
+
   final List<String> imagePaths = [
     'images/print_shack/ps_1.webp',
     'images/print_shack/ps_2.webp',
   ];
+
   int selectedImageIndex = 0;
 
   @override
