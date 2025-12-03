@@ -1,21 +1,6 @@
-import 'product_model.dart';
-
-enum ClothingSize {
-  xs,
-  small,
-  medium,
-  large,
-  xl,
-}
-
-enum ClothingColour {
-  black,
-  white,
-  purple,
-  grey,
-  green,
-  orange,
-}
+import '../enums/clothing_size.dart';
+import '../enums/clothing_colour.dart';
+import '../models/product_model.dart';
 
 class CartItemClothing {
   final Product product;
