@@ -3,6 +3,7 @@ import 'header.dart';
 import 'footer.dart';
 import './app_drawer.dart';
 import '../view_models/products_view_model.dart';
+import '../utils/map_collection_to_label.dart';
 
 class CollectionsPage extends StatelessWidget {
   const CollectionsPage({super.key});
@@ -60,7 +61,7 @@ class CollectionsPage extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 8.0),
                         child: Text(
-                          collection.name.replaceAll('_', ' '),
+                          mapCollectionToLabel(collection),
                           textAlign: TextAlign.center,
                           style: const TextStyle(
                             color: Colors.white,

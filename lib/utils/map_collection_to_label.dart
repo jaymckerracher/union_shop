@@ -1,6 +1,6 @@
 import '../enums/collection.dart';
 
-String mapCollectionToRange(Collections? collection) {
+String mapCollectionToLabel(Collections? collection) {
   if (collection == null) return 'all';
 
   switch (collection) {
