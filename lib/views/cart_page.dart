@@ -97,9 +97,6 @@ class CartPage extends StatelessWidget {
                                         letterSpacing: 1.1),
                                   ),
                                   const SizedBox(height: 4),
-                                  Text('ITEM NO: ${item.product.id}',
-                                      style: const TextStyle(
-                                          fontSize: 12, color: Colors.black54)),
                                   Text('SIZE: ${item.size.name.toUpperCase()}',
                                       style: const TextStyle(
                                           fontSize: 12, color: Colors.black54)),
@@ -138,17 +135,28 @@ class CartPage extends StatelessWidget {
                                 ],
                               ),
                             ),
-                            // Quantity (right-aligned)
+                            // Price and image (right-aligned)
                             Expanded(
                               flex: 1,
-                              child: Align(
-                                alignment: Alignment.topRight,
-                                child: Text(
-                                  item.product.price.toStringAsFixed(2),
-                                  style: const TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 15),
-                                ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  Text(
+                                    item.product.price.toStringAsFixed(2),
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 15),
+                                  ),
+                                  const SizedBox(height: 8),
+                                  SizedBox(
+                                    width: 60,
+                                    height: 60,
+                                    child: Image.asset(
+                                      item.product.imageUrls[0],
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
                           ],
