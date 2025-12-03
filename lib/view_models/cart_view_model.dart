@@ -66,15 +66,7 @@ class CartViewModel extends ChangeNotifier {
     final index = _merchSubCart
         .indexWhere((item) => item.product.id == itemToRemove.product.id);
     if (index != -1) {
-      final existing = _merchSubCart[index];
-      if (existing.quantity > 1) {
-        _merchSubCart[index] = CartItemMerch(
-          product: existing.product,
-          quantity: existing.quantity - 1,
-        );
-      } else {
-        _merchSubCart.removeAt(index);
-      }
+      _merchSubCart.removeAt(index);
       notifyListeners();
     }
   }
@@ -85,17 +77,7 @@ class CartViewModel extends ChangeNotifier {
         item.size == itemToRemove.size &&
         item.colour == itemToRemove.colour);
     if (index != -1) {
-      final existing = _clothingSubCart[index];
-      if (existing.quantity > 1) {
-        _clothingSubCart[index] = CartItemClothing(
-          product: existing.product,
-          quantity: existing.quantity - 1,
-          size: existing.size,
-          colour: existing.colour,
-        );
-      } else {
-        _clothingSubCart.removeAt(index);
-      }
+      _clothingSubCart.removeAt(index);
       notifyListeners();
     }
   }
@@ -104,16 +86,7 @@ class CartViewModel extends ChangeNotifier {
     final index =
         _printSubCart.indexWhere((item) => item.id == itemToRemove.id);
     if (index != -1) {
-      final existing = _printSubCart[index];
-      if (existing.quantity > 1) {
-        _printSubCart[index] = CartItemPrint(
-          id: existing.id,
-          print: existing.print,
-          quantity: existing.quantity - 1,
-        );
-      } else {
-        _printSubCart.removeAt(index);
-      }
+      _printSubCart.removeAt(index);
       notifyListeners();
     }
   }
