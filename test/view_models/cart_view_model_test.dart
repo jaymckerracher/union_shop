@@ -87,26 +87,20 @@ void main() {
       expect(cart.printSubCartPrice, 20.0);
     });
 
-    test('removeMerchItem decreases quantity and removes', () {
+    test('removeMerchItem removes item entirely', () {
       cart.addMerchItem(merchItem(quantity: 2));
-      cart.removeMerchItem(merchItem());
-      expect(cart.getMerchItems.first.quantity, 1);
       cart.removeMerchItem(merchItem());
       expect(cart.getMerchItems, isEmpty);
     });
 
-    test('removeClothingItem decreases quantity and removes', () {
+    test('removeClothingItem removes item entirely', () {
       cart.addClothingItem(clothingItem(quantity: 2));
-      cart.removeClothingItem(clothingItem());
-      expect(cart.getClothingItems.first.quantity, 1);
       cart.removeClothingItem(clothingItem());
       expect(cart.getClothingItems, isEmpty);
     });
 
-    test('removePrintItem decreases quantity and removes', () {
+    test('removePrintItem removes item entirely', () {
       cart.addPrintItem(printItem(quantity: 2));
-      cart.removePrintItem(printItem(id: 'p1'));
-      expect(cart.getPrintItems.first.quantity, 1);
       cart.removePrintItem(printItem(id: 'p1'));
       expect(cart.getPrintItems, isEmpty);
     });
