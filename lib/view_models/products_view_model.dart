@@ -103,5 +103,18 @@ class ProductsViewModel extends ChangeNotifier {
     }
   }
 
+  /// Returns a map of Collections to the first Product found in each collection.
+  Map<Collections, Product> get firstProductInEachCollection {
+    final Map<Collections, Product> result = {};
+    for (final product in products) {
+      for (final collection in product.collections) {
+        if (!result.containsKey(collection)) {
+          result[collection] = product;
+        }
+      }
+    }
+    return result;
+  }
+
   ProductsFilter get currentFilter => filter;
 }
