@@ -31,6 +31,11 @@ class _PrintShackPersonalisationPageState
   };
 
   String selectedOption = 'One Line of Text';
+  final List<String> imagePaths = [
+    'images/print_shack/ps_1.webp',
+    'images/print_shack/ps_2.webp',
+  ];
+  int selectedImageIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -48,14 +53,47 @@ class _PrintShackPersonalisationPageState
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(12),
                 child: Image.asset(
-                  'images/print_shack/ps_1.webp',
+                  imagePaths[selectedImageIndex],
                   fit: BoxFit.cover,
                   height: 180,
                   width: double.infinity,
                 ),
               ),
             ),
-            const SizedBox(height: 32),
+            const SizedBox(height: 12),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: List.generate(imagePaths.length, (index) {
+                return GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      selectedImageIndex = index;
+                    });
+                  },
+                  child: Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 8.0),
+                    padding:
+                        EdgeInsets.all(selectedImageIndex == index ? 3 : 0),
+                    decoration: BoxDecoration(
+                      border: selectedImageIndex == index
+                          ? Border.all(color: Colors.black, width: 2)
+                          : null,
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(8),
+                      child: Image.asset(
+                        imagePaths[index],
+                        width: 60,
+                        height: 60,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                );
+              }),
+            ),
+            const SizedBox(height: 20),
             const Text(
               'Personalisation',
               style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
