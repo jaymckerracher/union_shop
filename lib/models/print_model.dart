@@ -1,8 +1,4 @@
-enum PrintType {
-  oneLine,
-  twoLines,
-  threeLines,
-}
+import '../enums/print_type.dart';
 
 class Print {
   final PrintType type;
