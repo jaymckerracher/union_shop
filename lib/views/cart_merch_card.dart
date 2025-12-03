@@ -66,7 +66,7 @@ class CartMerchCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Text(
-                  item.product.price.toStringAsFixed(2),
+                  (item.product.price * item.quantity).toStringAsFixed(2),
                   style: const TextStyle(
                       fontWeight: FontWeight.bold, fontSize: 15),
                 ),

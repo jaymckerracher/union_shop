@@ -71,7 +71,7 @@ class CartPrintCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Text(
-                  item.print.price.toStringAsFixed(2),
+                  (item.print.price * item.quantity).toStringAsFixed(2),
                   style: const TextStyle(
                       fontWeight: FontWeight.bold, fontSize: 15),
                 ),
