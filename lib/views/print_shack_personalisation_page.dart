@@ -42,6 +42,19 @@ class _PrintShackPersonalisationPageState
         child: Column(
           children: [
             const Header(),
+            const SizedBox(height: 16),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24.0),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(12),
+                child: Image.asset(
+                  'images/print_shack/ps_1.webp',
+                  fit: BoxFit.cover,
+                  height: 180,
+                  width: double.infinity,
+                ),
+              ),
+            ),
             const SizedBox(height: 32),
             const Text(
               'Personalisation',
