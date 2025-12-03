@@ -55,6 +55,23 @@ class _ProductDetailsState extends State<ProductDetails> {
   int selectedImageIndex = 0;
   int _quantity = 1;
 
+  String? selectedColour;
+  String? selectedSize;
+
+  final List<String> clothingColours = [
+    'Black',
+    'White',
+    'Grey',
+    'Navy',
+    'Green',
+    'Purple',
+    'Red',
+    'Blue',
+    'Yellow',
+    'Pink'
+  ];
+  final List<String> clothingSizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
+
   @override
   Widget build(BuildContext context) {
     final product = widget.product;
@@ -204,6 +221,54 @@ class _ProductDetailsState extends State<ProductDetails> {
             height: 1.5,
           ),
         ),
+
+        // Clothing options
+        if (product.category.toString().toLowerCase().contains('clothing')) ...[
+          const SizedBox(height: 16),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 0.0),
+            child: DropdownButtonFormField<String>(
+              initialValue: selectedColour,
+              decoration: const InputDecoration(
+                labelText: 'Colour',
+                border: OutlineInputBorder(),
+              ),
+              items: clothingColours.map((colour) {
+                return DropdownMenuItem<String>(
+                  value: colour,
+                  child: Text(colour),
+                );
+              }).toList(),
+              onChanged: (value) {
+                setState(() {
+                  selectedColour = value;
+                });
+              },
+            ),
+          ),
+          const SizedBox(height: 16),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 0.0),
+            child: DropdownButtonFormField<String>(
+              value: selectedSize,
+              decoration: const InputDecoration(
+                labelText: 'Size',
+                border: OutlineInputBorder(),
+              ),
+              items: clothingSizes.map((size) {
+                return DropdownMenuItem<String>(
+                  value: size,
+                  child: Text(size),
+                );
+              }).toList(),
+              onChanged: (value) {
+                setState(() {
+                  selectedSize = value;
+                });
+              },
+            ),
+          ),
+        ],
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 0.0, vertical: 16.0),
           child: Row(
