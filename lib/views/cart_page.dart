@@ -15,20 +15,64 @@ class CartPage extends StatelessWidget {
     final clothingItems = cartViewModel.getClothingItems;
     final printItems = cartViewModel.getPrintItems;
 
-    return const Scaffold(
+    return Scaffold(
       body: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Header(),
-            SizedBox(height: 48),
-            Center(
+            const Header(),
+            const SizedBox(height: 48),
+            const Center(
               child: Text(
                 'Cart',
                 style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
               ),
             ),
-            SizedBox(height: 48),
-            Footer(),
+            const SizedBox(height: 32),
+            // Clothes sub cart heading
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 8.0),
+              child: Text(
+                'Clothes',
+                style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+              ),
+            ),
+            // List of clothing items as cards
+            ...clothingItems.map((item) => Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 24.0, vertical: 6.0),
+                  child: Card(
+                    elevation: 2,
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  item.product.title,
+                                  style: const TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                                const SizedBox(height: 4),
+                                Text('Size: ${item.size.name}'),
+                                Text('Colour: ${item.colour.name}'),
+                              ],
+                            ),
+                          ),
+                          Text('x${item.quantity}',
+                              style: const TextStyle(fontSize: 16)),
+                        ],
+                      ),
+                    ),
+                  ),
+                )),
+            const SizedBox(height: 48),
+            const Footer(),
           ],
         ),
       ),
