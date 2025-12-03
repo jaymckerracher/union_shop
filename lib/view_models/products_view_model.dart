@@ -45,7 +45,7 @@ class ProductsViewModel extends ChangeNotifier {
       final matchesCollection = filter.collection == null ||
           product.collections.contains(filter.collection);
       final matchesOnSale =
-          filter.onSale == null || product.onSale == filter.onSale;
+          filter.onSale == true ? product.onSale == true : true;
       final matchesQuery = filter.query == null ||
           product.title.toLowerCase().startsWith(filter.query!.toLowerCase());
       return matchesCategory &&
@@ -79,10 +79,10 @@ class ProductsViewModel extends ChangeNotifier {
     String? query,
   }) {
     filter = ProductsFilter(
-      category: category ?? filter.category,
-      collection: collection ?? filter.collection,
-      onSale: onSale ?? filter.onSale,
-      query: query ?? filter.query,
+      category: category,
+      collection: collection,
+      onSale: onSale,
+      query: query,
     );
     notifyListeners();
   }
