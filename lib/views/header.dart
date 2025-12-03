@@ -97,7 +97,7 @@ class Header extends StatelessWidget {
                             minWidth: 32,
                             minHeight: 32,
                           ),
-                          onPressed: () => print('Hello'),
+                          onPressed: () => navigateToCart(context),
                         ),
                         Builder(
                           builder: (context) => IconButton(
