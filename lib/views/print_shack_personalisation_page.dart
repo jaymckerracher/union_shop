@@ -38,6 +38,9 @@ class _PrintShackPersonalisationPageState
 
   String selectedOption = 'One Line of Text';
 
+  // Controllers for each personalisation line
+  List<TextEditingController> _controllers = [];
+
   final List<String> imagePaths = [
     'images/print_shack/ps_1.webp',
     'images/print_shack/ps_2.webp',
@@ -48,9 +51,38 @@ class _PrintShackPersonalisationPageState
   int _quantity = 1;
 
   @override
+  void initState() {
+    super.initState();
+    _initControllers();
+  }
+
+  void _initControllers() {
+    int numFields = textFieldCount[selectedOption] ?? 0;
+    _controllers = List.generate(numFields, (index) => TextEditingController());
+  }
+
+  @override
+  void dispose() {
+    for (final controller in _controllers) {
+      controller.dispose();
+    }
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     int numFields = textFieldCount[selectedOption] ?? 0;
     double price = priceMap[selectedOption] ?? 0.0;
+
+    // If the number of fields changed, update controllers
+    if (_controllers.length != numFields) {
+      // Dispose old controllers
+      for (final controller in _controllers) {
+        controller.dispose();
+      }
+      _controllers =
+          List.generate(numFields, (index) => TextEditingController());
+    }
 
     return Scaffold(
       drawer: const AppDrawer(),
@@ -128,6 +160,13 @@ class _PrintShackPersonalisationPageState
                   if (value != null) {
                     setState(() {
                       selectedOption = value;
+                      // Re-initialize controllers for new option
+                      for (final controller in _controllers) {
+                        controller.dispose();
+                      }
+                      int numFields = textFieldCount[selectedOption] ?? 0;
+                      _controllers = List.generate(
+                          numFields, (index) => TextEditingController());
                     });
                   }
                 },
@@ -144,6 +183,7 @@ class _PrintShackPersonalisationPageState
                 padding:
                     const EdgeInsets.symmetric(horizontal: 24.0, vertical: 8.0),
                 child: TextField(
+                  controller: _controllers[i],
                   decoration: InputDecoration(
                     labelText: 'Personalisation Line ${i + 1}',
                     border: const OutlineInputBorder(),
@@ -211,9 +251,8 @@ class _PrintShackPersonalisationPageState
                         default:
                           type = PrintType.oneLine;
                       }
-                      // For now, just use empty lines for the print (you can update to use actual text fields)
-                      final lines = List<String>.filled(
-                          textFieldCount[selectedOption] ?? 1, '');
+                      // Use the actual text from controllers
+                      final lines = _controllers.map((c) => c.text).toList();
                       final print = Print(type: type, lines: lines);
                       const uuid = Uuid();
                       cart.addPrintItem(CartItemPrint(
