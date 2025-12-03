@@ -35,6 +35,7 @@ class CollectionPridePage extends StatelessWidget {
                   viewModel: viewModel,
                   allCollections: false,
                   allCategories: true,
+                  saleOnly: false,
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(

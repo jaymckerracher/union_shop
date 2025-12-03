@@ -34,6 +34,7 @@ class SalePage extends StatelessWidget {
                   viewModel: viewModel,
                   allCollections: true,
                   allCategories: true,
+                  saleOnly: true,
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(

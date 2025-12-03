@@ -35,6 +35,7 @@ class CategoryClothingPage extends StatelessWidget {
                   viewModel: viewModel,
                   allCollections: true,
                   allCategories: false,
+                  saleOnly: false,
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(
