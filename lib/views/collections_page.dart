@@ -14,6 +14,78 @@ class CollectionsPage extends StatelessWidget {
     // Get a list of the first product from each collection
     final firstProducts = productsViewModel.firstProductInEachCollection;
 
+    // Build a list of widgets for the grid
+    List<Widget> collectionTiles = [];
+    for (final product in firstProducts) {
+      // For each collection this product represents (could be more than one, but only the first per collection is in the list)
+      for (final collection in product.collections) {
+        // Only add the tile if this product is the first for this collection
+        if (firstProducts.indexOf(product) ==
+            firstProducts
+                .indexWhere((p) => p.collections.contains(collection))) {
+          collectionTiles.add(
+            AspectRatio(
+              aspectRatio: 1,
+              child: Container(
+                margin: const EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(16),
+                  color: Colors.grey[200],
+                  boxShadow: [
+                    BoxShadow(
+                      // ignore: deprecated_member_use
+                      color: Colors.black.withOpacity(0.07),
+                      blurRadius: 8,
+                      offset: const Offset(0, 2),
+                    ),
+                  ],
+                ),
+                clipBehavior: Clip.antiAlias,
+                child: Stack(
+                  fit: StackFit.expand,
+                  children: [
+                    // Product image
+                    product.imageUrls.isNotEmpty
+                        ? Image.asset(
+                            product.imageUrls[0],
+                            fit: BoxFit.cover,
+                          )
+                        : Container(color: Colors.grey[300]),
+                    // Overlay with collection name
+                    Container(
+                      // ignore: deprecated_member_use
+                      color: Colors.black.withOpacity(0.35),
+                    ),
+                    Center(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                        child: Text(
+                          collection.name.replaceAll('_', ' '),
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 24,
+                            shadows: [
+                              Shadow(
+                                color: Colors.black54,
+                                blurRadius: 4,
+                                offset: Offset(0, 2),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          );
+        }
+      }
+    }
+
     return Scaffold(
       drawer: const AppDrawer(),
       body: SingleChildScrollView(
@@ -29,10 +101,25 @@ class CollectionsPage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 48),
-            // Example: print product titles (for demonstration)
-            ...firstProducts.map((product) => ListTile(
-                  title: Text(product.title),
-                )),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: LayoutBuilder(
+                builder: (context, constraints) {
+                  // 2 per row
+                  return Wrap(
+                    spacing: 0,
+                    runSpacing: 0,
+                    children: List.generate(
+                      collectionTiles.length,
+                      (i) => SizedBox(
+                        width: (constraints.maxWidth - 24) / 2,
+                        child: collectionTiles[i],
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
             const Footer(),
           ],
         ),
