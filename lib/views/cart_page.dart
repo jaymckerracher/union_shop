@@ -61,29 +61,6 @@ class CartPage extends StatelessWidget {
                     ),
                     child: Column(
                       children: [
-                        // Table header
-                        const Padding(
-                          padding: EdgeInsets.symmetric(
-                              vertical: 12.0, horizontal: 8.0),
-                          child: Row(
-                            children: [
-                              Expanded(
-                                flex: 3,
-                                child: Text('PRODUCT',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        letterSpacing: 1.2)),
-                              ),
-                              Expanded(
-                                flex: 1,
-                                child: Text('QTY',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        letterSpacing: 1.2)),
-                              ),
-                            ],
-                          ),
-                        ),
                         ...clothingItems
                             .map((item) => CartClothingCard(item: item)),
                       ],
@@ -118,29 +95,6 @@ class CartPage extends StatelessWidget {
                     ),
                     child: Column(
                       children: [
-                        // Table header
-                        const Padding(
-                          padding: EdgeInsets.symmetric(
-                              vertical: 12.0, horizontal: 8.0),
-                          child: Row(
-                            children: [
-                              Expanded(
-                                flex: 3,
-                                child: Text('PRODUCT',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        letterSpacing: 1.2)),
-                              ),
-                              Expanded(
-                                flex: 1,
-                                child: Text('QTY',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        letterSpacing: 1.2)),
-                              ),
-                            ],
-                          ),
-                        ),
                         ...merchItems.map((item) => CartMerchCard(item: item)),
                       ],
                     ),
@@ -174,29 +128,6 @@ class CartPage extends StatelessWidget {
                     ),
                     child: Column(
                       children: [
-                        // Table header
-                        const Padding(
-                          padding: EdgeInsets.symmetric(
-                              vertical: 12.0, horizontal: 8.0),
-                          child: Row(
-                            children: [
-                              Expanded(
-                                flex: 3,
-                                child: Text('PRODUCT',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        letterSpacing: 1.2)),
-                              ),
-                              Expanded(
-                                flex: 1,
-                                child: Text('QTY',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        letterSpacing: 1.2)),
-                              ),
-                            ],
-                          ),
-                        ),
                         ...printItems.map((item) => CartPrintCard(item: item)),
                       ],
                     ),
