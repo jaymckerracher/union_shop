@@ -71,6 +71,8 @@ class _LoginPageState extends State<LoginPage> {
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(content: Text(error)),
                           );
+                        } else if (context.mounted) {
+                          navigateToHome(context);
                         }
                         // You can add navigation or UI feedback here later
                       },
