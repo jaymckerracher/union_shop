@@ -109,4 +109,11 @@ class CartViewModel extends ChangeNotifier {
   double get totalCartPrice {
     return merchSubCartPrice + clothingSubCartPrice + printSubCartPrice;
   }
+
+  void clearCart() {
+    _merchSubCart.clear();
+    _clothingSubCart.clear();
+    _printSubCart.clear();
+    notifyListeners();
+  }
 }
