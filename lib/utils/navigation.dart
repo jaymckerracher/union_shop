@@ -67,3 +67,15 @@ void navigateToCart(BuildContext context) {
 void navigateToCollections(BuildContext context) {
   Navigator.pushNamed(context, '/collections');
 }
+
+void navigateToProfile(BuildContext context) {
+  Navigator.pushNamed(context, '/profile');
+}
+
+void navigateToLogin(BuildContext context) {
+  Navigator.pushNamed(context, '/login');
+}
+
+void navigateToSignup(BuildContext context) {
+  Navigator.pushNamed(context, '/signup');
+}
