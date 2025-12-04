@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../utils/navigation.dart';
+import '../view_models/cart_view_model.dart';
 
 class CartGoHomeOverlay extends StatelessWidget {
   const CartGoHomeOverlay({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final cartViewModel = Provider.of<CartViewModel>(context);
     return Dialog(
       insetPadding: const EdgeInsets.all(24),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
@@ -32,7 +35,7 @@ class CartGoHomeOverlay extends StatelessWidget {
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () =>
-                    navigateToHome(context), // No functionality yet
+                    {cartViewModel.clearCart(), navigateToHome(context)},
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(vertical: 16.0),
                   textStyle: const TextStyle(
