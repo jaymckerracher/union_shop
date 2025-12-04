@@ -15,9 +15,28 @@ class LoginPage extends StatelessWidget {
           Header(),
           Expanded(
             child: Center(
-              child: Text(
-                'login',
-                style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 32.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    TextField(
+                      decoration: InputDecoration(
+                        labelText: 'Email',
+                        border: OutlineInputBorder(),
+                      ),
+                      keyboardType: TextInputType.emailAddress,
+                    ),
+                    SizedBox(height: 24),
+                    TextField(
+                      decoration: InputDecoration(
+                        labelText: 'Password',
+                        border: OutlineInputBorder(),
+                      ),
+                      obscureText: true,
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
