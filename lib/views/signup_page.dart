@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../utils/navigation.dart';
 
 class SignupPage extends StatelessWidget {
   const SignupPage({super.key});
@@ -57,9 +58,9 @@ class SignupPage extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 16),
-                    const TextButton(
-                      onPressed: null, // No functionality yet
-                      child: Text(
+                    TextButton(
+                      onPressed: () => navigateToLogin(context),
+                      child: const Text(
                         'Already have an account? Login here',
                         style: TextStyle(fontSize: 16),
                       ),
