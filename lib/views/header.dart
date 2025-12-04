@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../utils/navigation.dart';
+import '../utils/firebase_check_user.dart';
 
 class Header extends StatelessWidget {
   const Header({
@@ -84,7 +85,13 @@ class Header extends StatelessWidget {
                             minWidth: 32,
                             minHeight: 32,
                           ),
-                          onPressed: () => navigateToProfile(context),
+                          onPressed: () {
+                            if (isUserSignedIn()) {
+                              navigateToProfile(context);
+                            } else {
+                              navigateToLogin(context);
+                            }
+                          },
                         ),
                         IconButton(
                           icon: const Icon(
