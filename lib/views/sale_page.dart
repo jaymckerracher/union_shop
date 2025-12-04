@@ -30,6 +30,15 @@ class SalePage extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 8),
+                const Text(
+                  'Enjoy exclusive discounts on selected products! Grab your favourites before they are gone.',
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Color(0xFF444444),
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(height: 8),
                 FilterSortMenuBar(
                   viewModel: viewModel,
                   allCollections: true,
