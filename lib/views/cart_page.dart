@@ -166,13 +166,15 @@ class _CartPageState extends State<CartPage> {
               child: SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: () => {
-                    showDialog(
-                      context: context,
-                      barrierDismissible: true,
-                      builder: (context) => const CartGoHomeOverlay(),
-                    )
-                  },
+                  onPressed: cartViewModel.totalCartPrice == 0.0
+                      ? null
+                      : () {
+                          showDialog(
+                            context: context,
+                            barrierDismissible: true,
+                            builder: (context) => const CartGoHomeOverlay(),
+                          );
+                        },
                   style: ElevatedButton.styleFrom(
                     padding: const EdgeInsets.symmetric(vertical: 16.0),
                     textStyle: const TextStyle(
