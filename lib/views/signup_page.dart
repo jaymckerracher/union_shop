@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'header.dart';
+import 'footer.dart';
+import 'app_drawer.dart';
 import '../utils/navigation.dart';
 
 class SignupPage extends StatelessWidget {
@@ -7,8 +10,10 @@ class SignupPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const AppDrawer(),
       body: Column(
         children: [
+          const Header(),
           Expanded(
             child: Center(
               child: Padding(
@@ -61,7 +66,7 @@ class SignupPage extends StatelessWidget {
                     TextButton(
                       onPressed: () => navigateToLogin(context),
                       child: const Text(
-                        'Already have an account? Login here',
+                        'Already have an account? Log in here',
                         style: TextStyle(fontSize: 16),
                       ),
                     ),
@@ -70,6 +75,7 @@ class SignupPage extends StatelessWidget {
               ),
             ),
           ),
+          const Footer(),
         ],
       ),
     );
