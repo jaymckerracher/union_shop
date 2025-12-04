@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'header.dart';
 import 'footer.dart';
 import 'app_drawer.dart';
+import '../utils/navigation.dart';
 
 class AboutPage extends StatelessWidget {
   const AboutPage({super.key});
@@ -54,7 +55,8 @@ class AboutPage extends StatelessWidget {
                                 baseline: TextBaseline.alphabetic,
                                 child: GestureDetector(
                                   onTap: () {
-                                    // TODO: Implement navigation to personalisation service page
+                                    navigateToPrintShackPersonalisation(
+                                        context);
                                   },
                                   child: const Text(
                                     'personalisation service',
