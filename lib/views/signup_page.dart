@@ -143,19 +143,16 @@ class _SignupPageState extends State<SignupPage> {
                                 email: _emailController.text,
                                 password: _passwordController.text,
                               );
-                              if (error != null && mounted) {
-                                // ignore: use_build_context_synchronously
+                              if (error != null && context.mounted) {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(content: Text(error)),
                                 );
-                              } else if (mounted) {
-                                // ignore: use_build_context_synchronously
+                              } else if (context.mounted) {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   const SnackBar(
                                       content: Text(
                                           'Account created successfully!')),
                                 );
-                                // ignore: use_build_context_synchronously
                                 navigateToHome(context);
                               }
                             }

@@ -67,8 +67,7 @@ class _LoginPageState extends State<LoginPage> {
                           email: _emailController.text,
                           password: _passwordController.text,
                         );
-                        if (error != null && mounted) {
-                          // ignore: use_build_context_synchronously
+                        if (error != null && context.mounted) {
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(content: Text(error)),
                           );
