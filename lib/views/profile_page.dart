@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:union_shop/utils/navigation.dart';
 import 'header.dart';
 import 'footer.dart';
 import 'app_drawer.dart';
 import '../utils/firebase_get_user.dart';
+import '../utils/firebase_sign_out.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -70,7 +72,20 @@ class ProfilePage extends StatelessWidget {
               child: SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: null, // No functionality yet
+                  onPressed: () async {
+                    final error = await signOutUser();
+                    if (error != null && context.mounted) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text(error)),
+                      );
+                    } else if (context.mounted) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                            content: Text('Signed out successfully!')),
+                      );
+                      navigateToHome(context);
+                    }
+                  },
                   style: ElevatedButton.styleFrom(
                     padding: const EdgeInsets.symmetric(vertical: 16.0),
                     textStyle: const TextStyle(
