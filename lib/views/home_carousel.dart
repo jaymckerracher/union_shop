@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../utils/navigation.dart';
 
 class HomeCarousel extends StatefulWidget {
   const HomeCarousel({super.key});
@@ -9,36 +10,45 @@ class HomeCarousel extends StatefulWidget {
 
 class _HomeCarouselState extends State<HomeCarousel> {
   int _currentIndex = 0;
+  late final List<_CarouselSlide> _slides;
 
-  final List<_CarouselSlide> _slides = [
-    const _CarouselSlide(
-      image: 'images/essential_tee/blue.webp',
-      title: 'Essential Range',
-      description:
-          'Save over 20% on our Essential Range! Grab yours while stocks last.',
-      buttonText: 'View Range',
-    ),
-    const _CarouselSlide(
-      image: 'images/classic_hoodie/blue.webp',
-      title: 'Classic Hoodie',
-      description:
-          'Discover our timeless Classic Hoodie – comfort and style for every season.',
-      buttonText: 'Go To Product',
-    ),
-    const _CarouselSlide(
-      image: 'images/merch/cotton_tote.webp',
-      title: 'Merchandise',
-      description:
-          'Check out our exclusive merchandise – perfect for every student!',
-      buttonText: 'View All Merch',
-    ),
-    const _CarouselSlide(
-      image: 'images/print_shack/ps_2.webp',
-      title: 'Print Shack',
-      description: 'Visit our print shack to get personalised clothing!',
-      buttonText: 'Visit Shack',
-    ),
-  ];
+  @override
+  void initState() {
+    super.initState();
+    _slides = [
+      _CarouselSlide(
+        image: 'images/essential_tee/blue.webp',
+        title: 'Essential Range',
+        description:
+            'Save over 20% on our Essential Range! Grab yours while stocks last.',
+        buttonText: 'View Range',
+        onButtonClick: () => navigateToEssential(context),
+      ),
+      _CarouselSlide(
+        image: 'images/classic_hoodie/blue.webp',
+        title: 'Classic Hoodie',
+        description:
+            'Discover our timeless Classic Hoodie – comfort and style for every season.',
+        buttonText: 'Go To Product',
+        onButtonClick: () => navigateToProduct(context, '3'),
+      ),
+      _CarouselSlide(
+        image: 'images/merch/cotton_tote.webp',
+        title: 'Merchandise',
+        description:
+            'Check out our exclusive merchandise – perfect for every student!',
+        buttonText: 'View All Merch',
+        onButtonClick: () => navigateToMerch(context),
+      ),
+      _CarouselSlide(
+        image: 'images/print_shack/ps_2.webp',
+        title: 'Print Shack',
+        description: 'Visit our print shack to get personalised clothing!',
+        buttonText: 'Visit Shack',
+        onButtonClick: () => navigateToPrintShackPersonalisation(context),
+      ),
+    ];
+  }
 
   void _onPageChanged(int index) {
     setState(() {
@@ -87,7 +97,7 @@ class _HomeCarouselState extends State<HomeCarousel> {
                   ),
                   const SizedBox(height: 12),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () => slide.onButtonClick(),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFF4d2963),
                       foregroundColor: Colors.white,
@@ -127,11 +137,12 @@ class _CarouselSlide {
   final String title;
   final String description;
   final String buttonText;
+  final Function onButtonClick;
 
-  const _CarouselSlide({
-    required this.image,
-    required this.title,
-    required this.description,
-    required this.buttonText,
-  });
+  const _CarouselSlide(
+      {required this.image,
+      required this.title,
+      required this.description,
+      required this.buttonText,
+      required this.onButtonClick});
 }
