@@ -226,12 +226,22 @@ class _PrintShackPersonalisationPageState
                   // Add to Cart button
                   ElevatedButton(
                     onPressed: () {
+                      final lines = _controllers.map((c) => c.text).toList();
+                      final hasEmptyField =
+                          lines.any((line) => line.trim().isEmpty);
+                      if (hasEmptyField) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text(
+                                'Please fill in all fields before adding to cart.'),
+                            backgroundColor: Colors.red,
+                          ),
+                        );
+                        return;
+                      }
                       final cart =
                           Provider.of<CartViewModel>(context, listen: false);
-                      // Build the Print model from the selected option and text fields
                       final type = mapTextToPrintType(selectedOption);
-                      // Use the actual text from controllers
-                      final lines = _controllers.map((c) => c.text).toList();
                       final print = Print(type: type, lines: lines);
                       const uuid = Uuid();
                       cart.addPrintItem(CartItemPrint(
