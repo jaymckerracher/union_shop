@@ -57,7 +57,7 @@ class LoginPage extends StatelessWidget {
                     const TextButton(
                       onPressed: null, // No functionality yet
                       child: Text(
-                        "Don't have an account? Sign up here",
+                        "Don't have an account? Click here to sign up!",
                         style: TextStyle(fontSize: 16),
                       ),
                     ),
