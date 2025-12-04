@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'header.dart';
-import 'footer.dart';
 import 'app_drawer.dart';
 
 class LoginPage extends StatelessWidget {
