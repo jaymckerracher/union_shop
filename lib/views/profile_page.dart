@@ -21,6 +21,14 @@ class ProfilePage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    Center(
+                      child: Icon(
+                        Icons.person_outline,
+                        size: 120,
+                        color: Colors.grey,
+                      ),
+                    ),
+                    SizedBox(height: 32),
                     Text(
                       'Username',
                       style: TextStyle(fontSize: 14, color: Colors.grey),
