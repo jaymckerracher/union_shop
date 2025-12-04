@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../utils/navigation.dart';
 
 class CartGoHomeOverlay extends StatelessWidget {
   const CartGoHomeOverlay({super.key});
@@ -30,7 +31,8 @@ class CartGoHomeOverlay extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: null, // No functionality yet
+                onPressed: () =>
+                    navigateToHome(context), // No functionality yet
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(vertical: 16.0),
                   textStyle: const TextStyle(
