@@ -1,5 +1,7 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:union_shop/firebase_options.dart';
 import 'package:union_shop/views/product_page.dart';
 import 'package:union_shop/views/about_page.dart';
 import 'package:union_shop/views/collection_halloween_page.dart';
@@ -22,7 +24,13 @@ import 'package:union_shop/views/print_shack_personalisation_page.dart';
 import 'package:union_shop/views/print_shack_about_page.dart';
 import 'package:union_shop/view_models/cart_view_model.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
   runApp(
     ChangeNotifierProvider(
       create: (_) => CartViewModel(),
