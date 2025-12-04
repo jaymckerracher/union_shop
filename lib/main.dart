@@ -14,6 +14,9 @@ import 'package:union_shop/views/products_page.dart';
 import 'package:union_shop/views/search_page.dart';
 import 'package:union_shop/views/home_page.dart';
 import 'package:union_shop/views/cart_page.dart';
+import 'package:union_shop/views/login_page.dart';
+import 'package:union_shop/views/signup_page.dart';
+import 'package:union_shop/views/profile_page.dart';
 import 'package:union_shop/views/collections_page.dart';
 import 'package:union_shop/views/print_shack_personalisation_page.dart';
 import 'package:union_shop/views/print_shack_about_page.dart';
@@ -109,6 +112,15 @@ class UnionShopApp extends StatelessWidget {
             return MaterialPageRoute(
                 builder: (context) => const CollectionsPage(),
                 settings: settings);
+          case '/profile':
+            return MaterialPageRoute(
+                builder: (context) => const ProfilePage(), settings: settings);
+          case '/login':
+            return MaterialPageRoute(
+                builder: (context) => const LoginPage(), settings: settings);
+          case '/signup':
+            return MaterialPageRoute(
+                builder: (context) => const SignupPage(), settings: settings);
           default:
             return MaterialPageRoute(
                 builder: (context) => const HomePage(), settings: settings);
