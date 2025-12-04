@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../view_models/products_view_model.dart';
 import '../utils/map_range_to_collection.dart';
+import '../utils/navigation.dart';
 
 class HomeRangePreview extends StatelessWidget {
   final String range;
@@ -96,7 +97,38 @@ class HomeRangePreview extends StatelessWidget {
           child: SizedBox(
             width: double.infinity,
             child: ElevatedButton(
-              onPressed: () {}, // No functionality yet
+              onPressed: () {
+                switch (range.toLowerCase()) {
+                  case 'halloween':
+                    navigateToHalloween(context);
+                    break;
+                  case 'essential':
+                    navigateToEssential(context);
+                    break;
+                  case 'portsmouth':
+                    navigateToPortsmouth(context);
+                    break;
+                  case 'pride':
+                    navigateToPride(context);
+                    break;
+                  case 'graduation':
+                  case 'grad':
+                    navigateToGrad(context);
+                    break;
+                  case 'clothing':
+                    navigateToClothing(context);
+                    break;
+                  case 'merchandise':
+                  case 'merch':
+                    navigateToMerch(context);
+                    break;
+                  case 'sale':
+                    navigateToSale(context);
+                    break;
+                  default:
+                    navigateToCollections(context);
+                }
+              },
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xFF4d2963),
                 foregroundColor: Colors.white,
