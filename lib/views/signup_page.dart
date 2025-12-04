@@ -133,7 +133,13 @@ class _SignupPageState extends State<SignupPage> {
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
-                      onPressed: null, // No functionality yet
+                      onPressed: (_isUsernameValid &&
+                              _isEmailValid &&
+                              _isPasswordValid)
+                          ? () {
+                              print('hello');
+                            }
+                          : null,
                       style: ElevatedButton.styleFrom(
                         padding: const EdgeInsets.symmetric(vertical: 16.0),
                         textStyle: const TextStyle(
