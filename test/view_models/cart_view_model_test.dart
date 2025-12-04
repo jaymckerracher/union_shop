@@ -111,5 +111,33 @@ void main() {
       cart.addPrintItem(printItem(quantity: 3)); // 15
       expect(cart.totalCartPrice, 10.0 + 40.0 + 15.0);
     });
+
+    test('clearCart empties all subcarts and resets prices', () {
+      cart.addMerchItem(merchItem(quantity: 2));
+      cart.addClothingItem(clothingItem(quantity: 2));
+      cart.addPrintItem(printItem(quantity: 2));
+      expect(cart.getMerchItems, isNotEmpty);
+      expect(cart.getClothingItems, isNotEmpty);
+      expect(cart.getPrintItems, isNotEmpty);
+      expect(cart.totalCartPrice, greaterThan(0));
+      cart.clearCart();
+      expect(cart.getMerchItems, isEmpty);
+      expect(cart.getClothingItems, isEmpty);
+      expect(cart.getPrintItems, isEmpty);
+      expect(cart.merchSubCartPrice, 0.0);
+      expect(cart.clothingSubCartPrice, 0.0);
+      expect(cart.printSubCartPrice, 0.0);
+      expect(cart.totalCartPrice, 0.0);
+    });
+
+    test('clearCart on already empty cart does not throw', () {
+      expect(cart.getMerchItems, isEmpty);
+      expect(cart.getClothingItems, isEmpty);
+      expect(cart.getPrintItems, isEmpty);
+      cart.clearCart();
+      expect(cart.getMerchItems, isEmpty);
+      expect(cart.getClothingItems, isEmpty);
+      expect(cart.getPrintItems, isEmpty);
+    });
   });
 }
