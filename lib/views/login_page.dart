@@ -3,9 +3,25 @@ import '../utils/navigation.dart';
 import 'header.dart';
 import 'footer.dart';
 import 'app_drawer.dart';
+import '../utils/firebase_sign_in.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,16 +41,18 @@ class LoginPage extends StatelessWidget {
                     style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 32),
-                  const TextField(
-                    decoration: InputDecoration(
+                  TextField(
+                    controller: _emailController,
+                    decoration: const InputDecoration(
                       labelText: 'Email',
                       border: OutlineInputBorder(),
                     ),
                     keyboardType: TextInputType.emailAddress,
                   ),
                   const SizedBox(height: 24),
-                  const TextField(
-                    decoration: InputDecoration(
+                  TextField(
+                    controller: _passwordController,
+                    decoration: const InputDecoration(
                       labelText: 'Password',
                       border: OutlineInputBorder(),
                     ),
@@ -44,7 +62,16 @@ class LoginPage extends StatelessWidget {
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
-                      onPressed: null, // No functionality yet
+                      onPressed: () async {
+                        final error = await signInWithEmail(
+                          email: _emailController.text,
+                          password: _passwordController.text,
+                        );
+                        if (error != null) {
+                          print(error);
+                        }
+                        // You can add navigation or UI feedback here later
+                      },
                       style: ElevatedButton.styleFrom(
                         padding: const EdgeInsets.symmetric(vertical: 16.0),
                         textStyle: const TextStyle(
