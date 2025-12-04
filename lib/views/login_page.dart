@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'app_drawer.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -7,7 +6,6 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: const AppDrawer(),
       body: Column(
         children: [
           Expanded(
