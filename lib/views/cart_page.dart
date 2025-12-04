@@ -7,13 +7,26 @@ import 'cart_clothing_card.dart';
 import 'cart_merch_card.dart';
 import 'cart_print_card.dart';
 import './app_drawer.dart';
+import 'cart_go_home_overlay.dart';
 
-class CartPage extends StatelessWidget {
+class CartPage extends StatefulWidget {
   const CartPage({super.key});
 
   @override
+  State<CartPage> createState() => _CartPageState();
+}
+
+class _CartPageState extends State<CartPage> {
+  void _showPurchaseSuccessOverlay() {
+    showDialog(
+      context: context,
+      barrierDismissible: true,
+      builder: (context) => const CartGoHomeOverlay(),
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
-    // Get cart products from the view model (not used yet)
     final cartViewModel = Provider.of<CartViewModel>(context);
     final merchItems = cartViewModel.getMerchItems;
     final clothingItems = cartViewModel.getClothingItems;
@@ -161,7 +174,7 @@ class CartPage extends StatelessWidget {
               child: SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: null, // No functionality yet
+                  onPressed: _showPurchaseSuccessOverlay,
                   style: ElevatedButton.styleFrom(
                     padding: const EdgeInsets.symmetric(vertical: 16.0),
                     textStyle: const TextStyle(
