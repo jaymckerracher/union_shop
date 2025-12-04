@@ -87,8 +87,9 @@ class _SignupPageState extends State<SignupPage> {
                       padding: EdgeInsets.only(top: 4.0),
                       child: Align(
                         alignment: Alignment.centerLeft,
-                        child: Text('hello',
-                            style: TextStyle(color: Colors.red, fontSize: 12)),
+                        child: Text(
+                            'Username must not contain special characters and be at least 8 characters long',
+                            style: TextStyle(fontSize: 12)),
                       ),
                     ),
                   const SizedBox(height: 24),
@@ -105,8 +106,8 @@ class _SignupPageState extends State<SignupPage> {
                       padding: EdgeInsets.only(top: 4.0),
                       child: Align(
                         alignment: Alignment.centerLeft,
-                        child: Text('hello',
-                            style: TextStyle(color: Colors.red, fontSize: 12)),
+                        child: Text('Invalid email address format',
+                            style: TextStyle(fontSize: 12)),
                       ),
                     ),
                   const SizedBox(height: 24),
@@ -123,8 +124,9 @@ class _SignupPageState extends State<SignupPage> {
                       padding: EdgeInsets.only(top: 4.0),
                       child: Align(
                         alignment: Alignment.centerLeft,
-                        child: Text('hello',
-                            style: TextStyle(color: Colors.red, fontSize: 12)),
+                        child: Text(
+                            'Password must contain a special character and be at least 8 characters long',
+                            style: TextStyle(fontSize: 12)),
                       ),
                     ),
                   const SizedBox(height: 32),
