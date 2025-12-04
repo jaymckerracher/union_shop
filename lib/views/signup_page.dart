@@ -3,6 +3,9 @@ import 'header.dart';
 import 'footer.dart';
 import 'app_drawer.dart';
 import '../utils/navigation.dart';
+import '../utils/verify_username.dart';
+import '../utils/verify_email.dart';
+import '../utils/verify_password.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
@@ -15,6 +18,36 @@ class _SignupPageState extends State<SignupPage> {
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+
+  bool _isUsernameValid = false;
+  bool _isEmailValid = false;
+  bool _isPasswordValid = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _usernameController.addListener(_validateUsername);
+    _emailController.addListener(_validateEmail);
+    _passwordController.addListener(_validatePassword);
+  }
+
+  void _validateUsername() {
+    setState(() {
+      _isUsernameValid = isValidUsername(_usernameController.text);
+    });
+  }
+
+  void _validateEmail() {
+    setState(() {
+      _isEmailValid = isValidEmail(_emailController.text);
+    });
+  }
+
+  void _validatePassword() {
+    setState(() {
+      _isPasswordValid = isValidPassword(_passwordController.text);
+    });
+  }
 
   @override
   void dispose() {
@@ -49,6 +82,15 @@ class _SignupPageState extends State<SignupPage> {
                       border: OutlineInputBorder(),
                     ),
                   ),
+                  if (!_isUsernameValid)
+                    const Padding(
+                      padding: EdgeInsets.only(top: 4.0),
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text('hello',
+                            style: TextStyle(color: Colors.red, fontSize: 12)),
+                      ),
+                    ),
                   const SizedBox(height: 24),
                   TextField(
                     controller: _emailController,
@@ -58,6 +100,15 @@ class _SignupPageState extends State<SignupPage> {
                     ),
                     keyboardType: TextInputType.emailAddress,
                   ),
+                  if (!_isEmailValid)
+                    const Padding(
+                      padding: EdgeInsets.only(top: 4.0),
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text('hello',
+                            style: TextStyle(color: Colors.red, fontSize: 12)),
+                      ),
+                    ),
                   const SizedBox(height: 24),
                   TextField(
                     controller: _passwordController,
@@ -67,6 +118,15 @@ class _SignupPageState extends State<SignupPage> {
                     ),
                     obscureText: true,
                   ),
+                  if (!_isPasswordValid)
+                    const Padding(
+                      padding: EdgeInsets.only(top: 4.0),
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text('hello',
+                            style: TextStyle(color: Colors.red, fontSize: 12)),
+                      ),
+                    ),
                   const SizedBox(height: 32),
                   SizedBox(
                     width: double.infinity,
