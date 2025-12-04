@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../utils/navigation.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -16,7 +17,7 @@ class LoginPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Text(
-                      'Sign In',
+                      'Log In',
                       style:
                           TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
                     ),
@@ -46,13 +47,13 @@ class LoginPage extends StatelessWidget {
                           textStyle: const TextStyle(
                               fontSize: 18, fontWeight: FontWeight.bold),
                         ),
-                        child: const Text('Login'),
+                        child: const Text('Log In'),
                       ),
                     ),
                     const SizedBox(height: 16),
-                    const TextButton(
-                      onPressed: null, // No functionality yet
-                      child: Text(
+                    TextButton(
+                      onPressed: () => navigateToSignup(context),
+                      child: const Text(
                         "Don't have an account? Click here to sign up!",
                         style: TextStyle(fontSize: 16),
                       ),
