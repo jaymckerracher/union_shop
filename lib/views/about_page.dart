@@ -53,8 +53,14 @@ class AboutPage extends StatelessWidget {
                               WidgetSpan(
                                 alignment: PlaceholderAlignment.baseline,
                                 baseline: TextBaseline.alphabetic,
-                                child: GestureDetector(
-                                  onTap: () {
+                                child: TextButton(
+                                  style: TextButton.styleFrom(
+                                    padding: EdgeInsets.zero,
+                                    minimumSize: const Size(0, 0),
+                                    tapTargetSize:
+                                        MaterialTapTargetSize.shrinkWrap,
+                                  ),
+                                  onPressed: () {
                                     navigateToPrintShackPersonalisation(
                                         context);
                                   },
@@ -63,6 +69,7 @@ class AboutPage extends StatelessWidget {
                                     style: TextStyle(
                                       fontSize: 16,
                                       decoration: TextDecoration.underline,
+                                      color: Color(0xFF444950),
                                     ),
                                   ),
                                 ),
