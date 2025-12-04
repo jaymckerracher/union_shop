@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'header.dart';
-import 'footer.dart';
-import 'app_drawer.dart';
 
 class SignupPage extends StatelessWidget {
   const SignupPage({super.key});
@@ -9,10 +6,8 @@ class SignupPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      drawer: AppDrawer(),
       body: Column(
         children: [
-          Header(),
           Expanded(
             child: Center(
               child: Text(
@@ -21,7 +16,6 @@ class SignupPage extends StatelessWidget {
               ),
             ),
           ),
-          Footer(),
         ],
       ),
     );
