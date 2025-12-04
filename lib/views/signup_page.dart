@@ -6,6 +6,7 @@ import '../utils/navigation.dart';
 import '../utils/verify_username.dart';
 import '../utils/verify_email.dart';
 import '../utils/verify_password.dart';
+import '../utils/firebase_sign_up.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
@@ -136,8 +137,27 @@ class _SignupPageState extends State<SignupPage> {
                       onPressed: (_isUsernameValid &&
                               _isEmailValid &&
                               _isPasswordValid)
-                          ? () {
-                              print('hello');
+                          ? () async {
+                              final error = await signUpWithEmail(
+                                username: _usernameController.text,
+                                email: _emailController.text,
+                                password: _passwordController.text,
+                              );
+                              if (error != null && mounted) {
+                                // ignore: use_build_context_synchronously
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(content: Text(error)),
+                                );
+                              } else if (mounted) {
+                                // ignore: use_build_context_synchronously
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                      content: Text(
+                                          'Account created successfully!')),
+                                );
+                                // ignore: use_build_context_synchronously
+                                navigateToHome(context);
+                              }
                             }
                           : null,
                       style: ElevatedButton.styleFrom(
