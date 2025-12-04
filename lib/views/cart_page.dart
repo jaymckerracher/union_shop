@@ -17,14 +17,6 @@ class CartPage extends StatefulWidget {
 }
 
 class _CartPageState extends State<CartPage> {
-  void _showPurchaseSuccessOverlay() {
-    showDialog(
-      context: context,
-      barrierDismissible: true,
-      builder: (context) => const CartGoHomeOverlay(),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     final cartViewModel = Provider.of<CartViewModel>(context);
@@ -174,7 +166,13 @@ class _CartPageState extends State<CartPage> {
               child: SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: _showPurchaseSuccessOverlay,
+                  onPressed: () => {
+                    showDialog(
+                      context: context,
+                      barrierDismissible: true,
+                      builder: (context) => const CartGoHomeOverlay(),
+                    )
+                  },
                   style: ElevatedButton.styleFrom(
                     padding: const EdgeInsets.symmetric(vertical: 16.0),
                     textStyle: const TextStyle(
