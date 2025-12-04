@@ -12,7 +12,6 @@ class LoginPage extends StatelessWidget {
       drawer: const AppDrawer(),
       body: Column(
         children: [
-          const Header(),
           Expanded(
             child: Center(
               child: Padding(
@@ -54,12 +53,19 @@ class LoginPage extends StatelessWidget {
                         child: const Text('Login'),
                       ),
                     ),
+                    const SizedBox(height: 16),
+                    const TextButton(
+                      onPressed: null, // No functionality yet
+                      child: Text(
+                        "Don't have an account? Sign up here",
+                        style: TextStyle(fontSize: 16),
+                      ),
+                    ),
                   ],
                 ),
               ),
             ),
           ),
-          const Footer(),
         ],
       ),
     );
