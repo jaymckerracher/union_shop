@@ -57,5 +57,32 @@ void main() {
           CartItemPrint(id: 'unique-2', print: print2, quantity: 1);
       expect(cartItem1.id, isNot(cartItem2.id));
     });
+
+    test('toMap should return correct map', () {
+      final print = Print(type: PrintType.oneLine, lines: ['Line 1']);
+      final cartItem = CartItemPrint(id: 'id-10', print: print, quantity: 5);
+      final map = cartItem.toMap();
+      expect(map['id'], 'id-10');
+      expect(map['quantity'], 5);
+      expect(map['print'], isA<Map<String, dynamic>>());
+      expect(map['print']['type'], 'oneLine');
+      expect(map['print']['lines'], ['Line 1']);
+    });
+
+    test('fromMap should create correct CartItemPrint', () {
+      final map = {
+        'id': 'id-11',
+        'print': {
+          'type': 'twoLines',
+          'lines': ['A', 'B'],
+        },
+        'quantity': 7,
+      };
+      final cartItem = CartItemPrint.fromMap(map);
+      expect(cartItem.id, 'id-11');
+      expect(cartItem.quantity, 7);
+      expect(cartItem.print.type, PrintType.twoLines);
+      expect(cartItem.print.lines, ['A', 'B']);
+    });
   });
 }
