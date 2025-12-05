@@ -3,6 +3,7 @@ import '../models/cart_item_clothing_model.dart';
 import 'package:provider/provider.dart';
 import '../view_models/cart_view_model.dart';
 import 'cart_card_edit_overlay.dart';
+import '../utils/firebase_get_user.dart';
 
 class CartClothingCard extends StatelessWidget {
   final CartItemClothing item;
@@ -48,14 +49,17 @@ class CartClothingCard extends StatelessWidget {
                   children: [
                     TextButton(
                       onPressed: () {
-                        // Remove item from cart using Provider
                         final cartViewModel =
                             Provider.of<CartViewModel>(context, listen: false);
-                        cartViewModel.removeClothingItem(item);
+                        final uid = getCurrentUser()?.uid;
+                        if (uid != null) {
+                          cartViewModel.removeClothingItem(item, uid);
+                        }
                       },
                       style: TextButton.styleFrom(
-                          padding: EdgeInsets.zero,
-                          minimumSize: const Size(40, 24)),
+                        padding: EdgeInsets.zero,
+                        minimumSize: const Size(40, 24),
+                      ),
                       child:
                           const Text('REMOVE', style: TextStyle(fontSize: 12)),
                     ),
@@ -71,22 +75,27 @@ class CartClothingCard extends StatelessWidget {
                               final cartViewModel = Provider.of<CartViewModel>(
                                   context,
                                   listen: false);
-                              // Remove old item and add new with updated quantity
-                              cartViewModel.removeClothingItem(item);
-                              cartViewModel.addClothingItem(CartItemClothing(
-                                product: item.product,
-                                quantity: newQty,
-                                size: item.size,
-                                colour: item.colour,
-                              ));
+                              final uid = getCurrentUser()?.uid;
+                              if (uid != null) {
+                                cartViewModel.removeClothingItem(item, uid);
+                                cartViewModel.addClothingItem(
+                                    CartItemClothing(
+                                      product: item.product,
+                                      quantity: newQty,
+                                      size: item.size,
+                                      colour: item.colour,
+                                    ),
+                                    uid);
+                              }
                             },
                             onClose: () => Navigator.of(context).pop(),
                           ),
                         );
                       },
                       style: TextButton.styleFrom(
-                          padding: EdgeInsets.zero,
-                          minimumSize: const Size(40, 24)),
+                        padding: EdgeInsets.zero,
+                        minimumSize: const Size(40, 24),
+                      ),
                       child: const Text('EDIT', style: TextStyle(fontSize: 12)),
                     ),
                   ],
