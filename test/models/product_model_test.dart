@@ -120,5 +120,55 @@ void main() {
             Collections.prideCollection
           ]));
     });
+
+    test('toMap should return correct map', () {
+      final product = Product(
+        id: '10',
+        title: 'Map Product',
+        description: 'Testing toMap',
+        price: 19.99,
+        imageUrls: ['http://example.com/map.png'],
+        category: ProductCategory.clothing,
+        collections: [Collections.halloween, Collections.graduation],
+        originalPrice: 29.99,
+        promoMessage: 'SALE!',
+      );
+      final map = product.toMap();
+      expect(map['id'], '10');
+      expect(map['title'], 'Map Product');
+      expect(map['description'], 'Testing toMap');
+      expect(map['price'], 19.99);
+      expect(map['imageUrls'], ['http://example.com/map.png']);
+      expect(map['category'], 'clothing');
+      expect(map['collections'], ['halloween', 'graduation']);
+      expect(map['originalPrice'], 29.99);
+      expect(map['promoMessage'], 'SALE!');
+    });
+
+    test('fromMap should create correct Product', () {
+      final map = {
+        'id': '11',
+        'title': 'FromMap Product',
+        'description': 'Testing fromMap',
+        'price': 15.99,
+        'imageUrls': ['http://example.com/frommap.png'],
+        'category': 'merchandise',
+        'collections': ['prideCollection', 'signatureAndEssentialRange'],
+        'originalPrice': 25.99,
+        'promoMessage': 'Limited!',
+      };
+      final product = Product.fromMap(map);
+      expect(product.id, '11');
+      expect(product.title, 'FromMap Product');
+      expect(product.description, 'Testing fromMap');
+      expect(product.price, 15.99);
+      expect(product.imageUrls, ['http://example.com/frommap.png']);
+      expect(product.category, ProductCategory.merchandise);
+      expect(product.collections, contains(Collections.prideCollection));
+      expect(product.collections,
+          contains(Collections.signatureAndEssentialRange));
+      expect(product.originalPrice, 25.99);
+      expect(product.promoMessage, 'Limited!');
+    });
   });
 }
