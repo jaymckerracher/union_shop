@@ -12,6 +12,22 @@ Union Shop is a Flutter-based e-commerce application designed for university mer
 - Responsive UI for mobile and desktop
 - Integration with Firebase for backend services
 
+### Firebase Auth
+Firebase Authentication is integrated to handle user sign up, login, and session management. The app uses the `firebase_auth` package to connect with Firebase, enabling secure email/password authentication. User authentication state is managed throughout the app, allowing users to register, log in, and log out. Protected routes and features (such as accessing the profile page) require authentication. Firebase configuration is initialized in `lib/firebase_options.dart`, and authentication logic is handled in the relevant view models and repositories.
+
+**Key Usage:**
+- Users can register and log in with email and password.
+- Auth state is monitored to show the correct screens (login, home, profile, etc.).
+- User data is securely managed via Firebase.
+
+### Firestore Cart Persistence
+The app uses Cloud Firestore to persist users' shopping cart data across sessions. The `cloud_firestore` package is integrated to enable real-time database operations. When a user adds or removes items from their cart, these changes are reflected in Firestore, ensuring that the cart state is always up to date—even after logout or on a different device. Cart data is associated with the authenticated user's UID, providing a seamless and personalized shopping experience.
+
+**Key Usage:**
+- Cart items are stored and retrieved from Firestore collections tied to each user.
+- Updates to the cart (add, remove, clear) are synced in real time with Firestore.
+- Cart persistence allows users to resume shopping after logging back in.
+
 ---
 
 ## Installation and Setup
