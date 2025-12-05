@@ -14,4 +14,13 @@ class CartItemClothing {
     required this.size,
     required this.colour,
   });
+
+  Map<String, dynamic> toMap() {
+    return {
+      'product': product.toMap(),
+      'quantity': quantity,
+      'size': size.name,
+      'colour': colour.name,
+    };
+  }
 }
