@@ -29,5 +29,23 @@ void main() {
       final print = Print(type: PrintType.oneLine, lines: []);
       expect(print.lines, isEmpty);
     });
+
+    test('toMap should return correct map', () {
+      final print = Print(type: PrintType.twoLines, lines: ['A', 'B']);
+      final map = print.toMap();
+      expect(map['type'], 'twoLines');
+      expect(map['lines'], ['A', 'B']);
+    });
+
+    test('fromMap should create correct Print', () {
+      final map = {
+        'type': 'threeLines',
+        'lines': ['X', 'Y', 'Z'],
+      };
+      final print = Print.fromMap(map);
+      expect(print.type, PrintType.threeLines);
+      expect(print.lines, ['X', 'Y', 'Z']);
+      expect(print.price, 9.0);
+    });
   });
 }
