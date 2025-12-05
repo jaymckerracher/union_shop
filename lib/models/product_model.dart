@@ -40,4 +40,25 @@ class Product {
       'collections': collections.map((c) => c.name).toList(),
     };
   }
+
+  factory Product.fromMap(Map<String, dynamic> map) {
+    return Product(
+      id: map['id'] as String,
+      title: map['title'] as String,
+      description: map['description'] as String,
+      price: (map['price'] as num).toDouble(),
+      imageUrls: List<String>.from(map['imageUrls']),
+      originalPrice: map['originalPrice'] != null
+          ? (map['originalPrice'] as num).toDouble()
+          : null,
+      promoMessage: map['promoMessage'] as String?,
+      category: ProductCategory.values.firstWhere(
+        (e) => e.name == map['category'],
+        orElse: () => ProductCategory.values.first,
+      ),
+      collections: (map['collections'] as List)
+          .map((c) => Collections.values.firstWhere((e) => e.name == c))
+          .toList(),
+    );
+  }
 }
