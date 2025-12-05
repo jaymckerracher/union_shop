@@ -1,3 +1,4 @@
+import '../utils/firebase_check_user.dart';
 import 'package:flutter/material.dart';
 import 'header.dart';
 import 'footer.dart';
@@ -16,6 +17,17 @@ class SignupPage extends StatefulWidget {
 }
 
 class _SignupPageState extends State<SignupPage> {
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // Redirect to home if user is already signed in
+    if (isUserSignedIn()) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        Navigator.of(context).pushReplacementNamed('/');
+      });
+    }
+  }
+
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
