@@ -28,4 +28,15 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/
-    - test/test_assets/images
+    - test/test_assets/images/classic_beanie/
+    - test/test_assets/images/classic_cap/
+    - test/test_assets/images/classic_hoodie/
+    - test/test_assets/images/classic_rainbow_hoodie/
+    - test/test_assets/images/classic_sweatshirt/
+    - test/test_assets/images/classic_tee/
+    - test/test_assets/images/essential_tee/
+    - test/test_assets/images/grad_hoodie/
+    - test/test_assets/images/merch/
+    - test/test_assets/images/print_shack/
+    - test/test_assets/images/signature_hoodie/
+    - test/test_assets/images/signature_tee/
