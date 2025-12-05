@@ -25,4 +25,19 @@ class Product {
   }) : assert(imageUrls.isNotEmpty, 'Product must have at least one image URL');
 
   bool get onSale => originalPrice != null;
+
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'title': title,
+      'description': description,
+      'price': price,
+      'imageUrls': imageUrls,
+      'originalPrice': originalPrice,
+      'promoMessage': promoMessage,
+      'category':
+          category.name, // or category.toString() if you want the enum string
+      'collections': collections.map((c) => c.name).toList(),
+    };
+  }
 }
