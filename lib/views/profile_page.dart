@@ -55,15 +55,6 @@ class ProfilePage extends StatelessWidget {
                         fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 24),
-                  const Text(
-                    'Password',
-                    style: TextStyle(fontSize: 14, color: Colors.grey),
-                  ),
-                  const SizedBox(height: 4),
-                  const Text(
-                    '***********', // Obscured password
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
                 ],
               ),
             ),
