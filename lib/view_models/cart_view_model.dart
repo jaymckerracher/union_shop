@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import '../models/cart_item_merch_model.dart';
 import '../models/cart_item_clothing_model.dart';
 import '../models/cart_item_print_model.dart';
@@ -123,5 +124,15 @@ class CartViewModel extends ChangeNotifier {
       'clothing': _clothingSubCart.map((item) => item.toMap()).toList(),
       'print': _printSubCart.map((item) => item.toMap()).toList(),
     };
+  }
+
+  Future<void> saveCartToFirebase(String userId) async {
+    // Import cloud_firestore in your file or at the top of this file
+    // import 'package:cloud_firestore/cloud_firestore.dart';
+    final cartMap = toMap();
+    await FirebaseFirestore.instance
+        .collection('carts')
+        .doc(userId)
+        .set(cartMap);
   }
 }
