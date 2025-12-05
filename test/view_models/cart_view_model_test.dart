@@ -139,5 +139,21 @@ void main() {
       expect(cart.getClothingItems, isEmpty);
       expect(cart.getPrintItems, isEmpty);
     });
+
+    test('toMap returns correct cart structure', () {
+      cart.addMerchItem(merchItem(quantity: 2), 'testuser');
+      cart.addClothingItem(clothingItem(quantity: 1), 'testuser');
+      cart.addPrintItem(printItem(quantity: 3), 'testuser');
+      final map = cart.toMap();
+      expect(map['merch'], isA<List>());
+      expect(map['clothing'], isA<List>());
+      expect(map['print'], isA<List>());
+      expect(map['merch'].length, 1);
+      expect(map['clothing'].length, 1);
+      expect(map['print'].length, 1);
+      expect(map['merch'][0]['quantity'], 2);
+      expect(map['clothing'][0]['quantity'], 1);
+      expect(map['print'][0]['quantity'], 3);
+    });
   });
 }
