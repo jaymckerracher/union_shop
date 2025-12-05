@@ -240,21 +240,24 @@ class _PrintShackPersonalisationPageState
                         );
                         return;
                       }
+                      final uid = getCurrentUser()?.uid;
+                      if (uid == null) {
+                        Navigator.of(context).pushReplacementNamed('/login');
+                        return;
+                      }
                       final cart =
                           Provider.of<CartViewModel>(context, listen: false);
                       final type = mapTextToPrintType(selectedOption);
                       final print = Print(type: type, lines: lines);
                       const uuid = Uuid();
-                      final uid = getCurrentUser()?.uid;
-                      if (uid != null) {
-                        cart.addPrintItem(
-                            CartItemPrint(
-                              id: uuid.v4(),
-                              print: print,
-                              quantity: _quantity,
-                            ),
-                            uid);
-                      }
+                      cart.addPrintItem(
+                        CartItemPrint(
+                          id: uuid.v4(),
+                          print: print,
+                          quantity: _quantity,
+                        ),
+                        uid,
+                      );
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(content: Text('Added to cart!')),
                       );
