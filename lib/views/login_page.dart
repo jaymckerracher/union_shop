@@ -4,6 +4,7 @@ import 'header.dart';
 import 'footer.dart';
 import 'app_drawer.dart';
 import '../utils/firebase_sign_in.dart';
+import '../utils/firebase_check_user.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -13,6 +14,17 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // Redirect to home if user is already signed in
+    if (isUserSignedIn()) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        Navigator.of(context).pushReplacementNamed('/');
+      });
+    }
+  }
+
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
@@ -74,7 +86,6 @@ class _LoginPageState extends State<LoginPage> {
                         } else if (context.mounted) {
                           navigateToHome(context);
                         }
-                        // You can add navigation or UI feedback here later
                       },
                       style: ElevatedButton.styleFrom(
                         padding: const EdgeInsets.symmetric(vertical: 16.0),
