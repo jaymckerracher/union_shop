@@ -38,7 +38,7 @@ class CartGoHomeOverlay extends StatelessWidget {
                 onPressed: () async {
                   final uid = getCurrentUser()?.uid;
                   if (uid != null) {
-                    cartViewModel.clearCart(uid);
+                    cartViewModel.clearCartFirebase(uid);
                   }
                   navigateToHome(context);
                 },

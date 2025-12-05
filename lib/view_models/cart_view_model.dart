@@ -111,7 +111,7 @@ class CartViewModel extends ChangeNotifier {
     return merchSubCartPrice + clothingSubCartPrice + printSubCartPrice;
   }
 
-  void clearCart(String userId) {
+  void clearCartFirebase(String userId) {
     _merchSubCart.clear();
     _clothingSubCart.clear();
     _printSubCart.clear();
@@ -132,6 +132,7 @@ class CartViewModel extends ChangeNotifier {
         .collection('carts')
         .doc(userId)
         .set(cartMap);
+    notifyListeners();
   }
 
   Future<void> loadCartFromFirebase(String userId) async {

@@ -77,6 +77,7 @@ class CartClothingCard extends StatelessWidget {
                                   listen: false);
                               final uid = getCurrentUser()?.uid;
                               if (uid != null) {
+                                print('we are here');
                                 cartViewModel.removeClothingItem(item, uid);
                                 cartViewModel.addClothingItem(
                                     CartItemClothing(
