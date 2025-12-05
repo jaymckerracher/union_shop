@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../utils/navigation.dart';
 import '../view_models/cart_view_model.dart';
+import '../utils/firebase_get_user.dart';
 
 class CartGoHomeOverlay extends StatelessWidget {
   const CartGoHomeOverlay({super.key});
@@ -34,8 +35,13 @@ class CartGoHomeOverlay extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: () =>
-                    {cartViewModel.clearCart(), navigateToHome(context)},
+                onPressed: () async {
+                  final uid = getCurrentUser()?.uid;
+                  if (uid != null) {
+                    cartViewModel.clearCart(uid);
+                  }
+                  navigateToHome(context);
+                },
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(vertical: 16.0),
                   textStyle: const TextStyle(
