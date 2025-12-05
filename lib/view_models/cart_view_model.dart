@@ -127,12 +127,45 @@ class CartViewModel extends ChangeNotifier {
   }
 
   Future<void> saveCartToFirebase(String userId) async {
-    // Import cloud_firestore in your file or at the top of this file
-    // import 'package:cloud_firestore/cloud_firestore.dart';
     final cartMap = toMap();
     await FirebaseFirestore.instance
         .collection('carts')
         .doc(userId)
         .set(cartMap);
+  }
+
+  Future<void> loadCartFromFirebase(String userId) async {
+    final doc =
+        await FirebaseFirestore.instance.collection('carts').doc(userId).get();
+    if (!doc.exists) return;
+    final data = doc.data()!;
+
+    // Clear current cart
+    _merchSubCart.clear();
+    _clothingSubCart.clear();
+    _printSubCart.clear();
+
+    // Merch
+    if (data['merch'] != null) {
+      for (final item in data['merch']) {
+        _merchSubCart
+            .add(CartItemMerch.fromMap(Map<String, dynamic>.from(item)));
+      }
+    }
+    // Clothing
+    if (data['clothing'] != null) {
+      for (final item in data['clothing']) {
+        _clothingSubCart
+            .add(CartItemClothing.fromMap(Map<String, dynamic>.from(item)));
+      }
+    }
+    // Print
+    if (data['print'] != null) {
+      for (final item in data['print']) {
+        _printSubCart
+            .add(CartItemPrint.fromMap(Map<String, dynamic>.from(item)));
+      }
+    }
+    notifyListeners();
   }
 }
