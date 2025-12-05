@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:union_shop/utils/navigation.dart';
 import 'header.dart';
 import 'footer.dart';
 import 'app_drawer.dart';
 import '../utils/firebase_get_user.dart';
 import '../utils/firebase_sign_out.dart';
+import '../view_models/cart_view_model.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -12,6 +14,7 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final user = getCurrentUser();
+    final cartViewModel = Provider.of<CartViewModel>(context, listen: false);
 
     return Scaffold(
       drawer: const AppDrawer(),
@@ -74,6 +77,7 @@ class ProfilePage extends StatelessWidget {
                         const SnackBar(
                             content: Text('Signed out successfully!')),
                       );
+                      cartViewModel.clearCart();
                       navigateToHome(context);
                     }
                   },

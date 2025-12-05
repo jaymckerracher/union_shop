@@ -118,6 +118,13 @@ class CartViewModel extends ChangeNotifier {
     saveCartToFirebase(userId);
   }
 
+  void clearCart() {
+    _merchSubCart.clear();
+    _clothingSubCart.clear();
+    _printSubCart.clear();
+    notifyListeners();
+  }
+
   Map<String, dynamic> toMap() {
     return {
       'merch': _merchSubCart.map((item) => item.toMap()).toList(),
