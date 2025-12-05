@@ -15,4 +15,11 @@ class CartItemMerch {
       'quantity': quantity,
     };
   }
+
+  factory CartItemMerch.fromMap(Map<String, dynamic> map) {
+    return CartItemMerch(
+      product: Product.fromMap(map['product'] as Map<String, dynamic>),
+      quantity: map['quantity'] as int,
+    );
+  }
 }
