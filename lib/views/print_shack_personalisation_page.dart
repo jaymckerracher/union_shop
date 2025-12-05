@@ -1,3 +1,4 @@
+import '../utils/firebase_get_user.dart';
 import 'package:flutter/material.dart';
 import 'header.dart';
 import 'footer.dart';
@@ -225,7 +226,7 @@ class _PrintShackPersonalisationPageState
                   ),
                   // Add to Cart button
                   ElevatedButton(
-                    onPressed: () {
+                    onPressed: () async {
                       final lines = _controllers.map((c) => c.text).toList();
                       final hasEmptyField =
                           lines.any((line) => line.trim().isEmpty);
@@ -244,11 +245,16 @@ class _PrintShackPersonalisationPageState
                       final type = mapTextToPrintType(selectedOption);
                       final print = Print(type: type, lines: lines);
                       const uuid = Uuid();
-                      cart.addPrintItem(CartItemPrint(
-                        id: uuid.v4(),
-                        print: print,
-                        quantity: _quantity,
-                      ));
+                      final uid = getCurrentUser()?.uid;
+                      if (uid != null) {
+                        cart.addPrintItem(
+                            CartItemPrint(
+                              id: uuid.v4(),
+                              print: print,
+                              quantity: _quantity,
+                            ),
+                            uid);
+                      }
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(content: Text('Added to cart!')),
                       );
