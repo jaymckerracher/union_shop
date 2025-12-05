@@ -5,9 +5,12 @@ import 'dart:typed_data';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter/material.dart';
+import 'package:union_shop/views/app_drawer.dart';
 
 // import your app widget
 import 'package:union_shop/views/collections_page.dart';
+import 'package:union_shop/views/footer.dart';
+import 'package:union_shop/views/header.dart';
 
 /// Call this early in your test (before pumpWidget)
 void useTestAssets() {
@@ -42,24 +45,62 @@ void useTestAssets() {
 void main() {
   testWidgets('widget loads image from test assets',
       (WidgetTester tester) async {
-    // 1) Setup test asset handler BEFORE pumping any widgets
     useTestAssets();
-
-    // 2) Build your widget (which uses Image.asset('assets/images/logo.png'))
     await tester.pumpWidget(
-      MaterialApp(
-        home: Scaffold(
-          body: Center(
-            child: Image.asset('assets/images/logo.png'),
-          ),
-        ),
+      const MaterialApp(
+        home: CollectionsPage(),
       ),
     );
-
-    // Allow one frame to render and for the image to be decoded
     await tester.pumpAndSettle();
+    // Check for the Collections title
+    expect(find.text('Collections'), findsOneWidget);
+    // Check that at least one collection tile is rendered
+    expect(find.byType(GestureDetector), findsWidgets);
+    // Check that at least one image is rendered (if products exist)
+    expect(find.byType(Image), findsWidgets);
+  });
 
-    // 3) Assertions: find the Image widget
-    expect(find.byType(Image), findsOneWidget);
+  testWidgets('CollectionsPage displays the header and footer',
+      (WidgetTester tester) async {
+    useTestAssets();
+    await tester.pumpWidget(
+      const MaterialApp(
+        home: CollectionsPage(),
+      ),
+    );
+    await tester.pumpAndSettle();
+    // Check for header and footer widgets
+    expect(find.byType(Header), findsOneWidget);
+    expect(find.byType(Footer), findsOneWidget);
+  });
+
+  testWidgets('CollectionsPage drawer is present', (WidgetTester tester) async {
+    useTestAssets();
+    await tester.pumpWidget(
+      const MaterialApp(
+        home: CollectionsPage(),
+      ),
+    );
+    await tester.pumpAndSettle();
+    // Open the drawer by tapping the menu (burger) icon
+    final menuIcon = find.byIcon(Icons.menu);
+    expect(menuIcon, findsOneWidget);
+    await tester.tap(menuIcon);
+    await tester.pumpAndSettle();
+    // Now the AppDrawer should be present
+    expect(find.byType(AppDrawer), findsOneWidget);
+  });
+
+  testWidgets('CollectionsPage displays collection labels',
+      (WidgetTester tester) async {
+    useTestAssets();
+    await tester.pumpWidget(
+      const MaterialApp(
+        home: CollectionsPage(),
+      ),
+    );
+    await tester.pumpAndSettle();
+    // Example: check for a known label, adjust as needed
+    expect(find.textContaining('Pride'), findsWidgets);
   });
 }
