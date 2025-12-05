@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:union_shop/utils/firebase_get_user.dart';
+import 'package:union_shop/view_models/cart_view_model.dart';
 import '../utils/navigation.dart';
 import 'header.dart';
 import 'footer.dart';
@@ -14,6 +17,15 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  Future<void> _loadCartFromFirebase(BuildContext context) async {
+    final cartViewModel = Provider.of<CartViewModel>(context, listen: false);
+    final user = getCurrentUser();
+    final uid = user?.uid;
+    if (uid != null) {
+      await cartViewModel.loadCartFromFirebase(uid);
+    }
+  }
+
   bool _obscurePassword = true;
   @override
   void didChangeDependencies() {
@@ -97,6 +109,7 @@ class _LoginPageState extends State<LoginPage> {
                             SnackBar(content: Text(error)),
                           );
                         } else if (context.mounted) {
+                          _loadCartFromFirebase(context);
                           navigateToHome(context);
                         }
                       },
