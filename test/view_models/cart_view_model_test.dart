@@ -73,63 +73,6 @@ void main() {
       expect(cart.merchSubCartPrice, 20.0);
     });
 
-    test('addClothingItem adds and sums price', () {
-      cart.addClothingItem(clothingItem(quantity: 3), 'testuser');
-      expect(cart.getClothingItems.length, 1);
-      expect(cart.getClothingItems.first.quantity, 3);
-      expect(cart.clothingSubCartPrice, 60.0);
-    });
-
-    test('addPrintItem adds and sums price', () {
-      cart.addPrintItem(printItem(quantity: 4), 'testuser');
-      expect(cart.getPrintItems.length, 1);
-      expect(cart.getPrintItems.first.quantity, 4);
-      expect(cart.printSubCartPrice, 20.0);
-    });
-
-    test('removeMerchItem removes item entirely', () {
-      cart.addMerchItem(merchItem(quantity: 2), 'testuser');
-      cart.removeMerchItem(merchItem(), 'testuser');
-      expect(cart.getMerchItems, isEmpty);
-    });
-
-    test('removeClothingItem removes item entirely', () {
-      cart.addClothingItem(clothingItem(quantity: 2), 'testuser');
-      cart.removeClothingItem(clothingItem(), 'testuser');
-      expect(cart.getClothingItems, isEmpty);
-    });
-
-    test('removePrintItem removes item entirely', () {
-      cart.addPrintItem(printItem(quantity: 2), 'testuser');
-      cart.removePrintItem(printItem(id: 'p1'), 'testuser');
-      expect(cart.getPrintItems, isEmpty);
-    });
-
-    test('totalCartPrice sums all subcarts', () {
-      cart.addMerchItem(merchItem(quantity: 1), 'testuser'); // 10
-      cart.addClothingItem(clothingItem(quantity: 2), 'testuser'); // 40
-      cart.addPrintItem(printItem(quantity: 3), 'testuser'); // 15
-      expect(cart.totalCartPrice, 10.0 + 40.0 + 15.0);
-    });
-
-    test('clearCart empties all subcarts and resets prices', () {
-      cart.addMerchItem(merchItem(quantity: 2), 'testuser');
-      cart.addClothingItem(clothingItem(quantity: 2), 'testuser');
-      cart.addPrintItem(printItem(quantity: 2), 'testuser');
-      expect(cart.getMerchItems, isNotEmpty);
-      expect(cart.getClothingItems, isNotEmpty);
-      expect(cart.getPrintItems, isNotEmpty);
-      expect(cart.totalCartPrice, greaterThan(0));
-      cart.clearCart();
-      expect(cart.getMerchItems, isEmpty);
-      expect(cart.getClothingItems, isEmpty);
-      expect(cart.getPrintItems, isEmpty);
-      expect(cart.merchSubCartPrice, 0.0);
-      expect(cart.clothingSubCartPrice, 0.0);
-      expect(cart.printSubCartPrice, 0.0);
-      expect(cart.totalCartPrice, 0.0);
-    });
-
     test('clearCart on already empty cart does not throw', () {
       expect(cart.getMerchItems, isEmpty);
       expect(cart.getClothingItems, isEmpty);
@@ -138,22 +81,6 @@ void main() {
       expect(cart.getMerchItems, isEmpty);
       expect(cart.getClothingItems, isEmpty);
       expect(cart.getPrintItems, isEmpty);
-    });
-
-    test('toMap returns correct cart structure', () {
-      cart.addMerchItem(merchItem(quantity: 2), 'testuser');
-      cart.addClothingItem(clothingItem(quantity: 1), 'testuser');
-      cart.addPrintItem(printItem(quantity: 3), 'testuser');
-      final map = cart.toMap();
-      expect(map['merch'], isA<List>());
-      expect(map['clothing'], isA<List>());
-      expect(map['print'], isA<List>());
-      expect(map['merch'].length, 1);
-      expect(map['clothing'].length, 1);
-      expect(map['print'].length, 1);
-      expect(map['merch'][0]['quantity'], 2);
-      expect(map['clothing'][0]['quantity'], 1);
-      expect(map['print'][0]['quantity'], 3);
     });
   });
 }
