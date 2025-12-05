@@ -1,3 +1,4 @@
+import '../utils/firebase_get_user.dart';
 import 'package:flutter/material.dart';
 import '../models/cart_item_print_model.dart';
 import 'package:provider/provider.dart';
@@ -46,14 +47,18 @@ class CartPrintCard extends StatelessWidget {
                 Row(
                   children: [
                     TextButton(
-                      onPressed: () {
+                      onPressed: () async {
                         final cartViewModel =
                             Provider.of<CartViewModel>(context, listen: false);
-                        cartViewModel.removePrintItem(item);
+                        final uid = getCurrentUser()?.uid;
+                        if (uid != null) {
+                          cartViewModel.removePrintItem(item, uid);
+                        }
                       },
                       style: TextButton.styleFrom(
-                          padding: EdgeInsets.zero,
-                          minimumSize: const Size(40, 24)),
+                        padding: EdgeInsets.zero,
+                        minimumSize: const Size(40, 24),
+                      ),
                       child:
                           const Text('REMOVE', style: TextStyle(fontSize: 12)),
                     ),
@@ -65,24 +70,30 @@ class CartPrintCard extends StatelessWidget {
                           context: context,
                           builder: (context) => CartCardEditOverlay(
                             initialQuantity: item.quantity,
-                            onQuantityChanged: (newQty) {
+                            onQuantityChanged: (newQty) async {
                               final cartViewModel = Provider.of<CartViewModel>(
                                   context,
                                   listen: false);
-                              cartViewModel.removePrintItem(item);
-                              cartViewModel.addPrintItem(CartItemPrint(
-                                id: item.id,
-                                print: item.print,
-                                quantity: newQty,
-                              ));
+                              final uid = getCurrentUser()?.uid;
+                              if (uid != null) {
+                                cartViewModel.removePrintItem(item, uid);
+                                cartViewModel.addPrintItem(
+                                    CartItemPrint(
+                                      id: item.id,
+                                      print: item.print,
+                                      quantity: newQty,
+                                    ),
+                                    uid);
+                              }
                             },
                             onClose: () => Navigator.of(context).pop(),
                           ),
                         );
                       },
                       style: TextButton.styleFrom(
-                          padding: EdgeInsets.zero,
-                          minimumSize: const Size(40, 24)),
+                        padding: EdgeInsets.zero,
+                        minimumSize: const Size(40, 24),
+                      ),
                       child: const Text('EDIT', style: TextStyle(fontSize: 12)),
                     ),
                   ],
