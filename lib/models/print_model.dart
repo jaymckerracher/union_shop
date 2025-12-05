@@ -26,4 +26,11 @@ class Print {
       'lines': lines,
     };
   }
+
+  factory Print.fromMap(Map<String, dynamic> map) {
+    return Print(
+      type: PrintType.values.firstWhere((e) => e.name == map['type']),
+      lines: List<String>.from(map['lines']),
+    );
+  }
 }
