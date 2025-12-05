@@ -1,3 +1,4 @@
+import '../utils/firebase_get_user.dart';
 import 'package:flutter/material.dart';
 import '../models/cart_item_merch_model.dart';
 import 'package:provider/provider.dart';
@@ -41,14 +42,18 @@ class CartMerchCard extends StatelessWidget {
                 Row(
                   children: [
                     TextButton(
-                      onPressed: () {
+                      onPressed: () async {
                         final cartViewModel =
                             Provider.of<CartViewModel>(context, listen: false);
-                        cartViewModel.removeMerchItem(item);
+                        final uid = getCurrentUser()?.uid;
+                        if (uid != null) {
+                          cartViewModel.removeMerchItem(item, uid);
+                        }
                       },
                       style: TextButton.styleFrom(
-                          padding: EdgeInsets.zero,
-                          minimumSize: const Size(40, 24)),
+                        padding: EdgeInsets.zero,
+                        minimumSize: const Size(40, 24),
+                      ),
                       child:
                           const Text('REMOVE', style: TextStyle(fontSize: 12)),
                     ),
@@ -60,23 +65,29 @@ class CartMerchCard extends StatelessWidget {
                           context: context,
                           builder: (context) => CartCardEditOverlay(
                             initialQuantity: item.quantity,
-                            onQuantityChanged: (newQty) {
+                            onQuantityChanged: (newQty) async {
                               final cartViewModel = Provider.of<CartViewModel>(
                                   context,
                                   listen: false);
-                              cartViewModel.removeMerchItem(item);
-                              cartViewModel.addMerchItem(CartItemMerch(
-                                product: item.product,
-                                quantity: newQty,
-                              ));
+                              final uid = getCurrentUser()?.uid;
+                              if (uid != null) {
+                                cartViewModel.removeMerchItem(item, uid);
+                                cartViewModel.addMerchItem(
+                                    CartItemMerch(
+                                      product: item.product,
+                                      quantity: newQty,
+                                    ),
+                                    uid);
+                              }
                             },
                             onClose: () => Navigator.of(context).pop(),
                           ),
                         );
                       },
                       style: TextButton.styleFrom(
-                          padding: EdgeInsets.zero,
-                          minimumSize: const Size(40, 24)),
+                        padding: EdgeInsets.zero,
+                        minimumSize: const Size(40, 24),
+                      ),
                       child: const Text('EDIT', style: TextStyle(fontSize: 12)),
                     ),
                   ],
