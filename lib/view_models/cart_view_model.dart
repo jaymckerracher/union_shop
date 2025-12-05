@@ -93,18 +93,18 @@ class CartViewModel extends ChangeNotifier {
   }
 
   double get merchSubCartPrice {
-    return _merchSubCart.fold(
-        0.0, (sum, item) => sum + item.product.price * item.quantity);
+    return _merchSubCart.fold(0.0,
+        (currentSum, item) => currentSum + item.product.price * item.quantity);
   }
 
   double get clothingSubCartPrice {
-    return _clothingSubCart.fold(
-        0.0, (sum, item) => sum + item.product.price * item.quantity);
+    return _clothingSubCart.fold(0.0,
+        (currentSum, item) => currentSum + item.product.price * item.quantity);
   }
 
   double get printSubCartPrice {
-    return _printSubCart.fold(
-        0.0, (sum, item) => sum + item.print.price * item.quantity);
+    return _printSubCart.fold(0.0,
+        (currentSum, item) => currentSum + item.print.price * item.quantity);
   }
 
   double get totalCartPrice {
