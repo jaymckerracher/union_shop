@@ -8,4 +8,11 @@ class CartItemMerch {
     required this.product,
     required this.quantity,
   });
+
+  Map<String, dynamic> toMap() {
+    return {
+      'product': product.toMap(),
+      'quantity': quantity,
+    };
+  }
 }
