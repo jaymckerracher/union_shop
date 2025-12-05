@@ -14,7 +14,7 @@ class CartViewModel extends ChangeNotifier {
       List.unmodifiable(_clothingSubCart);
   List<CartItemPrint> get getPrintItems => List.unmodifiable(_printSubCart);
 
-  void addMerchItem(CartItemMerch newItem) {
+  void addMerchItem(CartItemMerch newItem, String userId) {
     final index = _merchSubCart
         .indexWhere((item) => item.product.id == newItem.product.id);
     if (index != -1) {
@@ -29,7 +29,7 @@ class CartViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void addClothingItem(CartItemClothing newItem) {
+  void addClothingItem(CartItemClothing newItem, String userId) {
     final index = _clothingSubCart.indexWhere((item) =>
         item.product.id == newItem.product.id &&
         item.size == newItem.size &&
@@ -45,10 +45,10 @@ class CartViewModel extends ChangeNotifier {
     } else {
       _clothingSubCart.add(newItem);
     }
-    notifyListeners();
+    saveCartToFirebase(userId);
   }
 
-  void addPrintItem(CartItemPrint newItem) {
+  void addPrintItem(CartItemPrint newItem, String userId) {
     final index = _printSubCart.indexWhere((item) => item.id == newItem.id);
     if (index != -1) {
       final existing = _printSubCart[index];
@@ -60,35 +60,35 @@ class CartViewModel extends ChangeNotifier {
     } else {
       _printSubCart.add(newItem);
     }
-    notifyListeners();
+    saveCartToFirebase(userId);
   }
 
-  void removeMerchItem(CartItemMerch itemToRemove) {
+  void removeMerchItem(CartItemMerch itemToRemove, String userId) {
     final index = _merchSubCart
         .indexWhere((item) => item.product.id == itemToRemove.product.id);
     if (index != -1) {
       _merchSubCart.removeAt(index);
-      notifyListeners();
+      saveCartToFirebase(userId);
     }
   }
 
-  void removeClothingItem(CartItemClothing itemToRemove) {
+  void removeClothingItem(CartItemClothing itemToRemove, String userId) {
     final index = _clothingSubCart.indexWhere((item) =>
         item.product.id == itemToRemove.product.id &&
         item.size == itemToRemove.size &&
         item.colour == itemToRemove.colour);
     if (index != -1) {
       _clothingSubCart.removeAt(index);
-      notifyListeners();
+      saveCartToFirebase(userId);
     }
   }
 
-  void removePrintItem(CartItemPrint itemToRemove) {
+  void removePrintItem(CartItemPrint itemToRemove, String userId) {
     final index =
         _printSubCart.indexWhere((item) => item.id == itemToRemove.id);
     if (index != -1) {
       _printSubCart.removeAt(index);
-      notifyListeners();
+      saveCartToFirebase(userId);
     }
   }
 
@@ -111,11 +111,11 @@ class CartViewModel extends ChangeNotifier {
     return merchSubCartPrice + clothingSubCartPrice + printSubCartPrice;
   }
 
-  void clearCart() {
+  void clearCart(String userId) {
     _merchSubCart.clear();
     _clothingSubCart.clear();
     _printSubCart.clear();
-    notifyListeners();
+    saveCartToFirebase(userId);
   }
 
   Map<String, dynamic> toMap() {
