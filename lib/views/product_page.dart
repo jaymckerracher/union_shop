@@ -302,6 +302,11 @@ class _ProductDetailsState extends State<ProductDetails> {
               // Add to Cart button
               ElevatedButton(
                 onPressed: () async {
+                  final uid = getCurrentUser()?.uid;
+                  if (uid == null) {
+                    Navigator.of(context).pushReplacementNamed('/login');
+                    return;
+                  }
                   final cart =
                       Provider.of<CartViewModel>(context, listen: false);
 
@@ -312,30 +317,26 @@ class _ProductDetailsState extends State<ProductDetails> {
                     final colour =
                         selectedColour ?? ClothingColour.values.first;
                     final size = selectedSize ?? ClothingSize.values[2];
-                    final uid = getCurrentUser()?.uid;
-                    if (uid != null) {
-                      cart.addClothingItem(
-                          CartItemClothing(
-                            product: product,
-                            quantity: _quantity,
-                            size: size,
-                            colour: colour,
-                          ),
-                          uid);
-                    }
+                    cart.addClothingItem(
+                      CartItemClothing(
+                        product: product,
+                        quantity: _quantity,
+                        size: size,
+                        colour: colour,
+                      ),
+                      uid,
+                    );
                   } else if (product.category
                       .toString()
                       .toLowerCase()
                       .contains('merch')) {
-                    final uid = getCurrentUser()?.uid;
-                    if (uid != null) {
-                      cart.addMerchItem(
-                          CartItemMerch(
-                            product: product,
-                            quantity: _quantity,
-                          ),
-                          uid);
-                    }
+                    cart.addMerchItem(
+                      CartItemMerch(
+                        product: product,
+                        quantity: _quantity,
+                      ),
+                      uid,
+                    );
                   }
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text('Added to cart!')),
