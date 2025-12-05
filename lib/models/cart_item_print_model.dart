@@ -10,4 +10,12 @@ class CartItemPrint {
     required this.print,
     required this.quantity,
   });
+
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'print': print.toMap(),
+      'quantity': quantity,
+    };
+  }
 }
