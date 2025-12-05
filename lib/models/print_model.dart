@@ -19,4 +19,11 @@ class Print {
     required this.type,
     required this.lines,
   });
+
+  Map<String, dynamic> toMap() {
+    return {
+      'type': type.name,
+      'lines': lines,
+    };
+  }
 }
