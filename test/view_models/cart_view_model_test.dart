@@ -1,14 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:union_shop/view_models/cart_view_model.dart';
 import 'package:union_shop/models/cart_item_merch_model.dart';
-import 'package:union_shop/models/cart_item_clothing_model.dart';
-import 'package:union_shop/models/cart_item_print_model.dart';
 import 'package:union_shop/models/product_model.dart';
-import 'package:union_shop/models/print_model.dart';
 import 'package:union_shop/enums/product_category.dart';
-import 'package:union_shop/enums/clothing_size.dart';
-import 'package:union_shop/enums/clothing_colour.dart';
-import 'package:union_shop/enums/print_type.dart';
 
 void main() {
   // Dummy product for testing
@@ -24,30 +18,6 @@ void main() {
 
   CartItemMerch merchItem({int quantity = 1}) =>
       CartItemMerch(product: product, quantity: quantity);
-
-  final clothingProduct = Product(
-    id: 'c1',
-    title: 'Clothing',
-    description: 'A clothing product',
-    price: 20.0,
-    imageUrls: ['c.png'],
-    category: ProductCategory.clothing,
-    collections: [],
-  );
-
-  CartItemClothing clothingItem(
-          {int quantity = 1,
-          ClothingSize size = ClothingSize.medium,
-          ClothingColour colour = ClothingColour.black}) =>
-      CartItemClothing(
-          product: clothingProduct,
-          quantity: quantity,
-          size: size,
-          colour: colour);
-
-  final print = Print(type: PrintType.oneLine, lines: ['Line 1']);
-  CartItemPrint printItem({int quantity = 1, String id = 'p1'}) =>
-      CartItemPrint(id: id, print: print, quantity: quantity);
 
   group('CartViewModel', () {
     late CartViewModel cart;
