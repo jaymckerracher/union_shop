@@ -1,3 +1,4 @@
+import '../utils/firebase_get_user.dart';
 import 'package:flutter/material.dart';
 import 'header.dart';
 import 'footer.dart';
@@ -300,7 +301,7 @@ class _ProductDetailsState extends State<ProductDetails> {
               ),
               // Add to Cart button
               ElevatedButton(
-                onPressed: () {
+                onPressed: () async {
                   final cart =
                       Provider.of<CartViewModel>(context, listen: false);
 
@@ -308,26 +309,34 @@ class _ProductDetailsState extends State<ProductDetails> {
                       .toString()
                       .toLowerCase()
                       .contains('clothing')) {
-                    // Use selectedColour and selectedSize, defaulting if null
                     final colour =
                         selectedColour ?? ClothingColour.values.first;
                     final size = selectedSize ?? ClothingSize.values[2];
-                    cart.addClothingItem(CartItemClothing(
-                      product: product,
-                      quantity: _quantity,
-                      size: size,
-                      colour: colour,
-                    ));
+                    final uid = getCurrentUser()?.uid;
+                    if (uid != null) {
+                      cart.addClothingItem(
+                          CartItemClothing(
+                            product: product,
+                            quantity: _quantity,
+                            size: size,
+                            colour: colour,
+                          ),
+                          uid);
+                    }
                   } else if (product.category
                       .toString()
                       .toLowerCase()
                       .contains('merch')) {
-                    cart.addMerchItem(CartItemMerch(
-                      product: product,
-                      quantity: _quantity,
-                    ));
+                    final uid = getCurrentUser()?.uid;
+                    if (uid != null) {
+                      cart.addMerchItem(
+                          CartItemMerch(
+                            product: product,
+                            quantity: _quantity,
+                          ),
+                          uid);
+                    }
                   }
-                  // Optionally show a snackbar or feedback here
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text('Added to cart!')),
                   );
