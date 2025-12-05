@@ -18,4 +18,12 @@ class CartItemPrint {
       'quantity': quantity,
     };
   }
+
+  factory CartItemPrint.fromMap(Map<String, dynamic> map) {
+    return CartItemPrint(
+      id: map['id'] as String,
+      print: Print.fromMap(map['print'] as Map<String, dynamic>),
+      quantity: map['quantity'] as int,
+    );
+  }
 }
