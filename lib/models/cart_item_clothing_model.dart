@@ -23,4 +23,13 @@ class CartItemClothing {
       'colour': colour.name,
     };
   }
+
+  factory CartItemClothing.fromMap(Map<String, dynamic> map) {
+    return CartItemClothing(
+      product: Product.fromMap(map['product'] as Map<String, dynamic>),
+      quantity: map['quantity'] as int,
+      size: ClothingSize.values.firstWhere((e) => e.name == map['size']),
+      colour: ClothingColour.values.firstWhere((e) => e.name == map['colour']),
+    );
+  }
 }
