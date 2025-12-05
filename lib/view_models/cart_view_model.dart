@@ -117,5 +117,11 @@ class CartViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  
+  Map<String, dynamic> toMap() {
+    return {
+      'merch': _merchSubCart.map((item) => item.toMap()).toList(),
+      'clothing': _clothingSubCart.map((item) => item.toMap()).toList(),
+      'print': _printSubCart.map((item) => item.toMap()).toList(),
+    };
+  }
 }
